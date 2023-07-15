@@ -38,8 +38,12 @@ export const RegisterField: React.FC<RegisterFieldProps> = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Đăng ký</Text>
-      <TextInput {...inputProps_1} style={styles.textInputRegister} />
-      <TextInput {...inputProps_2} style={styles.textInputRegister} />
+      <TextInput {...inputProps_1} 
+      style={styles.textInputRegister} 
+      placeholder='Nhập số điện thoại'/>
+      <TextInput {...inputProps_2} 
+      style={styles.textInputRegister}
+      placeholder='Nghệ danh' />
     </View>
   )
 }
@@ -51,10 +55,10 @@ export const OTPField: React.FC<OTPFieldProps> = (props) => {
       <Text style={styles.title_1}>Nhập OTP</Text>
       <Text style={styles.des}>Nhập OTP vừa được gửi về máy bạn</Text>
       <View style = {styles.boxOTP}>
-        <TextInput {...inputProps_1} style={styles.textInputOTP} />
-        <TextInput {...inputProps_2} style={styles.textInputOTP} />
-        <TextInput {...inputProps_1} style={styles.textInputOTP} />
-        <TextInput {...inputProps_2} style={styles.textInputOTP} />
+        <TextInput {...inputProps_1} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
+        <TextInput {...inputProps_2} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
+        <TextInput {...inputProps_1} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
+        <TextInput {...inputProps_2} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
       </View>
       <Text style={[styles.des, {marginBottom: '0%'}]}>Bạn chưa nhận được mã?</Text>
       <TouchableOpacity>

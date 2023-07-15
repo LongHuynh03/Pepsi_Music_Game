@@ -32,7 +32,7 @@ const LogInOTP = () => {
           </Form>
           <Button 
             containerStyle = {styles.buttonLogIn}
-            title='Đăng nhập'
+            title='Xác nhận'
             onPress={logIn}/>
         </View>
       </Background>

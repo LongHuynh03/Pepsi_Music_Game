@@ -21,6 +21,8 @@
     "react-native-reanimated": "^3.3.0",
     "react-native-safe-area-context": "^4.7.1",
     "react-native-screens": "^3.22.1",
+    "react-native-swiper": "^1.6.0-nightly.5",
+    "swiper": "^10.0.4",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
