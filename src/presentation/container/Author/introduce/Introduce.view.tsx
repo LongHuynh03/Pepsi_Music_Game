@@ -4,27 +4,71 @@ import Swiper from 'react-native-swiper'
 import { INTRO_1, INTRO_2, INTRO_3, INTRO_4, INTRO_5, INTRO_6, TALEN } from '../../../../../assets'
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
+import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 
-const Introduce = () => {
+const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route}) => {
 
-  const asd = () => {
-    return (
-      <Text>123</Text>
+  const [btnNext, setbtnNext] = React.useState(false);
+  const [btnPrev, setbtnPrev] = React.useState(false)
+  let buttonPrev = null;
+  let buttonNext = null;
+
+  const lastIndex = (index: number) => {
+    console.log('index >>> ', index);
+    if (index == 5 || index == 0) {
+      if (index == 5){
+        setbtnNext(true);
+      }
+      if (index == 0){
+        setbtnPrev(true);
+      }
+    }
+    else {
+      setbtnNext(false);
+      setbtnPrev(false);
+    }
+  }
+
+  if (btnNext){
+    buttonNext = (
+      <TouchableOpacity onPress={() => navigation.navigate('FirstLogIn')}>
+        <Text style={[styles.buttonText_Next]}>XONG</Text>
+      </TouchableOpacity>
+    );
+  }else{
+    buttonNext= (
+      <Text style={styles.buttonText_Next}>TIẾP THEO</Text>
     )
   }
+
+  if (btnPrev){
+    buttonPrev = (
+      <TouchableOpacity onPress={() => navigation.navigate('FirstLogIn')}>
+        <Text style={[styles.buttonText_Next]}>TRỞ VỀ</Text>
+      </TouchableOpacity>
+    );
+  }else{
+    buttonPrev= (
+      <Text style={styles.buttonText_Next}>TRỞ VỀ</Text>
+    )
+  }
+
+
 
   return (
     <Background>
       <View style={styles.container}>
         <Swiper style={styles.swiper}
+          // showsButtons={show ? true : false}
           showsButtons
           buttonWrapperStyle={styles.btnSwiper}
-          nextButton={<Text style={styles.buttonText_Next}>TIẾP THEO</Text>}
-          prevButton={<Text style={styles.buttonText_Prev}>TRỞ VỀ</Text>}
+          // nextButton={<Text style={styles.buttonText_Next}>{show? TT : X}</Text>}
+          nextButton={buttonNext}
+          prevButton={buttonPrev}
           paginationStyle={styles.pagination}
-          autoplayTimeout={1000}
-          autoplay
-          loop
+          activeDotStyle = {{backgroundColor: Colors.WHITE}}
+          dotStyle = {{backgroundColor: undefined, borderWidth: 0.5, borderColor: Colors.WHITE}}
+          onIndexChanged={(index) => { lastIndex(index) }}
         >
           <View style={styles.swiperSilde}>
             <Image source={INTRO_1} style={styles.imageIntro} />
@@ -74,6 +118,7 @@ const Introduce = () => {
             <Text style={styles.textDescription_2}>HTTPS://pepsirapgame.pepsishop.vn/</Text>
           </View>
         </Swiper>
+        {/* {buttonChange} */}
       </View>
     </Background>
   )

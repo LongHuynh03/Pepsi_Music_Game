@@ -1,21 +1,38 @@
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
-type SplashProps = {
+type FirstLogInProps = {
     userID: number;
 };
 
 type LoginProps = {
-    id: number;
+    id: string;
+    name: string;
 };
 
 type LoginOTPProps = {
     id: number;
 };
 
+type RegisterProps = {
+};
+
+type InstructProps = {
+};
+
+type HomeProps = {
+};
+
+type RulesProps = {
+};
+
 export type MainStackParamList = {
-    Splash: SplashProps | undefined;
-    LogIn: LoginProps | undefined;
+    FirstLogIn: FirstLogInProps | undefined;
+    LogIn: LoginProps | undefined; 
     LogInOTP: LoginOTPProps | undefined;
+    Register: RegisterProps | undefined;
+    Instruct: InstructProps | undefined;
+    Home: HomeProps | undefined;
+    Rules: RulesProps | undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackParamList>;

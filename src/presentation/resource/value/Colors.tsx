@@ -10,5 +10,7 @@ export const Colors = {
     BLUE_PEPSI: '#215EAC',
     BACKGROUND_FORM: 'rgba(122, 0, 38, 0.3)',
     YELLOW: 'yellow',
+    BOTTOM_BAR: 'rgba(119, 174, 240, 1)',
+    DARK_BLUE: 'rgba(19, 66, 125, 0.50)'
   };
   

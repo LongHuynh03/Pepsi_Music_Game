@@ -3,12 +3,20 @@ import React from 'react'
 import Background from '../../../component/background/Background'
 import { CENTER_BUTTON, HEADLINE_2, LEFT_BUTTON, RIGHT_BUTTON, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 
-const Splash: React.FC<MainStackScreenProps<'Splash'>>= ({navigation,route}) => {
+const FirstLogIn: React.FC<MainStackScreenProps<'FirstLogIn'>>= ({navigation,route}) => {
 
     const onClick = () => {
         navigation.navigate('LogIn');
+    }
+
+    const rules = () => {
+        navigation.navigate('Rules');
+    }
+
+    const instruct = () => {
+        navigation.navigate('Instruct');
     }
 
     return (
@@ -20,7 +28,7 @@ const Splash: React.FC<MainStackScreenProps<'Splash'>>= ({navigation,route}) => 
                 <View style={styles.main}>
                     <Image source={TALEN} style={styles.imageTalen} />
                     <View style = {styles.boxButton}>
-                        <TouchableOpacity style = {styles.btn}>
+                        <TouchableOpacity style = {styles.btn} onPress={rules}>
                             <ImageBackground  source={LEFT_BUTTON} style = {styles.imageButton}>
                                 <Text style = {styles.textButton}>THỂ LỆ</Text>
                             </ImageBackground>
@@ -28,7 +36,7 @@ const Splash: React.FC<MainStackScreenProps<'Splash'>>= ({navigation,route}) => 
                         <TouchableOpacity style = {styles.btn} onPress={onClick}>
                             <Image source={CENTER_BUTTON} style = {styles.imageButton}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style = {styles.btn}>
+                        <TouchableOpacity style = {styles.btn} onPress={instruct}>
                             <ImageBackground  source={RIGHT_BUTTON} style = {styles.imageButton}>
                                 <Text style = {styles.textButton}>HƯỚNG DẪN</Text>
                             </ImageBackground>
@@ -40,7 +48,7 @@ const Splash: React.FC<MainStackScreenProps<'Splash'>>= ({navigation,route}) => 
     )
 }
 
-export default Splash
+export default FirstLogIn
 
 const styles = StyleSheet.create({
     container: {

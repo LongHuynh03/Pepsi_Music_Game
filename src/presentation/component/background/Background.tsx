@@ -3,7 +3,7 @@ import React from 'react'
 import { BACKGROUND } from '../../../../assets';
 
 export interface PrimaryBackgroundProps { 
-    children: React.ReactNode;
+    children: React.ReactNode,
 }
 
 const Background: React.FC<PrimaryBackgroundProps> = (props) => {

@@ -8,9 +8,13 @@ import Button from '../../../component/button/Button'
 import { Colors } from '../../../resource/value/Colors'
 import { LOGO_PEPSI } from '../../../../../assets'
 import TextTitle from '../../../component/text/TextTitle'
+import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 
-const LogInOTP = () => {
-    const logIn = () => {}
+const LogInOTP : React.FC<MainStackScreenProps<'LogInOTP'>> = ({navigation,route}) => {
+
+    const submit = () => {
+      navigation.navigate('Home');
+    }
 
     const headerCenter = () => {
       return (
@@ -33,7 +37,7 @@ const LogInOTP = () => {
           <Button 
             containerStyle = {styles.buttonLogIn}
             title='Xác nhận'
-            onPress={logIn}/>
+            onPress={submit}/>
         </View>
       </Background>
     </ScrollView>

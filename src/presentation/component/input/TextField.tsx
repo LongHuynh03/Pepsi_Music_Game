@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInputProps, TextInput, Touchable, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react'
 import LogIn from '../../container/Authen/LogIn/LogIn.view'
 import Button from '../button/Button'
 import { Colors } from '../../resource/value/Colors';
@@ -38,31 +38,46 @@ export const RegisterField: React.FC<RegisterFieldProps> = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Đăng ký</Text>
-      <TextInput {...inputProps_1} 
-      style={styles.textInputRegister} 
-      placeholder='Nhập số điện thoại'/>
-      <TextInput {...inputProps_2} 
-      style={styles.textInputRegister}
-      placeholder='Nghệ danh' />
+      <TextInput {...inputProps_1}
+        style={styles.textInputRegister}
+        placeholder='Nhập số điện thoại' />
+      <TextInput {...inputProps_2}
+        style={styles.textInputRegister}
+        placeholder='Nghệ danh' />
     </View>
   )
 }
 
 export const OTPField: React.FC<OTPFieldProps> = (props) => {
   const { inputProps_1, inputProps_2, inputProps_3, inputProps_4 } = props;
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title_1}>Nhập OTP</Text>
       <Text style={styles.des}>Nhập OTP vừa được gửi về máy bạn</Text>
-      <View style = {styles.boxOTP}>
-        <TextInput {...inputProps_1} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
-        <TextInput {...inputProps_2} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
-        <TextInput {...inputProps_1} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
-        <TextInput {...inputProps_2} style={styles.textInputOTP} maxLength={1} inputMode='decimal'/>
+      <View style={styles.boxOTP}>
+        <TextInput {...inputProps_1}
+          style={styles.textInputOTP}
+          maxLength={1}
+          
+          inputMode='decimal'
+          autoFocus />
+        <TextInput {...inputProps_2}
+          style={styles.textInputOTP}
+          maxLength={1}
+          inputMode='decimal' />
+        <TextInput {...inputProps_1}
+          style={styles.textInputOTP}
+          maxLength={1}
+          inputMode='decimal' />
+        <TextInput {...inputProps_2}
+          style={styles.textInputOTP}
+          maxLength={1}
+          inputMode='decimal' />
       </View>
-      <Text style={[styles.des, {marginBottom: '0%'}]}>Bạn chưa nhận được mã?</Text>
+      <Text style={[styles.des, { marginBottom: '0%' }]}>Bạn chưa nhận được mã?</Text>
       <TouchableOpacity>
-        <Text style = {styles.textbtn}>Gửi lại mã</Text>
+        <Text style={styles.textbtn}>Gửi lại mã</Text>
       </TouchableOpacity>
     </View>
   )

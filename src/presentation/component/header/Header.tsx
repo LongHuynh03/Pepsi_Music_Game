@@ -1,4 +1,4 @@
-import { Image, ImageSourcePropType, StyleProp, StyleSheet, Text, TextProps, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Dimensions, Image, ImageSourcePropType, StyleProp, StyleSheet, Text, TextProps, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React from 'react'
 
 export interface HeaderProps extends TextProps {
@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     const EventLeft = () => {
         if (iconLeft) {
             return (
-                <TouchableOpacity style= {styles.button} onPress={leftHeader}>
+                <TouchableOpacity style={styles.button} onPress={leftHeader}>
                     <Image source={iconLeft} style={styles.icon} />
                 </TouchableOpacity>
             );
@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     const EventRight = () => {
         if (iconRight) {
             return (
-                <TouchableOpacity style= {styles.button} onPress={rightHeader}>
+                <TouchableOpacity style={styles.button} onPress={rightHeader}>
                     <Image source={iconRight} style={styles.icon} />
                 </TouchableOpacity>
             );
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        height: '8%',
+        alignItems: 'center',
+        height: Dimensions.get('screen').height * 0.12,
     },
     icon: {
         resizeMode: 'contain',
@@ -73,17 +74,23 @@ const styles = StyleSheet.create({
     },
     boxLeft: {
         width: '15%',
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: Dimensions.get('screen').height * 0.02,
     },
     boxCenter: {
         width: '70%',
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: Dimensions.get('screen').height * 0.02,
     },
     boxRight: {
         width: '15%',
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: Dimensions.get('screen').height * 0.02,
     },
 })

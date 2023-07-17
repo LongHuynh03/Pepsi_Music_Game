@@ -1,5 +1,5 @@
 import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
@@ -7,17 +7,19 @@ import Header from '../../../component/header/Header'
 import { BACKGROUND, BACKGROUND_BOOTOM_TAB, ICON_HOME, LOGO_PEPSI } from '../../../../../assets'
 import { LogInField, RegisterField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 
 
 const LogIn: React.FC<MainStackScreenProps<'LogIn'>>= ({navigation,route}) => {
 
-  const [edt, setedt] = React.useState<string>('');
-  console.log(edt)
-
   const logIn = () => {
     navigation.navigate('LogInOTP');
   }
+
+  const register = () => {
+    navigation.navigate('Register');
+  }
+
 
   const headerCenter = () => {
     return (
@@ -49,7 +51,7 @@ const LogIn: React.FC<MainStackScreenProps<'LogIn'>>= ({navigation,route}) => {
           <Button 
             containerStyle = {styles.buttonRegister}
             title='Đăng ký'
-            onPress={logIn}
+            onPress={register}
             titleStyle = {styles.title}/>
         </View>
       </Background>

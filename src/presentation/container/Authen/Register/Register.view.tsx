@@ -7,16 +7,20 @@ import Header from '../../../component/header/Header'
 import { BACKGROUND, BACKGROUND_BOOTOM_TAB, ICON_HOME, LOGO_PEPSI } from '../../../../../assets'
 import { LogInField, RegisterField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 
 
-const Register = () => {
+const Register: React.FC<MainStackScreenProps<'Register'>>= ({navigation, route}) => {
 
   const [edt, setedt] = React.useState<string>('');
   console.log(edt)
 
   const logIn = () => {
-    // navigation.navigate('LogInOTP');
+    navigation.navigate('LogIn');
+  }
+
+  const logInOTP = () => {
+    navigation.navigate('LogInOTP');
   }
 
   const headerCenter = () => {
@@ -40,7 +44,7 @@ const Register = () => {
           <Button 
             containerStyle = {styles.buttonLogIn}
             title='Lấy mã OTP'
-            onPress={logIn}/>
+            onPress={logInOTP}/>
           <View style = {styles.viewOr}>
             <View style = {styles.line}/>
             <Text style = {styles.textOr}>hoặc</Text>
