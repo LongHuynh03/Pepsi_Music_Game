@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native'
 import React from 'react'
 import Background from '../../../../component/background/Background'
 import Header from '../../../../component/header/Header'
-import { ICON_HOME, ICON_NOTIFICATION } from '../../../../../../assets'
+import { BANER_1, ICON_HOME, ICON_MUSIC, ICON_NOTIFICATION } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
-import Icon from 'react-native-vector-icons/Entypo'
+import Button from '../../../../component/button/Button'
 
 const BeatList = () => {
 
@@ -20,6 +20,14 @@ const BeatList = () => {
 
   const goNotification = () => { };
 
+  const goNewBeat = () => { };
+
+  const goBestBeat = () => { };
+
+  const goHistory = () => { };
+
+  const goPropose = () => { };
+
   return (
     <Background>
       <Header
@@ -29,8 +37,25 @@ const BeatList = () => {
         iconRight={ICON_NOTIFICATION}
         rightHeader={goNotification}
       />
-        <Icon name="rocket" color="#eee" size={30} />
-
+      <ScrollView>
+        <Image source={BANER_1} style={styles.imageBanner} />
+        <View style={styles.boxButton}>
+          <Button containerStyle={styles.btn}
+            title='Beat mới nhất'
+            titleStyle={styles.titleStyle}
+            icon={ICON_MUSIC}
+            onPress={goBestBeat} />
+          <Button containerStyle={styles.btn}
+            title='Beat mới nhất'
+            titleStyle={styles.titleStyle}
+            icon={ICON_MUSIC}
+            onPress={goBestBeat} />
+        </View>
+        <View style={styles.boxTitle}>
+          <Text style={styles.title}>Đã thu gần đây</Text>
+          <Text style={styles.seeAll}>Xem tất cả {'>'}</Text>
+        </View>
+      </ScrollView>
     </Background>
   )
 }
@@ -48,4 +73,21 @@ const styles = StyleSheet.create({
     color: Colors.WHITE,
     textAlign: 'center',
   },
+  imageBanner: {
+
+  },
+  boxButton: {
+
+  },
+  btn: {
+
+  },
+  titleStyle: {
+
+  },
+  boxTitle: {
+
+  },
+  title: {},
+  seeAll: {},
 })

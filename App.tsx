@@ -18,6 +18,7 @@ import Thanks from './src/presentation/container/Author/remix/Thanks'
 import BeatNewItem from './src/presentation/container/Author/home/beatlist/BeatNew.item'
 import BeatNew from './src/presentation/container/Author/home/beatlist/BeatNew.view'
 import BeatList from './src/presentation/container/Author/home/beatlist/BeatList.view'
+import ItemBeatList from './src/presentation/container/Author/home/beatlist/BeatList.item'
 
 
 const App = () => {
@@ -37,7 +38,8 @@ const App = () => {
     // <ItemGift/>
     // <Thanks/>
     // <BeatNew/>
-    <BeatList/>
+    // <BeatList/>
+    <ItemBeatList/>
 
     // <AppNavigation/>
 
