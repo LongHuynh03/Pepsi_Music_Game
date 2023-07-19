@@ -1,5 +1,6 @@
-import { Dimensions, Image, ImageSourcePropType, StyleProp, StyleSheet, Text, TextProps, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Dimensions, Image, ImageBackground, ImageSourcePropType, StyleProp, StyleSheet, Text, TextProps, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React from 'react'
+import { BACKGROUND_HEADER } from '../../../../assets';
 
 export interface HeaderProps extends TextProps {
     //
@@ -40,7 +41,8 @@ const Header: React.FC<HeaderProps> = (props) => {
     };
 
     return (
-        <View style={[styles.container, containerStyle]}>
+        <ImageBackground source={BACKGROUND_HEADER}
+            style={[styles.container, containerStyle]}>
             <View style={styles.boxLeft}>
                 {EventLeft()}
             </View>
@@ -50,7 +52,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <View style={styles.boxRight}>
                 {EventRight()}
             </View>
-        </View>
+        </ImageBackground>
     )
 }
 
@@ -62,6 +64,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: Dimensions.get('screen').height * 0.12,
+        borderWidth: 0.1,
+        elevation: 5
     },
     icon: {
         resizeMode: 'contain',

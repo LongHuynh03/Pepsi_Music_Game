@@ -207,7 +207,6 @@ const boldAndUpperTexts7 = ["http://pepsimusic.pepsishop.vn/", "https://www.face
         <Background>
             <Header
                 centerHeader={centerHeader()}
-                containerStyle={styles.header}
                 iconLeft={ICON_LEFTARROW}
                 leftHeader={goBack}/>
             <ScrollView style={styles.scrollV}>
@@ -298,10 +297,6 @@ const styles = StyleSheet.create({
     header_1: {
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    header: {
-        borderWidth: 0.1,
-        elevation: 4
     },
     textHeader: {
         fontWeight: '600',
