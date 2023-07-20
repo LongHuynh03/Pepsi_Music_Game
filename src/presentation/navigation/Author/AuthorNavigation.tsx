@@ -12,10 +12,31 @@ import BestList from "../../container/Author/home/BestList.view";
 import Rating from "../../container/Author/home/Rating.view";
 import Profile from "../../container/Author/home/Profile.view";
 import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { BeatListStackParamList } from "../stack/BeatListNavigation";
+import BeatList from "../../container/Author/home/beatlist/BeatList.view";
+import BeatNew from "../../container/Author/home/beatlist/BeatNew.view";
+import History from "../../container/Author/home/beatlist/History.view";
+import HotUse from "../../container/Author/home/beatlist/HotUse.view";
+import Propose from "../../container/Author/home/beatlist/Propose.view";
+import Notification from "../../container/Author/notification/Notification";
 
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator ();
+const StackBeatList = createStackNavigator<BeatListStackParamList>();
+
+const beatList = () => {
+    return (
+        <StackBeatList.Navigator screenOptions={{ headerShown: false }}>
+            <StackBeatList.Screen name = "BeatList" component={BeatList}/>
+            {/* <StackBeatList.Screen name = "BeatNew" component={BeatNew}/> */}
+            <StackBeatList.Screen name = "History" component={History}/>
+            <StackBeatList.Screen name = "HotUse" component={HotUse}/>
+            <StackBeatList.Screen name = "Propose" component={Propose}/>
+            <StackBeatList.Screen name = "Notification" component={Notification}/>
+        </StackBeatList.Navigator>
+    )
+}
 
 export const AuthorNavigation = () => {
 
@@ -44,7 +65,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Video List',
                 }} />
-            <Tab.Screen name="BestList" component={BestList}
+            <Tab.Screen name="BestList" component= {BestList}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>

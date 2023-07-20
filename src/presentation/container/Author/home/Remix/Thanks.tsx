@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import React from 'react'
-import Button from '../../../component/button/Button'
-import Background from '../../../component/background/Background'
-import { Colors } from '../../../resource/value/Colors'
-import { TALEN } from '../../../../../assets'
+import Background from '../../../../component/background/Background'
+import { TALEN } from '../../../../../../assets'
+import Button from '../../../../component/button/Button'
+import { Colors } from '../../../../resource/value/Colors'
 
 const Thanks = () => {
     return (
@@ -96,6 +96,5 @@ const styles = StyleSheet.create({
     title: {
         color: Colors.WHITE,
     },
-
 
 })

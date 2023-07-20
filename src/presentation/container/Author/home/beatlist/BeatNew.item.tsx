@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').height * 0.05,
         borderWidth: 1.5,
         borderRadius: 8,
-        backgroundColor: Colors.BACKGROUND_MIC,
+        backgroundColor: Colors.BACKGROUND_MIC, //rgba(255, 255, 255, 0.3)
         borderColor: Colors.WHITE
     },
 })

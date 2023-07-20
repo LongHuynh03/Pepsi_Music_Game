@@ -70,12 +70,12 @@ const DATA: ItemBeatProps[] = [
     },
 ]
 
-const BeatNew: React.FC<MainStackScreenProps<'BeatNew'>> = ({navigation, route}) => {
+const Propose: React.FC<MainStackScreenProps<'Propose'>> = ({navigation, route}) => {
 
     const centerHeader = () => {
         return (
             <View style={styles.header_1}>
-                <Text style={styles.textHeader}>Beat mới nhất</Text>
+                <Text style={styles.textHeader}>Đề xuất cho bạn</Text>
             </View>
         )
     }
@@ -107,7 +107,7 @@ const BeatNew: React.FC<MainStackScreenProps<'BeatNew'>> = ({navigation, route})
     )
 }
 
-export default BeatNew
+export default Propose
 const styles = StyleSheet.create({
     container: {
         flex: 1,

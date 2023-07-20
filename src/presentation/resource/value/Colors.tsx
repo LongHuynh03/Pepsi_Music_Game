@@ -14,10 +14,15 @@ export const Colors = {
     DARK_BLUE: 'rgb(19, 66, 125)',
     BLUE_1_500:'#rgba(0, 74, 152, 1)',
     BLUE_1_400:'rgba(51, 110, 173, 1)',
+    BLUE_2_300:'rgba(102, 195, 233, 1)',
     RED_BAR:'rgba(237, 25, 65, 1)',
     DARK_BLUE_MODE:"rgba(19, 66, 125, 0.7)",
     BLUE_CARD:"#005cb2",
     BACKGROUND_VIEW: "#104CE7",
-    BACKGROUND_MIC:"rgba(255, 255, 255, 0.4)"
+    BACKGROUND_MIC:"rgba(255, 255, 255, 0.3)",
+    BACKGROUND_HEART: "rgba(16, 76, 231, 1)",
+    BACKGROUND_BOX_BEATLIST: "rgba(19, 66, 125, 0.3)",
+    LINEARGRADIENT_1: "rgba(0, 84, 161, 1)",
+    LINEARGRADIENT_2: "rgba(11, 14, 78, 1)",
   };
   

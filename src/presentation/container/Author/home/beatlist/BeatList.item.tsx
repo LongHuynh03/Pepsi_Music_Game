@@ -1,27 +1,38 @@
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import React from 'react'
-import { CARD_PEPSI_1, ICON_EYE, ICON_HEART, ICON_MIC_2 } from '../../../../../../assets'
+import { ICON_EYE, ICON_HEART, ICON_MIC_2 } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
-import { height } from '../../../../resource/value/SizeScreen'
 
-const ItemBeatList = () => {
+export interface ItemBeatListProps {
+    id: number,
+    title: string,
+    view: number,
+    like: number,
+    image: any,
+}
+
+
+const ItemBeatList: React.FC<ItemBeatListProps> = (props) => {
+
+    const {id, title, view, like, image} = props;
+
   return (
     <View style = {styles.container}>
       <View style = {styles.item}>
         <View style = {styles.boxImage}>
-            <Image source = {CARD_PEPSI_1} style = {styles.image} />
+            <Image source = {image} style = {styles.image} />
         </View>
         <View style = {styles.boxContent}>
-            <Text style = {styles.title}>Tiền nhiều để làm gì</Text>
+            <Text style = {styles.title}>{title}</Text>
             <View style = {styles.boxButton}>
                 <View style = {styles.boxReact}>
                     <View style = {styles.view_left}>
                         <Image source={ICON_EYE} style={styles.icon} />
-                        <Text style={styles.txtReact}>11.8K</Text>
+                        <Text style={styles.txtReact}>{view}</Text>
                     </View>
                     <View style = {styles.view_right}>
                         <Image source={ICON_HEART} style={styles.icon} />
-                        <Text style={styles.txtReact}>10.203</Text>
+                        <Text style={styles.txtReact}>{like}</Text>
                     </View>
                 </View>
                 <View style = {styles.boxMic}>
@@ -43,15 +54,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.OVERLAY
     },
     item: {
-        borderWidth: 1,
+        margin: Dimensions.get('screen').width * 0.03,
         width: Dimensions.get('screen').width * 0.4+4,
         height: Dimensions.get('screen').height *0.22,
         justifyContent: 'space-between',
-        padding: 2,
+        padding: 3,
         borderRadius: 8,
+        backgroundColor: Colors.BACKGROUND_BOX_BEATLIST //rgba(19, 66, 125, 0.3)
     },
     boxImage: {
 
@@ -62,6 +73,7 @@ const styles = StyleSheet.create({
     },
     boxContent: {
         width: '100%',
+        marginTop: "1%",
     },
     title: {
         fontWeight: '600',
@@ -71,28 +83,41 @@ const styles = StyleSheet.create({
     },
     boxButton: {
         flexDirection: 'row',
+        alignItems: 'flex-end',
     },
     boxReact: {
         flexDirection: 'row',
         width: "70%",
     },
     view_left: {
+        width: '40%',
         flexDirection: 'row',
+        backgroundColor: Colors.RED_BAR, //rgba(237, 25, 65, 1)
+        borderTopStartRadius: 4,
+        borderBottomStartRadius: 4,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     view_right: {
+        width: '40%',
         flexDirection: 'row',
+        backgroundColor: Colors.BACKGROUND_HEART, //rgba(16, 76, 231, 1)
+        borderTopEndRadius: 4,
+        borderBottomEndRadius: 4,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     icon: {
         resizeMode: 'contain',
-        width: 14
+        width: 10
     },
     txtReact: {
-        fontSize: 12,
+        fontSize: 8,
         color: Colors.WHITE
     },
     boxMic: {
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         width: '30%',
     },
     mic: {
@@ -101,7 +126,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 4,
-        backgroundColor: Colors.BACKGROUND_MIC,
+        backgroundColor: Colors.BACKGROUND_MIC, //rgba(255, 255, 255, 0.3)
         borderColor: Colors.WHITE,
         borderWidth: 1
     },

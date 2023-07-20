@@ -14,11 +14,12 @@ import Rules from './src/presentation/container/Author/home/Rules'
 import Notification from './src/presentation/container/Author/notification/Notification'
 import MyGift from './src/presentation/container/Author/notification/MyGift'
 import ItemGift from './src/presentation/container/Author/notification/MyGift.item'
-import Thanks from './src/presentation/container/Author/remix/Thanks'
 import BeatNewItem from './src/presentation/container/Author/home/beatlist/BeatNew.item'
 import BeatNew from './src/presentation/container/Author/home/beatlist/BeatNew.view'
 import BeatList from './src/presentation/container/Author/home/beatlist/BeatList.view'
 import ItemBeatList from './src/presentation/container/Author/home/beatlist/BeatList.item'
+import AcceptAnimation from './src/presentation/container/Author/home/Remix/AcceptAnimation'
+import CreateAnimation from './src/presentation/container/Author/home/Remix/CreateAnimation'
 
 
 const App = () => {
@@ -39,9 +40,11 @@ const App = () => {
     // <Thanks/>
     // <BeatNew/>
     // <BeatList/>
-    <ItemBeatList/>
+    // <ItemBeatList/>
+    // <AcceptAnimation/>
+    // <CreateAnimation/>
 
-    // <AppNavigation/>
+    <AppNavigation/>
 
   )
 }

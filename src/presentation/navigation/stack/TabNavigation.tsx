@@ -5,7 +5,7 @@ type VideoListProps = {
 };
 
 type BestListProps = {
-
+    
 };
 
 type RecordProps = {

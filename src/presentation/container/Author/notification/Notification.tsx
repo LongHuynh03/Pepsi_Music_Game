@@ -5,6 +5,7 @@ import { AVATAR_1, ICON_LEFTARROW } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import Header from '../../../component/header/Header';
 import ItemNotification, { ItemNotificationProps } from './Notification.item';
+import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation';
 
 const DATA: ItemNotificationProps[] = [
     {
@@ -58,7 +59,7 @@ const DATA: ItemNotificationProps[] = [
     },
 ];
 
-const Notification = () => {
+const Notification: React.FC<MainStackScreenProps<'Notification'>> = ({navigation, route})=> {
 
     const centerHeader = () => {
         return (
@@ -68,7 +69,7 @@ const Notification = () => {
         )
     }
 
-    const goBack = () => { };
+    const goBack = () => {navigation.navigate('BeatList')};
 
     return (
         <Background>
