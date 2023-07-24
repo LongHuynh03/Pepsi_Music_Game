@@ -2,7 +2,7 @@ export const Colors = {
     PURPLE: 'rgb(132,37,114)',
     WHITE: '#FFFFFF',
     BLACK: '#000000',
-    GRAY: '#EEEEEE',
+    GRAY: '#767577',
     OVERLAY: 'rgba(51,51,51,0.4)',
     LIGHT_PINK: '#ee4e9b26',
     PINK: '#ee4e9b96',
@@ -24,5 +24,7 @@ export const Colors = {
     BACKGROUND_BOX_BEATLIST: "rgba(19, 66, 125, 0.3)",
     LINEARGRADIENT_1: "rgba(0, 84, 161, 1)",
     LINEARGRADIENT_2: "rgba(11, 14, 78, 1)",
+    LYRIC: "rgba(255, 255, 255, 0.8)",
+    SEARCH: '#0074A4',
   };
   

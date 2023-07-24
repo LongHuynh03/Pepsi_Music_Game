@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Dimensions, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Colors } from '../../../../resource/value/Colors'
 import Button from '../../../../component/button/Button'
@@ -7,7 +7,8 @@ import Header from '../../../../component/header/Header'
 import { ANIMATION_1_1X, ANIMATION_2_1X, ANIMATION_3_1X, CARD_PEPSI_2_1x, ICON_LEFTARROW, THUMB_MUSIC, THUMB_MUSIC_4X } from '../../../../../../assets'
 import Slider from '@react-native-community/slider'
 import LinearGradient from 'react-native-linear-gradient'
-const CreateAnimation = () => {
+import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
+const CreateAnimation: React.FC<RemixStackScreenProps<'CreateAnimation'>> = ({navigation, route}) => {
 
     const centerHeader = () => {
         return (
@@ -20,7 +21,16 @@ const CreateAnimation = () => {
         )
     }
 
-    const goBack = () => { };
+    const [clickedId, setclickedId] = React.useState(0);
+
+    const goBack = () => {
+        navigation.navigate('AcceptAnimation')
+    };
+
+    const goForward = () => {
+        navigation.navigate('CreatePost')
+    };
+
 
     return (
         <Background>
@@ -39,38 +49,50 @@ const CreateAnimation = () => {
                                 style={styles.slider}
                                 minimumValue={0}
                                 maximumValue={10}
-                                minimumTrackTintColor="#FFFFFF"
-                                maximumTrackTintColor="#000000"
-                                // thumbTintColor='#000000'
+                                minimumTrackTintColor= {Colors.RED_BAR}
+                                maximumTrackTintColor={Colors.WHITE}
                                 thumbImage={THUMB_MUSIC_4X}
                             />
                             <Text style = {styles.textTime}>05:00</Text>
                         </LinearGradient>
                     </View>
                     <View style={styles.grbox}>
-                        <View style={styles.box}>
-                            <Image source={ANIMATION_1_1X} style={styles.roundChoose} />
+                        <TouchableOpacity 
+                        onPress={() => {setclickedId(1)}}
+                        style={styles.box}>
+                            <Image source={ANIMATION_1_1X}
+                            key={1}
+                            style={ 1 === clickedId ? styles.roundChoose : styles.round}/>
                             <Text style={styles.text_round}>Old School</Text>
-                        </View>
-                        <View style={styles.box}>
-                            <Image source={ANIMATION_2_1X} style={styles.round} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        onPress={() => {setclickedId(2)}}
+                        style={styles.box}>
+                            <Image source={ANIMATION_2_1X} 
+                            key={2}
+                            style={ 2 === clickedId ? styles.roundChoose : styles.round}/>
                             <Text style={styles.text_round}>Modern</Text>
-                        </View>
-                        <View style={styles.box}>
-                            <Image source={ANIMATION_3_1X} style={styles.round} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        onPress={() => {setclickedId(3)}}
+                        style={styles.box}>
+                            <Image source={ANIMATION_3_1X} 
+                            key={3}
+                            style={ 3 === clickedId ? styles.roundChoose : styles.round}/>
                             <Text style={styles.text_round}>Free Style</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.boxButton}>
                         <Button
                             containerStyle={styles.buttonTao}
                             title='Bỏ qua'
                             titleStyle={styles.title}
+                            onPress={goForward}
                         />
                         <Button
                             containerStyle={styles.buttonBo}
                             title='Xác nhận'
-                            //  onPress={SignUpScreen}
+                             onPress={goForward}
                             titleStyle={styles.title1} />
                     </View>
                 </View>

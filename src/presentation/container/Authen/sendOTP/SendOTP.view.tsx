@@ -10,34 +10,26 @@ import { LOGO_PEPSI } from '../../../../../assets'
 import TextTitle from '../../../component/text/TextTitle'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 
-const LogInOTP : React.FC<MainStackScreenProps<'LogInOTP'>> = ({navigation,route}) => {
+const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, route }) => {
 
-    const submit = () => {
-      navigation.navigate('Home');
-    }
-
-    const headerCenter = () => {
-      return (
-        <View >
-          <Image source={LOGO_PEPSI} style = {styles.image}/>
-        </View>
-      );
-    }
+  const submit = () => {
+    navigation.navigate('Home');
+  }
 
   return (
     <ScrollView>
       <Background>
         <View style={styles.container} >
-          <Header
-            centerHeader={headerCenter()} 
-            containerStyle = {styles.header}/>
+          <View style={styles.header}>
+            <Image source={LOGO_PEPSI} style={styles.image} />
+          </View>
           <Form>
-            <OTPField/>
+            <OTPField />
           </Form>
-          <Button 
-            containerStyle = {styles.buttonLogIn}
+          <Button
+            containerStyle={styles.buttonLogIn}
             title='Xác nhận'
-            onPress={submit}/>
+            onPress={submit} />
         </View>
       </Background>
     </ScrollView>
@@ -47,22 +39,22 @@ const LogInOTP : React.FC<MainStackScreenProps<'LogInOTP'>> = ({navigation,route
 export default LogInOTP
 
 const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        width: Dimensions.get('screen').width,
-        height: Dimensions.get('screen').height,
-        alignItems: 'center',
-      },
-      header: {
-        marginVertical: '8.3%',
-      },
-      image: {
-        resizeMode: 'contain',
-        height: 48
-      },
-      buttonLogIn: {
-        width: '90%',
-        height: '5.4%',
-        marginTop: '10%',
-      },
+  container: {
+    flex: 1,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').height,
+    alignItems: 'center',
+  },
+  header: {
+    marginVertical: Dimensions.get('screen').width * 0.13,
+  },
+  image: {
+    resizeMode: 'contain',
+    height: 48
+  },
+  buttonLogIn: {
+    width: '90%',
+    height: '5.4%',
+    marginTop: '10%',
+  },
 })

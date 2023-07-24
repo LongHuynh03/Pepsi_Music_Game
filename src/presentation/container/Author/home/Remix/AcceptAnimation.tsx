@@ -4,8 +4,9 @@ import Background from '../../../../component/background/Background'
 import Button from '../../../../component/button/Button'
 import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
-import { CARD_PEPSI_2, CARD_PEPSI_2_1x, CARD_PEPSI_2_4x, ICON_LEFTARROW } from '../../../../../../assets'
-const AcceptAnimation = () => {
+import { CARD_PEPSI_2_1x, ICON_LEFTARROW } from '../../../../../../assets'
+import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
+const AcceptAnimation: React.FC<RemixStackScreenProps<'AcceptAnimation'>> = ({navigation, route}) => {
 
     const centerHeader = () => {
         return (
@@ -18,7 +19,17 @@ const AcceptAnimation = () => {
         )
     }
 
-    const goBack = () => { };
+    const goBack = () => {
+        navigation.navigate('Remix');
+    };
+
+    const goForward = () => {
+        navigation.navigate('CreateAnimation')
+    };
+
+    const goSkip = () => {
+        navigation.navigate('CreatePost')
+    };
 
     return (
         <Background>
@@ -37,10 +48,12 @@ const AcceptAnimation = () => {
                         <Button
                             containerStyle={styles.buttonTao}
                             title='Tạo Animation'
+                            onPress={goForward}
                         />
                         <Button
                             containerStyle={styles.buttonBo}
                             title='Hủy Bỏ'
+                            onPress={goSkip}
                             titleStyle={styles.title} />
                     </View>
                 </View>

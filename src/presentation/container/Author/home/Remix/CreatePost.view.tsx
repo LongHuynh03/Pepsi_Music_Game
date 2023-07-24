@@ -1,54 +1,93 @@
 import { StyleSheet, Text, View, Image, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Header from '../../../../component/header/Header'
-import { ICON_LEFTARROW } from '../../../../../../assets'
+import { CARD_PEPSI_2, ICON_LEFTARROW, ICON_PENCIL, ICON_SHARE, THUMB_MUSIC_4X } from '../../../../../../assets'
 import Background from '../../../../component/background/Background'
 import Button from '../../../../component/button/Button'
 import { Colors } from '../../../../resource/value/Colors'
-const AnimationEnd = () => {
+import Slider from '@react-native-community/slider'
+import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
+
+const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, route}) => {
 
     const centerHeader = () => {
         return (
             <View style={styles.header_1}>
-                <Text style={styles.textHeader}>Quà của tôi</Text>
+                <View style={styles.centerHeader}>
+                    <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
+                    <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
+                </View>
             </View>
         )
     }
 
-    const goBack = () => { };
+    const goBack = () => {
+        navigation.navigate('CreateAnimation');
+    };
+    
+    const goForward = () => {
+        navigation.navigate('Thanks')
+    };
 
+    const doCancel = () => {
+        navigation.navigate('Recording')
+    };
+
+    const goEdit = () => {
+        navigation.navigate('EditNameSong');
+    };
     return (
         <Background>
             <View style={styles.container}>
-                <Header 
+                <Header
                     iconLeft={ICON_LEFTARROW}
                     leftHeader={goBack}
+                    centerHeader={centerHeader()}
                 />
                 <View style={styles.gr}>
-                    <Image source={IMG_COVER_2} style={styles.img} />
-                    <Image source={BAR_TIME_RED} style={styles.imgTime} />
+                    <Image source={CARD_PEPSI_2} style={styles.img} />
+                    <View style={styles.boxSilder}>
+                        <Text style={styles.textTime}>00:00</Text>
+                        <Slider
+                            style={styles.slider}
+                            minimumValue={0}
+                            maximumValue={10}
+                            minimumTrackTintColor={Colors.RED_BAR}
+                            maximumTrackTintColor={Colors.WHITE}
+                            thumbImage={THUMB_MUSIC_4X}
+                        />
+                        <Text style={styles.textTime}>05:00</Text>
+                    </View>
                     <View style={styles.grbottom}>
                         <View style={styles.leftgr}>
                             <View style={styles.grMini}>
-                                <Text style={styles.textTitle}>Tiền nhiều để làm gì</Text>
+                                <View style={styles.textTitle_1}>
+                                    <Text style={styles.textTitle}>Tiền nhiều để làm gì</Text>
+                                    <TouchableOpacity onPress={goEdit}>
+                                        <Image source={ICON_PENCIL} style={styles.imgPen} />
+                                    </TouchableOpacity>
+                                </View>
                                 <Text style={styles.textMini}>Gducky ft.Lưu Hiền Trinh</Text>
                             </View>
+
+                        </View>
+                        <View style={styles.boxShare}>
                             <TouchableOpacity>
-                                <Image source={PEN} style={styles.imgPen}/>
+                                <Image source={ICON_SHARE} style={styles.share} />
                             </TouchableOpacity>
                         </View>
-                        <Image source={IMG_SHARE} style={styles.share} />
                     </View>
                 </View>
                 <View style={styles.boxButton}>
                     <Button
                         containerStyle={styles.buttonTao}
                         title='Xong'
+                        onPress={goForward}
                     />
                     <Button
                         containerStyle={styles.buttonBo}
                         title='Hủy Bỏ'
-                        //  onPress={SignUpScreen}
+                         onPress={doCancel}
                         titleStyle={styles.title} />
                 </View>
             </View>
@@ -57,11 +96,17 @@ const AnimationEnd = () => {
     )
 }
 
-export default AnimationEnd
+export default CreatePost
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center'
+    },
+    centerHeader: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     header_1: {
         justifyContent: 'center',
@@ -73,44 +118,77 @@ const styles = StyleSheet.create({
         color: Colors.WHITE,
         textAlign: 'center',
     },
+    rule: {
+        fontSize: 14,
+        fontWeight: '600',
+        lineHeight: 21,
+        color: Colors.WHITE,
+    },
+    rule2: {
+        fontSize: 12,
+        fontWeight: '400',
+        lineHeight: 18,
+        color: Colors.BLUE_2_300,
+    },
+    boxSilder: {
+        width: Dimensions.get('window').width * 0.881,
+        height: Dimensions.get('window').height * 0.03,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: Dimensions.get('window').width * 0.09,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 12,
+    },
+    slider: {
+        width: "80%",
+    },
+    textTime: {
+        color: Colors.WHITE,
+    },
     gr: {
         height: Dimensions.get('screen').height * 0.63,
         width: Dimensions.get('screen').width * 0.9,
         backgroundColor: '#0054A16E',
-        borderWidth:2,
-        borderRadius:12,
-        borderColor:Colors.BLUE_2_BLUE,
+        borderWidth: 2,
+        borderRadius: 12,
+        borderColor: Colors.BLUE_2_300,
         marginTop: Dimensions.get('screen').height * 0.02,
-        marginHorizontal:Dimensions.get('screen').width * 0.05,
     },
     img: {
         height: Dimensions.get('screen').height * 0.52,
         width: Dimensions.get('screen').width * 0.89,
-        borderTopLeftRadius:12,
-        borderTopRightRadius:12,
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
     },
     imgTime: {
-        alignSelf:'center',
+        alignSelf: 'center',
         marginTop: Dimensions.get('screen').height * 0.01,
     },
     grbottom: {
-        flexDirection:'row',
-        justifyContent:'space-around',
-        alignItems:'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginTop: Dimensions.get('screen').height * 0.01,
     },
     leftgr: {
-        flexDirection:'row',
-        justifyContent:'space-around',
-        marginLeft:-Dimensions.get('screen').width * 0.15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginLeft: Dimensions.get('screen').width * 0.03,
     },
     grMini: {
-        flexDirection:'column',
-        justifyContent:'space-around',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
     },
-    imgPen:{
-        marginTop: Dimensions.get('screen').height * 0.005,
-        marginLeft:Dimensions.get('screen').width * 0.02,
+    imgPen: {
+        resizeMode: 'contain',
+        marginStart: 10
+    },
+    textTitle_1: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     textTitle: {
         fontFamily: 'Montserrat',
@@ -124,30 +202,37 @@ const styles = StyleSheet.create({
         fontSize: 11,
         fontWeight: '400',
         lineHeight: 18,
-        color: Colors.WHITE,
+        color: Colors.GRAY,
+    },
+    boxShare: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 25,
+        height: 25,
+        borderRadius: 4,
+        backgroundColor: Colors.BACKGROUND_MIC, //rgba(255, 255, 255, 0.3)
+        borderColor: Colors.WHITE,
+        borderWidth: 1,
+        marginEnd: Dimensions.get('screen').width * 0.03,
     },
     share: {
-        marginRight:-Dimensions.get('screen').width * 0.15,
-
+        resizeMode: 'contain',
     },
     boxButton: {
-        flexDirection: 'row',
-        width: Dimensions.get('screen').width * 0.9,
+        width: Dimensions.get('window').width,
         justifyContent: 'center',
-        marginTop: -Dimensions.get('screen').height * 0.05,
+        marginTop: Dimensions.get('screen').height * 0.04,
         alignItems: 'center',
-        marginHorizontal: Dimensions.get("screen").width * 0.055,
     },
     buttonTao: {
         width: Dimensions.get('screen').width * 0.7,
-        height: Dimensions.get('screen').height * 0.07,
+        height: Dimensions.get('screen').height * 0.06,
     },
     buttonBo: {
         width: Dimensions.get('screen').width * 0.7,
-        height: Dimensions.get('screen').height * 0.07,
+        height: Dimensions.get('screen').height * 0.06,
         backgroundColor: Colors.BACKGROUND_FORM,
-        marginTop: Dimensions.get('screen').height * 0.18,
-        marginLeft: -Dimensions.get('screen').width * 0.7,
+        marginTop: Dimensions.get('screen').height * 0.02,
     },
     title: {
         color: Colors.WHITE,

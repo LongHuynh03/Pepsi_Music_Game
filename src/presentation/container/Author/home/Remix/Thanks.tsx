@@ -4,8 +4,9 @@ import Background from '../../../../component/background/Background'
 import { TALEN } from '../../../../../../assets'
 import Button from '../../../../component/button/Button'
 import { Colors } from '../../../../resource/value/Colors'
+import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
 
-const Thanks = () => {
+const Thanks: React.FC<RemixStackScreenProps<'Thanks'>> = ({navigation, route}) => {
     return (
         <Background>
             <View style={styles.container}>

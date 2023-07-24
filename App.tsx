@@ -18,8 +18,13 @@ import BeatNewItem from './src/presentation/container/Author/home/beatlist/BeatN
 import BeatNew from './src/presentation/container/Author/home/beatlist/BeatNew.view'
 import BeatList from './src/presentation/container/Author/home/beatlist/BeatList.view'
 import ItemBeatList from './src/presentation/container/Author/home/beatlist/BeatList.item'
-import AcceptAnimation from './src/presentation/container/Author/home/Remix/AcceptAnimation'
-import CreateAnimation from './src/presentation/container/Author/home/Remix/CreateAnimation'
+import AcceptAnimation from './src/presentation/container/Author/home/remix/AcceptAnimation'
+import CreateAnimation from './src/presentation/container/Author/home/remix/CreateAnimation'
+import CreatePost from './src/presentation/container/Author/home/remix/CreatePost.view'
+import Recording from './src/presentation/container/Author/home/remix/Record.view'
+import Remix from './src/presentation/container/Author/home/remix/Remix.view'
+import EditNameSong from './src/presentation/container/Author/home/remix/EditNameSong.view'
+import Thanks from './src/presentation/container/Author/home/remix/Thanks'
 
 
 const App = () => {
@@ -43,6 +48,10 @@ const App = () => {
     // <ItemBeatList/>
     // <AcceptAnimation/>
     // <CreateAnimation/>
+    // <CreatePost/>
+    // <Recording/>
+    // <Remix/>
+    // <EditNameSong/>
 
     <AppNavigation/>
 

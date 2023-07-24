@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        height: Dimensions.get('screen').height * 0.12,
+        height: Dimensions.get('screen').height * 0.1,
         borderWidth: 0.1,
         elevation: 5
     },
     icon: {
         resizeMode: 'contain',
-        height: '40%',
+        height: '50%',
     },
     button: {
         height: '70%',

@@ -10,7 +10,7 @@ import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 
 
-const LogIn: React.FC<MainStackScreenProps<'LogIn'>>= ({navigation,route}) => {
+const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) => {
 
   const logIn = () => {
     navigation.navigate('LogInOTP');
@@ -21,38 +21,30 @@ const LogIn: React.FC<MainStackScreenProps<'LogIn'>>= ({navigation,route}) => {
   }
 
 
-  const headerCenter = () => {
-    return (
-      <View >
-        <Image source={LOGO_PEPSI} style = {styles.image}/>
-      </View>
-    );
-  }
-
   return (
     <ScrollView>
       <Background>
         <View style={styles.container} >
-          <Header
-            centerHeader={headerCenter()} 
-            containerStyle = {styles.header}/>
+          <View style={styles.header}>
+            <Image source={LOGO_PEPSI} style={styles.image} />
+          </View>
           <Form>
             <LogInField />
           </Form>
-          <Button 
-            containerStyle = {styles.buttonLogIn}
+          <Button
+            containerStyle={styles.buttonLogIn}
             title='Đăng nhập'
-            onPress={logIn}/>
-          <View style = {styles.viewOr}>
-            <View style = {styles.line}/>
-            <Text style = {styles.textOr}>hoặc</Text>
-            <View style = {styles.line}/>
+            onPress={logIn} />
+          <View style={styles.viewOr}>
+            <View style={styles.line} />
+            <Text style={styles.textOr}>hoặc</Text>
+            <View style={styles.line} />
           </View>
-          <Button 
-            containerStyle = {styles.buttonRegister}
+          <Button
+            containerStyle={styles.buttonRegister}
             title='Đăng ký'
             onPress={register}
-            titleStyle = {styles.title}/>
+            titleStyle={styles.title} />
         </View>
       </Background>
     </ScrollView>
@@ -69,7 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    marginVertical: '8.3%',
+    marginVertical: Dimensions.get('screen').width * 0.13,
   },
   image: {
     resizeMode: 'contain',
@@ -91,11 +83,11 @@ const styles = StyleSheet.create({
   viewOr: {
     width: '90%',
     flexDirection: 'row',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: '8%',
   },
-  line : {
+  line: {
     width: '45%',
     borderTopWidth: 0.5,
     borderColor: Colors.WHITE

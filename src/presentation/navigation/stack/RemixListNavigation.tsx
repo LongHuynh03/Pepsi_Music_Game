@@ -1,45 +1,41 @@
-// import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
-// type FirstLogInProps = {
-//     userID: number;
-// };
+type RecordingProps = {
+};
 
-// type LoginProps = {
-//     id: string;
-//     name: string;
-// };
+type RemixProps = {
+};
 
-// type LoginOTPProps = {
-//     id: number;
-// };
+type AcceptAnimationProps = {
+};
 
-// type RegisterProps = {
-// };
+type CreateAnimationProps = {
+};
 
-// type InstructProps = {
-// };
+type EditNameSongProps = {
+};
 
-// type HomeProps = {
-// };
+type CreatePostProps = {
+};
 
-// type RulesProps = {
-// };
+type ThanksProps = {
+};
 
-// export type MainStackParamList = {
-//     FirstLogIn: FirstLogInProps | undefined;
-//     LogIn: LoginProps | undefined; 
-//     LogInOTP: LoginOTPProps | undefined;
-//     Register: RegisterProps | undefined;
-//     Instruct: InstructProps | undefined;
-//     Home: HomeProps | undefined;
-//     Rules: RulesProps | undefined;
-// };
+export type RemixStackParamList = {
+    Recording: RecordingProps | undefined;
+    Remix: RemixProps | undefined; 
+    AcceptAnimation: AcceptAnimationProps | undefined;
+    CreateAnimation: CreateAnimationProps | undefined;
+    EditNameSong: EditNameSongProps | undefined;
+    CreatePost: CreatePostProps | undefined;
+    Thanks: ThanksProps | undefined;
+};
 
-// export type MainStackNavigation = StackNavigationProp<MainStackParamList>;
+export type RemixStackNavigation = StackNavigationProp<RemixStackParamList>;
 
-// export type S = keyof MainStackParamList;
+export type S = keyof RemixStackParamList;
 
-// export type MainStackScreenProps<RouterName extends S> = StackScreenProps<
-//     MainStackParamList,
-//     RouterName
-// >;
+export type RemixStackScreenProps<RouterName extends S> = StackScreenProps<
+    RemixStackParamList,
+    RouterName
+>;

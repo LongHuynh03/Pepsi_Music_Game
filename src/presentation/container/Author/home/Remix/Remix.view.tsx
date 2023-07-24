@@ -1,84 +1,169 @@
-import { StyleSheet, Switch, Text, View, ImageBackground, Pressable, Image, Dimensions, TouchableOpacity } from 'react-native'
+import { Modal, StyleSheet, Switch, Text, View, Image, Dimensions, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
-import Button from '../../../component/button/Button'
-import Background from '../../../component/background/Background'
-import { BACKGROUND_TAB, BACK, SUBTRACT, SUBTRACT_HIDE, CENTER_BUTTON, TIME, RECORD_BACK, CHECK,PERFORM, VOLUME,PLAY } from '../../../../../assets'
-import { Colors } from '../../../resource/value/Colors'
+import Background from '../../../../component/background/Background';
+import Header from '../../../../component/header/Header';
+import { ICON_LEFTARROW, ICON_PLAY_1X, ICON_PLAY_1_5X, OPTION_1, OPTION_2, OPTION_3, THUMB_MUSIC_4X } from '../../../../../../assets';
+import { Colors } from '../../../../resource/value/Colors';
+import Button from '../../../../component/button/Button';
+import Slider from '@react-native-community/slider';
+import DialogNotification from '../../../../component/dialog/DialogNotification';
+import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation';
 
 
 
-const Remix = () => {
+const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) => {
 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const [title, setTitle] = useState<string>();
+    const [btnLeft, setBtnLeft] = useState<string>();
+    const [btnRight, setBtnRight] = useState<string>();
+    const [onHuy, setonHuy] = useState(false);
+    const [onBack, setonBack] = useState(false);
+    const [onSubmit, setonSubmit] = useState(false);
+    const [isExit, setisExit] = useState(false);
+
+    const centerHeader = () => {
+        return (
+            <View style={styles.header_1}>
+                <View style={styles.centerHeader}>
+                    <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
+                    <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
+                </View>
+            </View>
+        )
+    }
+
+    const onClick = (type: string) => {
+        if (type === "Huy") {
+            setTitle("Bạn có chắc muốn xóa bản thu âm này ?");
+            setBtnLeft("Không");
+            setBtnRight("Có");
+            setonHuy(true);
+            setModalVisible(true);
+        }
+        if (type === "back") {
+            setTitle("Nếu bạn trở về bản thu âm này sẽ không được lưu");
+            setBtnLeft("Rời khỏi");
+            setBtnRight("Tiếp tục");
+            setonBack(true);
+            setModalVisible(true);
+        }
+        if (type === "submit") {
+            setTitle("Vui lòng xác nhận nếu bạn đã remix xong");
+            setBtnLeft("Quay lại");
+            setBtnRight("Xác nhận");
+            setonSubmit(true);
+            setisExit(true);
+            setModalVisible(true);
+        }
+    };
+
+    const onDelete = () => {
+        if (onHuy) {
+            setonHuy(false);
+            setModalVisible(false);
+            //navigation
+            navigation.navigate('Recording')
+        }
+        if (onBack) {
+            setonBack(false);
+            setModalVisible(false);
+            //navigation
+            navigation.navigate('Recording')
+        }
+        if (onSubmit) {
+            setonSubmit(false);
+            setisExit(false);
+            setModalVisible(false);
+            navigation.navigate('AcceptAnimation')
+        }
+    };
+
+    const onCancel = () => {
+        setonHuy(false);
+        setonBack(false);
+        setonSubmit(false);
+        setisExit(false);
+        setModalVisible(false);
+    };
+
+    const onExit = () => {
+        setisExit(false);
+        setModalVisible(false);
+    }
 
     return (
         <Background>
-
-            <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                <Pressable >
-                    <Image source={BACK} style={styles.iconBack} />
-                </Pressable>
-                <View style={styles.beat}>
-                    <Text style={styles.baihat}>Tiền nhiều để làm gì</Text>
-                    <Text style={styles.casi}>GDucky ft.Lưu Hiền Trinh</Text>
-                </View>
-                <Pressable  >
-                    <Image source={SUBTRACT} style={styles.iconSubTract} />
-                </Pressable>
-            </ImageBackground>
-
-            <View style={styles.group}>
-                <View style={styles.group1}>
-                    <View style={styles.Volume}>
-                        <Image source={VOLUME} style={styles.ImgVolume} />
-                        <Pressable style={styles.button}>
-                            <Text style={styles.text}>Auto Tune</Text>
-                        </Pressable>
-                    </View>
-                    <View style={styles.Volume}>
-                        <Image source={VOLUME} style={styles.ImgVolume} />
-                        <Pressable style={styles.button1}>
-                            <Text style={styles.text}>Fast Flow</Text>
-                        </Pressable>
-                    </View>
-                    <View style={styles.Volume}>
-                        <Image source={VOLUME} style={styles.ImgVolume} />
-                        <Pressable style={styles.button1}>
-                            <Text style={styles.text}>Voice Pitch</Text>
-                        </Pressable>
-                    </View>
-
-
-                </View>
-                <View style={styles.group2}>
-                    <Text style={styles.textVoice}>Voice Remix (Manual)</Text>
-                    <Switch
-                        style={styles.on}
-                        trackColor={{ false: '#767577', true:  '#005cb2' }}
-                        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={toggleSwitch}
-                        value={isEnabled}
-                    />
-                </View>
-                <Image source={PERFORM} style={styles.Perform} />
-<Image source={PLAY} style={styles.Play} />
-
-
-            </View>
-
-
-
-            <View style={styles.boxButton}>
-                <Button
-                    containerStyle={styles.buttonXem}
-                    title='Tiếp theo'
+            <View style={styles.container}>
+                <Header
+                    iconLeft={ICON_LEFTARROW}
+                    leftHeader={() =>onClick("back")}
+                    centerHeader={centerHeader()}
                 />
-                <Button
-                    containerStyle={styles.buttonPass}
-                    title='Hủy Bỏ'
-                    titleStyle={styles.title} />
+                <View style={styles.content}>
+                    <View style={styles.boxOptions}>
+                        <View style={styles.boxOption_1}>
+                            <Image source={OPTION_1} style={styles.imgOptions} />
+                            <Image source={OPTION_2} style={styles.imgOptions} />
+                            <Image source={OPTION_3} style={styles.imgOptions} />
+                        </View>
+                        <View style={styles.boxOption_2}>
+                            <Text style={styles.txtOption_2}>Voice Remix (Manual)</Text>
+                            <Switch
+                                style={styles.on}
+                                trackColor={{ false: Colors.GRAY, true: Colors.WHITE }}
+                                thumbColor={isEnabled ? Colors.RED_BAR : Colors.WHITE}
+                                onValueChange={toggleSwitch}
+                                value={isEnabled}
+                            />
+                        </View>
+                        <View style={styles.boxSilder}>
+                            <Text style={styles.textTime}>00:00</Text>
+                            <Slider
+                                style={styles.slider}
+                                minimumValue={0}
+                                maximumValue={10}
+                                minimumTrackTintColor={Colors.RED_BAR}
+                                maximumTrackTintColor={Colors.BLACK}
+                                thumbImage={THUMB_MUSIC_4X}
+                            />
+                            <Text style={styles.textTime}>05:00</Text>
+                        </View>
+                        <View style={styles.boxPlay}>
+                            <Image style={styles.imgPlay} source={ICON_PLAY_1X} />
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.boxButton}>
+                    <Button
+                        containerStyle={styles.buttonXem}
+                        title='Tiếp theo'
+                        onPress={() =>onClick("submit")}
+                    />
+                    <Button
+                        containerStyle={styles.buttonPass}
+                        title='Hủy Bỏ'
+                        titleStyle={styles.title}
+                        onPress={() => onClick("Huy")}/>
+                </View>
+                {
+                    modalVisible ? <DialogNotification
+                        title= {title}
+                        btnLeft= {btnLeft}
+                        btnRight= {btnRight}
+                        isVisibile={modalVisible}
+                        onPressL={onCancel}
+                        onPressR={onDelete}
+                        isExit={isExit}
+                        onPressE={onExit}
+                    />
+                        :
+                        <View></View>
+                }
+
             </View>
         </Background>
     )
@@ -91,163 +176,156 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-
-    headline: {
-        height: Dimensions.get('window').height * 0.13,
-        width: '100%',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    iconBack: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: '20%',
-    },
-    iconSubTract: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: '40%',
-    },
-    beat: {
-
+    centerHeader: {
         flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    header_1: {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    baihat: {
-        fontFamily: 'Montserrat',
+    textHeader: {
+        fontWeight: '600',
+        fontSize: 18,
+        color: Colors.WHITE,
+        textAlign: 'center',
+    },
+    rule: {
         fontSize: 14,
         fontWeight: '600',
         lineHeight: 21,
         color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').height * 0.03,
     },
-    casi: {
-        fontFamily: 'Montserrat',
+    rule2: {
         fontSize: 12,
         fontWeight: '400',
         lineHeight: 18,
-        color: Colors.BLUE_CASI,
-        marginLeft: Dimensions.get('window').height * 0.03,
-
+        color: Colors.BLUE_2_300,
     },
-    group: {
+    content: {
+        marginTop: Dimensions.get('screen').height * 0.03
+    },
+    boxOptions: {
+        width: Dimensions.get('screen').width * 0.9,
         borderWidth: 1,
+        borderRadius: 20,
         borderColor: Colors.WHITE,
-        borderRadius: 12,
-        backgroundColor: Colors.BLUE,
-        width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height * 0.6,
-        alignItems: 'center',
-        marginTop: Dimensions.get('window').height * 0.02,
-        marginHorizontal: Dimensions.get('window').height * 0.025,
-
+        backgroundColor: Colors.BACKGROUND_FORM,
+        padding: Dimensions.get('screen').width * 0.05
     },
-
-    group1: {
-        marginTop: Dimensions.get('window').height * 0.01,
+    boxOption_1: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center'
+        justifyContent: 'space-between'
     },
-    
-    Volume: {
-        borderWidth: 1,
-        borderColor: Colors.WHITE,
-        borderRadius: 12,
-        backgroundColor: Colors.BLUE,
-        width: Dimensions.get('window').width * 0.15,
-        height: Dimensions.get('window').height * 0.4,
-        alignItems: 'center',
-        marginTop: Dimensions.get('window').height * 0.02,
-        marginHorizontal: Dimensions.get('window').height * 0.025,
+    imgOptions: {
     },
-    ImgVolume: {
-        marginTop: Dimensions.get('window').height * 0.02,
-    },
-    button: {
-        backgroundColor: Colors.RED,
-        width: Dimensions.get('window').width * 0.142,
-        height: Dimensions.get('window').height * 0.05,
-        borderBottomRightRadius: 12,
-        borderBottomLeftRadius: 12,
-        borderWidth: 1,
-        borderColor: Colors.RED,
-        alignItems: 'center',
-marginTop: Dimensions.get('window').height * 0.005,
-    },
-    button1: {
-        backgroundColor: Colors.BLUE,
-        width: Dimensions.get('window').width * 0.142,
-        height: Dimensions.get('window').height * 0.05,
-        borderBottomRightRadius: 12,
-        borderBottomLeftRadius: 12,
-        borderWidth: 1,
-        borderColor: Colors.BLUE,
-        alignItems: 'center',
-
-        marginTop: Dimensions.get('window').height * 0.005,
-    },
-    text: {
-        fontSize: 12,
-        color: Colors.WHITE,
-        fontFamily: 'Montserrat',
-        fontWeight: '500',
-        lineHeight: 16,
-        textAlign: 'center',
-
-
-    },
-    group2: {
-        marginTop: Dimensions.get('window').height * 0.02,
+    boxOption_2: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center'
+        justifyContent: 'space-between',
+        marginTop: Dimensions.get('screen').height * 0.03
     },
-    textVoice: {
-        fontSize: 16,
+    txtOption_2: {
+        fontSize: 14,
         color: Colors.WHITE,
-        fontFamily: 'Montserrat',
-        fontWeight: '900',
-        lineHeight: 21,
-        textAlign: 'center',
-        marginLeft: - Dimensions.get('window').width * 0.01,
+        fontWeight: '600',
+        lineHeight: 21
+    },
+    on: {
 
     },
-    on:{
-        marginLeft: Dimensions.get('window').width * 0.1,
-        
+    boxSilder: {
+        width: "100%",
+        height: Dimensions.get('window').height * 0.03,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: Dimensions.get('screen').height * 0.01
     },
-    Perform:{
-        marginTop: Dimensions.get('window').height * 0.03,
+    slider: {
+        width: "70%",
     },
-    Play:{
-        marginTop: Dimensions.get('window').height * 0.005,
+    textTime: {
+        color: Colors.WHITE,
     },
+    boxPlay: {
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: Dimensions.get('screen').height * 0.02
+    },
+    imgPlay: {
 
-
+    },
     boxButton: {
-        flexDirection: 'row',
-        width: Dimensions.get('window').width * 0.9,
+        width: Dimensions.get('window').width,
         justifyContent: 'center',
-        marginTop: -Dimensions.get('window').height * 0.05,
+        marginTop: Dimensions.get('screen').height * 0.04,
         alignItems: 'center',
-        marginHorizontal: Dimensions.get('window').height * 0.025,
     },
 
     buttonXem: {
-        width: Dimensions.get('window').width * 0.8,
-        height: Dimensions.get('window').height * 0.075,
+        width: Dimensions.get('screen').width * 0.7,
+        height: Dimensions.get('screen').height * 0.06,
 
     },
     buttonPass: {
-        width: Dimensions.get('window').width * 0.8,
-        height: Dimensions.get('window').height * 0.075,
+        width: Dimensions.get('screen').width * 0.7,
+        height: Dimensions.get('screen').height * 0.06,
         backgroundColor: Colors.BACKGROUND_FORM,
-        marginTop: Dimensions.get('window').height * 0.2,
-        marginLeft: -Dimensions.get('window').width * 0.8,
+        marginTop: Dimensions.get('screen').height * 0.02,
     },
     title: {
         color: Colors.WHITE,
     },
 
+    //dialog
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    modalView: {
+        width: Dimensions.get('screen').width * 0.8,
+        backgroundColor: Colors.BLUE_PEPSI,
+        borderRadius: 16,
+        padding: 35,
+        alignItems: 'center',
+    },
+    boxButtonDialog: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-around',
+        marginTop: Dimensions.get('screen').height * 0.02,
+    },
+    buttonLeft: {
+        width: Dimensions.get('screen').width * 0.25,
+        backgroundColor: Colors.BLUE_PEPSI,
+        borderRadius: 8,
+        padding: 10,
+        borderWidth: 1,
+        borderColor: Colors.WHITE,
+    },
+    buttonRight: {
+        width: Dimensions.get('screen').width * 0.25,
+        backgroundColor: Colors.WHITE,
+        borderRadius: 8,
+        padding: 10,
+    },
+    textLeft: {
+        color: Colors.WHITE,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    textRight: {
+        color: Colors.BLUE_PEPSI,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+        color: Colors.WHITE
+    },
 })
