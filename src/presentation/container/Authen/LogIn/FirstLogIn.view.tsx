@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
-import Background from '../../../component/background/Background'
 import { CENTER_BUTTON_1X, HEADLINE_2, LEFT_BUTTON, RIGHT_BUTTON, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
+import Background from '../../../component/background/Background'
 
 const FirstLogIn: React.FC<MainStackScreenProps<'FirstLogIn'>>= ({navigation,route}) => {
 

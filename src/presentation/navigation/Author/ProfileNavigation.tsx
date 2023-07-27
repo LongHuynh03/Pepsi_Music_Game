@@ -1,3 +1,3 @@
-import { createStackNavigator } from "@react-navigation/stack";
+// import { createStackNavigator } from "@react-navigation/stack";
 
-const Stack = createStackNavigator<RemixStackParamList>();
+// const Stack = createStackNavigator<RemixStackParamList>();

@@ -7,7 +7,7 @@ import Header from '../../../../component/header/Header'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
 
 const EditNameSong: React.FC<RemixStackScreenProps<'EditNameSong'>> = ({navigation, route}) => {
-
+ 
     const centerHeader = () => {
         return (
             <View style={styles.header_1}>

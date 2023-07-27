@@ -4,8 +4,8 @@ import BeatList from "../../container/Author/home/beatlist/BeatList.view";
 import BeatNew from "../../container/Author/home/beatlist/BeatNew.view";
 import History from "../../container/Author/home/beatlist/History.view";
 import HotUse from "../../container/Author/home/beatlist/HotUse.view";
-import Notification from "../../container/Author/notification/Notification";
 import Propose from "../../container/Author/home/beatlist/Propose.view";
+import Notification from "../../container/Author/notification/Notification";
 
 const Stack = createStackNavigator<BeatListStackParamList>();
 

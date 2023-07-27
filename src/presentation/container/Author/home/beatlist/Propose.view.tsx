@@ -5,7 +5,6 @@ import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
 import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, ICON_LEFTARROW } from '../../../../../../assets'
 import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
-import { MainStackScreenProps } from '../../../../navigation/stack/StackNavigation'
 import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
 
 const DATA: ItemBeatProps[] = [

@@ -3,8 +3,6 @@ import React from 'react'
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native'
-import BestList from '../../container/Author/home/BestList.view';
-import Rating from '../../container/Author/home/Rating.view';
 import Header from '../../component/header/Header';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Colors } from '../../resource/value/Colors';

@@ -45,9 +45,6 @@ const App = () => {
     // <Splash/>
     // <Register/>
     // <Introduce/>
-    // <NavigationContainer>
-    //   {/* <MainNavigation /> */}
-    //   <AuthenNavigation/>
     // </NavigationContainer>
     // <Rules/>
     // <Notification/>
@@ -62,12 +59,10 @@ const App = () => {
     // <CreatePost/>
     // <Recording/>
     // <Remix/>
-    // <EditNameSong/>
+    <EditNameSong/>
     // <ItemProfile/>
     // <Profile/>
     // <TopView/>
-    // <ItemNewVideo/>
-    // <NewVideo/>
     // <ItemRanking/>
     // <Ranking/>
     // <OrtherProfile/>
@@ -76,7 +71,7 @@ const App = () => {
     // <TopTapVideoList/>
     // <TopTapRanking/>
 
-    <AppNavigation/>
+    // <AppNavigation/>
 
   )
 }

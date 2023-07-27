@@ -1,6 +1,7 @@
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
 type BeatListProps = {
+    id: string
 };
 
 type BeatNewProps = {

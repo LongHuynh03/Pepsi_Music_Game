@@ -61,7 +61,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Video List',
                 }} />
-            {/* <Tab.Screen name="BestList" component= {}
+            <Tab.Screen name="BestList" component= {Record}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -69,7 +69,7 @@ export const AuthorNavigation = () => {
                         </View>
                     ),
                     title: 'Best List',
-                }} /> */}
+                }} />
             <Tab.Screen name="Record" component={Record}
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -84,7 +84,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Thu âm',
                 }} />
-            <Tab.Screen name="Rating" component={Rating}
+            <Tab.Screen name="Rating" component={Record}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -93,7 +93,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Xếp hạng',
                 }} />
-            <Tab.Screen name="Profile" component={Profile}
+            <Tab.Screen name="Profile" component={Record}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>

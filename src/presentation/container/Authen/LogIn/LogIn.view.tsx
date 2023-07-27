@@ -1,13 +1,13 @@
 import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import Button from '../../../component/button/Button'
-import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
 import Header from '../../../component/header/Header'
 import { BACKGROUND, BACKGROUND_BOOTOM_TAB, ICON_HOME, LOGO_PEPSI } from '../../../../../assets'
 import { LogInField, RegisterField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
+import Background from '../../../component/background/Background'
 
 
 const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) => {

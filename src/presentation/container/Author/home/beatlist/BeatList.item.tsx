@@ -8,7 +8,7 @@ export interface ItemBeatListProps {
     title: string,
     view: number,
     like: number,
-    image: any,
+    image: any
 }
 
 
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 3,
         borderRadius: 8,
-        backgroundColor: Colors.BACKGROUND_BOX_BEATLIST //rgba(19, 66, 125, 0.3)
+        backgroundColor: Colors.BACKGROUND_BOX_BEATLIST
     },
     boxImage: {
 
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     view_left: {
         width: '40%',
         flexDirection: 'row',
-        backgroundColor: Colors.RED_BAR, //rgba(237, 25, 65, 1)
+        backgroundColor: Colors.RED_BAR,
         borderTopStartRadius: 4,
         borderBottomStartRadius: 4,
         justifyContent: 'center',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     view_right: {
         width: '40%',
         flexDirection: 'row',
-        backgroundColor: Colors.BACKGROUND_HEART, //rgba(16, 76, 231, 1)
+        backgroundColor: Colors.BACKGROUND_HEART,
         borderTopEndRadius: 4,
         borderBottomEndRadius: 4,
         justifyContent: 'center',
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 4,
-        backgroundColor: Colors.BACKGROUND_MIC, //rgba(255, 255, 255, 0.3)
+        backgroundColor: Colors.BACKGROUND_MIC,
         borderColor: Colors.WHITE,
         borderWidth: 1
     },

@@ -71,7 +71,9 @@ const DATA: ItemBeatProps[] = [
     },
 ]
 
-const BeatNew: React.FC<BeatListStackScreenProps<'BeatNew'>> = ({navigation, route}) => {
+// const BeatNew: React.FC<BeatListStackScreenProps<'BeatNew'>> = ({navigation, route}) => {
+const BeatNew = () => {
+
 
     const centerHeader = () => {
         return (
@@ -82,7 +84,7 @@ const BeatNew: React.FC<BeatListStackScreenProps<'BeatNew'>> = ({navigation, rou
     }
 
     const goBack = () => {
-        navigation.navigate('BeatList');
+        // navigation.navigate('BeatList');
     };
 
     return (

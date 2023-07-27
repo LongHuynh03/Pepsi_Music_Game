@@ -21,7 +21,7 @@ export const AppNavigation = () => {
         <NavigationContainer>
             <AuthenNavigation/>
             {/* <AuthorNavigation/> */}
-            {/* <BeatListNavigation/> */}
+            <BeatListNavigation/>
         </NavigationContainer>
     )
 }

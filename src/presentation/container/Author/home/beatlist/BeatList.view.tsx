@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions, Toucha
 import React from 'react'
 import Background from '../../../../component/background/Background'
 import Header from '../../../../component/header/Header'
-import { AVATAR_1, BANER_1, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, ICON_HOME, ICON_MUSIC, ICON_NOTIFICATION } from '../../../../../../assets'
+import { BANER_1, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, ICON_HOME, ICON_MUSIC, ICON_NOTIFICATION } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
 import Button from '../../../../component/button/Button'
 import ItemBeatList, { ItemBeatListProps } from './BeatList.item'
@@ -117,7 +117,8 @@ const DATA_PROPOSE: ItemBeatProps[] = [
   },
 ]
 
-const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
+// const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
+const BeatList = () => {
 
   const centerHeader = () => {
     return (
@@ -131,23 +132,23 @@ const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, 
   };
 
   const goNotification = () => {
-    navigation.navigate('Notification');
+    // navigation.navigate('Notification');
   };
 
   const goNewBeat = () => {
-    navigation.navigate('BeatNew');
+    // navigation.navigate('BeatNew');
   };
 
   const goHotUse = () => {
-    navigation.navigate('HotUse');
+    // navigation.navigate('HotUse');
   };
 
   const goHistory = () => {
-    navigation.navigate('History');
+    // navigation.navigate('History');
   };
 
   const goPropose = () => {
-    navigation.navigate('Propose');
+    // navigation.navigate('Propose');
   };
 
   return (
