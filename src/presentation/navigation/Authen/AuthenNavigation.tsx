@@ -6,7 +6,7 @@ import LogInOTP from "../../container/Authen/sendOTP/SendOTP.view";
 import Register from "../../container/Authen/Register/Register.view";
 import Introduce from "../../container/Author/introduce/Introduce.view";
 import { AuthorNavigation } from "../Author/AuthorNavigation";
-import Rules from "../../container/Author/home/Rules";
+import Rules from "../../container/Author/rules/Rules";
 import BeatList from "../../container/Author/home/beatlist/BeatList.view";
 import BeatNew from "../../container/Author/home/beatlist/BeatNew.view";
 import History from "../../container/Author/home/beatlist/History.view";

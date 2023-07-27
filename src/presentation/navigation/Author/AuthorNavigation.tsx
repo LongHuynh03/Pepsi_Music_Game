@@ -4,32 +4,28 @@ import LogIn from "../../container/Authen/LogIn/LogIn.view";
 import { MainTabNavigation, MainTabParamList } from "../stack/TabNavigation";
 import Introduce from "../../container/Author/introduce/Introduce.view";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
-import { BACKGROUND_BOOTOM_TAB, CENTER_BUTTON, ICON_BESTLIST, ICON_BESTLIST_FOCUS, ICON_HOME, ICON_PROFILE, ICON_PROFILE_FOCUS, ICON_RATING, ICON_RATING_FOCUS, ICON_RECORD, ICON_VIDEOLIST, ICON_VIDEOLIST_FOCUS } from "../../../../assets";
-import Record from "../../container/Author/home/Record.view";
+import { BACKGROUND_BOOTOM_TAB, CENTER_BUTTON_1X, ICON_BESTLIST, ICON_BESTLIST_FOCUS, ICON_HOME, ICON_PROFILE, ICON_PROFILE_FOCUS, ICON_RATING, ICON_RATING_FOCUS, ICON_RECORD, ICON_VIDEOLIST, ICON_VIDEOLIST_FOCUS } from "../../../../assets";
 import { Colors } from "../../resource/value/Colors";
-import VideoList from "../../container/Author/home/VideoList.view";
-import BestList from "../../container/Author/home/BestList.view";
-import Rating from "../../container/Author/home/Rating.view";
-import Profile from "../../container/Author/home/Profile.view";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { BeatListStackParamList } from "../stack/BeatListNavigation";
 import BeatList from "../../container/Author/home/beatlist/BeatList.view";
 import BeatNew from "../../container/Author/home/beatlist/BeatNew.view";
 import History from "../../container/Author/home/beatlist/History.view";
 import HotUse from "../../container/Author/home/beatlist/HotUse.view";
 import Propose from "../../container/Author/home/beatlist/Propose.view";
 import Notification from "../../container/Author/notification/Notification";
+import NewVideo from "../../container/Author/home/videolist/NewVideo.view";
+import Record from "../../container/Author/home/Record.view";
 
 
 const Tab = createBottomTabNavigator();
-const StackBeatList = createStackNavigator<BeatListStackParamList>();
+
+const StackBeatList = createStackNavigator();
 
 const beatList = () => {
     return (
         <StackBeatList.Navigator screenOptions={{ headerShown: false }}>
             <StackBeatList.Screen name = "BeatList" component={BeatList}/>
-            {/* <StackBeatList.Screen name = "BeatNew" component={BeatNew}/> */}
+            <StackBeatList.Screen name = "BeatNew" component={BeatNew}/>
             <StackBeatList.Screen name = "History" component={History}/>
             <StackBeatList.Screen name = "HotUse" component={HotUse}/>
             <StackBeatList.Screen name = "Propose" component={Propose}/>
@@ -56,7 +52,7 @@ export const AuthorNavigation = () => {
                 tabBarActiveTintColor: Colors.WHITE,
                 tabBarInactiveTintColor: Colors.BOTTOM_BAR,
             })}>
-            <Tab.Screen name="VideoList" component={VideoList}
+            <Tab.Screen name="VideoList" component={NewVideo}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -65,7 +61,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Video List',
                 }} />
-            <Tab.Screen name="BestList" component= {BestList}
+            {/* <Tab.Screen name="BestList" component= {}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -73,7 +69,7 @@ export const AuthorNavigation = () => {
                         </View>
                     ),
                     title: 'Best List',
-                }} />
+                }} /> */}
             <Tab.Screen name="Record" component={Record}
                 options={{
                     tabBarIcon: ({ focused }) => (

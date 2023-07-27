@@ -4,12 +4,12 @@ import { BACKGROUND_HEADER } from '../../../../assets';
 
 export interface HeaderProps extends TextProps {
     //
-    iconLeft?: ImageSourcePropType,
+    iconLeft?: React.ReactNode,
     leftHeader?: () => void,
     //
     centerHeader?: React.ReactNode,
     //
-    iconRight?: ImageSourcePropType,
+    iconRight?: React.ReactNode,
     rightHeader?: () => void,
 
     containerStyle?: StyleProp<ViewStyle>
@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         if (iconLeft) {
             return (
                 <TouchableOpacity style={styles.button} onPress={leftHeader}>
-                    <Image source={iconLeft} style={styles.icon} />
+                    {iconLeft}
                 </TouchableOpacity>
             );
         }
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         if (iconRight) {
             return (
                 <TouchableOpacity style={styles.button} onPress={rightHeader}>
-                    <Image source={iconRight} style={styles.icon} />
+                    {iconRight}
                 </TouchableOpacity>
             );
         }

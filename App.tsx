@@ -10,7 +10,7 @@ import Register from './src/presentation/container/Authen/Register/Register.view
 import Introduce from './src/presentation/container/Author/introduce/Introduce.view'
 import { AuthenNavigation } from './src/presentation/navigation/Authen/AuthenNavigation'
 import { AppNavigation } from './src/presentation/navigation/AppNavigation'
-import Rules from './src/presentation/container/Author/home/Rules'
+import Rules from './src/presentation/container/Author/rules/Rules'
 import Notification from './src/presentation/container/Author/notification/Notification'
 import MyGift from './src/presentation/container/Author/notification/MyGift'
 import ItemGift from './src/presentation/container/Author/notification/MyGift.item'
@@ -25,6 +25,17 @@ import Recording from './src/presentation/container/Author/home/remix/Record.vie
 import Remix from './src/presentation/container/Author/home/remix/Remix.view'
 import EditNameSong from './src/presentation/container/Author/home/remix/EditNameSong.view'
 import Thanks from './src/presentation/container/Author/home/remix/Thanks'
+import ItemProfile from './src/presentation/container/Author/home/profile/Profile.item'
+import Profile from './src/presentation/container/Author/home/profile/Profile.view'
+import Ranking from './src/presentation/container/Author/home/leaderboard/Ranking'
+import TopView from './src/presentation/container/Author/home/leaderboard/TopView.view'
+import NewVideo from './src/presentation/container/Author/home/videolist/NewVideo.view'
+import ItemNewVideo from './src/presentation/container/Author/home/videolist/NewVideo.item'
+import TopTapVideoList from './src/presentation/navigation/TopTab/VideoList'
+import ItemRanking from './src/presentation/container/Author/home/leaderboard/Ranking.item'
+import TopTapRanking from './src/presentation/navigation/TopTab/Ranking'
+import OrtherProfile from './src/presentation/container/Author/home/profile/OrtherProfile'
+import OrtherVideo from './src/presentation/container/Author/home/videolist/OrtherVideoList'
 
 
 const App = () => {
@@ -52,6 +63,18 @@ const App = () => {
     // <Recording/>
     // <Remix/>
     // <EditNameSong/>
+    // <ItemProfile/>
+    // <Profile/>
+    // <TopView/>
+    // <ItemNewVideo/>
+    // <NewVideo/>
+    // <ItemRanking/>
+    // <Ranking/>
+    // <OrtherProfile/>
+    // <OrtherVideo/>
+
+    // <TopTapVideoList/>
+    // <TopTapRanking/>
 
     <AppNavigation/>
 

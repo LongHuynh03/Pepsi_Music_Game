@@ -7,7 +7,7 @@ import { Colors } from '../../../../resource/value/Colors'
 import Button from '../../../../component/button/Button'
 import ItemBeatList, { ItemBeatListProps } from './BeatList.item'
 import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
-import { MainStackScreenProps } from '../../../../navigation/stack/StackNavigation'
+import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
 
 const DATA_HISTORY: ItemBeatListProps[] = [
   {
@@ -117,7 +117,7 @@ const DATA_PROPOSE: ItemBeatProps[] = [
   },
 ]
 
-const BeatList: React.FC<MainStackScreenProps<'BeatList'>> = ({navigation, route}) => {
+const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
 
   const centerHeader = () => {
     return (
@@ -235,11 +235,11 @@ const styles = StyleSheet.create({
   imageBanner: {
     resizeMode: 'stretch',
     width: "100%",
-    height: Dimensions.get('screen').height* 0.25,
+    height: Dimensions.get('screen').height * 0.25,
     borderRadius: 8,
   },
   boxButton: {
-    marginTop: Dimensions.get('screen').height *0.03,
+    marginTop: Dimensions.get('screen').height * 0.03,
     width: "100%",
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: Dimensions.get('screen').height *0.02,
+    marginTop: Dimensions.get('screen').height * 0.02,
   },
   title: {
     fontSize: 16,

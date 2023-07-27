@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { AuthenNavigation } from "./Authen/AuthenNavigation"
 import { AuthorNavigation } from "./Author/AuthorNavigation"
+import { BeatListNavigation } from "./Author/BeatListNavigation"
 
 export const AppNavigation = () => {
 
@@ -20,6 +21,7 @@ export const AppNavigation = () => {
         <NavigationContainer>
             <AuthenNavigation/>
             {/* <AuthorNavigation/> */}
+            {/* <BeatListNavigation/> */}
         </NavigationContainer>
     )
 }

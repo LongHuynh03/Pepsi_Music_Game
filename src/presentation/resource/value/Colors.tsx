@@ -12,9 +12,11 @@ export const Colors = {
     YELLOW: 'yellow',
     BOTTOM_BAR: 'rgba(119, 174, 240, 1)',
     DARK_BLUE: 'rgb(19, 66, 125)',
-    BLUE_1_500:'#rgba(0, 74, 152, 1)',
+    BLUE_1_50: 'rgba(230, 237, 245, 1)',
+    BLUE_1_500:'rgba(0, 74, 152, 1)',
     BLUE_1_400:'rgba(51, 110, 173, 1)',
     BLUE_2_300:'rgba(102, 195, 233, 1)',
+    BLUE_2_100:'#CCEBF8',
     RED_BAR:'rgba(237, 25, 65, 1)',
     DARK_BLUE_MODE:"rgba(19, 66, 125, 0.7)",
     BLUE_CARD:"#005cb2",
@@ -26,5 +28,12 @@ export const Colors = {
     LINEARGRADIENT_2: "rgba(11, 14, 78, 1)",
     LYRIC: "rgba(255, 255, 255, 0.8)",
     SEARCH: '#0074A4',
+    BLUE_2_500: '#009BDB',
+    BLUE_LIKE: '#1445C2',
+    BACKGROUND_TOPVIEW: 'rgba(102, 195, 233, 0.8)',
+    BACKGROUND_HEADER:'#0072DF',
+    BACKGROUND_FOOTER_1:'#6FA8FF',
+    BACKGROUND_FOOTER_2:'#003DDB',
+    TEXT_AUTHOR: 'rgba(194, 201, 209, 1)'
   };
   
