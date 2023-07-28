@@ -178,7 +178,7 @@ const BeatList = () => {
           <View style={styles.boxTitle}>
             <Text style={styles.title}>Đã thu gần đây</Text>
             <TouchableOpacity style={styles.btnSeeAll} onPress={goHistory}>
-              <Text style={styles.seeAll}>Xem tất cả {'>'}</Text>
+              {/* <Text style={styles.seeAll}>Xem tất cả {'>'}</Text> */}
             </TouchableOpacity>
           </View>
           <FlatList
@@ -197,7 +197,7 @@ const BeatList = () => {
           <View style={styles.boxTitle}>
             <Text style={styles.title}>Đề xuất cho bạn</Text>
             <TouchableOpacity style={styles.btnSeeAll} onPress={goPropose}>
-              <Text style={styles.seeAll}>Xem tất cả {'>'}</Text>
+              {/* <Text style={styles.seeAll}>Xem tất cả {'>'}</Text> */}
             </TouchableOpacity>
           </View>
           <View style={styles.listPropose}>

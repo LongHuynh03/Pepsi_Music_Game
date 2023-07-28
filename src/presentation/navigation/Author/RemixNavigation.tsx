@@ -13,13 +13,13 @@ const Stack = createStackNavigator<RemixStackParamList>();
 export const RemixNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Recording" component={Recording} />
-            <Stack.Screen name="Remix" component={Remix} />
-            <Stack.Screen name="AcceptAnimation" component={AcceptAnimation} />
-            <Stack.Screen name="CreateAnimation" component={CreateAnimation} />
-            <Stack.Screen name="CreatePost" component={CreatePost} />
-            <Stack.Screen name="EditNameSong" component={EditNameSong} />
-            <Stack.Screen name="Thanks" component={Thanks} />
+            <Stack.Screen name='Recording' component={Recording} />
+            <Stack.Screen name='Remix' component={Remix} />
+            <Stack.Screen name='AcceptAnimation' component={AcceptAnimation} />
+            <Stack.Screen name='CreateAnimation' component={CreateAnimation} />
+            <Stack.Screen name='CreatePost' component={CreatePost} />
+            <Stack.Screen name='EditNameSong' component={EditNameSong} />
+            <Stack.Screen name='Thanks' component={Thanks} />
         </Stack.Navigator>
     )
 }

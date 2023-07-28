@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, ImageBackground, Pressable, Image, Dimensions, TextInput } from 'react-native'
 import React from 'react'
 import Background from '../../../../component/background/Background'
-import { BACKGROUND_BOOTOM_TAB, ICON_EXIT, ICON_LEFTARROW, ICON_TEXT_LUU, ICON_X } from '../../../../../../assets'
+import {  ICON_LEFTARROW, ICON_TEXT_LUU, ICON_X } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'

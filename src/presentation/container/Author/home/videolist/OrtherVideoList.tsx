@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign'
 import { Colors } from '../../../../resource/value/Colors';
 import ItemNewVideo, { ItemNewVideoProps } from './NewVideo.item'
 import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, IMAGE_FRAME_1_1X, IMAGE_FRAME_2_1X, IMAGE_FRAME_3_1X, IMAGE_FRAME_4_1X } from '../../../../../../assets'
+import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation'
 
 const DATA: ItemNewVideoProps[] = [
     {
@@ -46,10 +47,10 @@ const DATA: ItemNewVideoProps[] = [
     },
 ]
 
-const OrtherVideo = () => {
+const OrtherVideo: React.FC<RankingStackScreenProps<'OrtherVideo'>> = ({navigation,route}) => {
 
     const goBack = () => {
-        // navigation.navigate('Record');
+        navigation.navigate('OrtherProfile');
     }
     const goNotification = () => {
         console.log(123);

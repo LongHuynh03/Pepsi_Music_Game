@@ -9,34 +9,39 @@ export interface ItemRankingProps {
     rank: number,
     name: string,
     image: any,
-    view: number
+    view: number,
+    navigation: any,
 }
 
 
 const ItemRanking: React.FC<ItemRankingProps> = (props) => {
 
-    const { id, rank, name, image, view } = props
+    const { id, rank, name, image, view, navigation } = props;
+
+    const onClick = () => {
+        navigation.navigate('OrtherProfile');
+    }
 
     return (
-        <View style = {{}}>
-             <TouchableOpacity style={styles.item}>
-            <View style={styles.borderRank} >
-                <Text style={styles.txtRank} >{rank}</Text>
-                <Image source={IMAGE_RANK_4} style={styles.imgBorderRank} />
-            </View>
-            <View style={styles.boxContent} >
-                <Image source={image} style={styles.imgAvatar} />
-                <View style={styles.boxInfor}>
-                    <Text style={styles.txtName}>{name}</Text>
-                    <View style={styles.boxView}>
-                        <Icon name='eyeo' size={20} color={Colors.BLUE_CARD} />
-                        <Text style={styles.txtView}>{view}</Text>
+        <View style={{}}>
+            <TouchableOpacity style={styles.item} onPress={onClick}>
+                <View style={styles.borderRank} >
+                    <Text style={styles.txtRank} >{rank}</Text>
+                    <Image source={IMAGE_RANK_4} style={styles.imgBorderRank} />
+                </View>
+                <View style={styles.boxContent} >
+                    <Image source={image} style={styles.imgAvatar} />
+                    <View style={styles.boxInfor}>
+                        <Text style={styles.txtName}>{name}</Text>
+                        <View style={styles.boxView}>
+                            <Icon name='eyeo' size={10} color={Colors.BLUE_CARD} />
+                            <Text style={styles.txtView}>{view}</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
         </View>
-       
+
     )
 }
 
@@ -45,7 +50,7 @@ export default ItemRanking
 const styles = StyleSheet.create({
     item: {
         width: Dimensions.get('screen').width,
-        height : Dimensions.get('screen').height * 0.1,
+        height: Dimensions.get('screen').height * 0.1,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -91,6 +96,7 @@ const styles = StyleSheet.create({
         marginStart: '20%',
     },
     boxView: {
+        width: '20%',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

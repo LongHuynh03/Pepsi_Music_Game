@@ -6,6 +6,7 @@ import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Colors } from '../../../../resource/value/Colors';
+import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation';
 
 
 const DATA: ItemTopViewProps[] = [
@@ -84,12 +85,12 @@ const DATA: ItemTopViewProps[] = [
 
 ];
 
-const TopView = () => {
+const TopView: React.FC<RankingStackScreenProps<'TopView'>> = ({navigation,route}) => {
     const goBack = () => {
-        // navigation.navigate('Record');
+        navigation.navigate('Ranking');
     }
     const goNotification = () => {
-        console.log(123);
+        // console.log(123);
     }
 
     const centerHeader = () => {
@@ -100,7 +101,7 @@ const TopView = () => {
 
     return (
         <Background>
-            {/* <Header
+            <Header
                 iconLeft={
                     <Icon name='home' size={20} color={Colors.WHITE} />
                 }
@@ -110,11 +111,11 @@ const TopView = () => {
                     <Icon name='bell' size={20} color={Colors.WHITE} />
                 }
                 rightHeader={goNotification}
-            /> */}
+            />
             <View style={styles.container}>
-                {/* <View style={styles.toptab}>
+                <View style={styles.toptab}>
                     <Text style={styles.texttab}>Video có lượt tương tác nhiều nhất</Text>
-                </View> */}
+                </View>
                 <FlatList
                     data={DATA}
                     renderItem={({ item }) =>
@@ -129,7 +130,6 @@ const TopView = () => {
                     keyExtractor={(item) => item.id.toString()}
                 />
             </View>
-
         </Background>
     )
 }

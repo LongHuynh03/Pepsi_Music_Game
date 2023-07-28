@@ -59,7 +59,7 @@ const App = () => {
     // <CreatePost/>
     // <Recording/>
     // <Remix/>
-    <EditNameSong/>
+    // <EditNameSong/>
     // <ItemProfile/>
     // <Profile/>
     // <TopView/>
@@ -71,7 +71,7 @@ const App = () => {
     // <TopTapVideoList/>
     // <TopTapRanking/>
 
-    // <AppNavigation/>
+    <AppNavigation/>
 
   )
 }

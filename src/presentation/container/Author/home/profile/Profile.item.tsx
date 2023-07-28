@@ -10,14 +10,19 @@ export interface ItemProfileProps {
     view: string,
     like: string,
     image: any,
+    navigation?: any
 }
 
 const ItemProfile: React.FC<ItemProfileProps> = (props) => {
-    const { id, title, view, like, image } = props;
+    const { id, title, view, like, image, navigation } = props;
+
+    const onClick = () => {
+        navigation.navigate('OrtherVideo')
+    };
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.item} onPress={onClick}>
                 <View style={styles.boxNew}>
                     <Text style={styles.new}>Mới</Text>
                 </View>

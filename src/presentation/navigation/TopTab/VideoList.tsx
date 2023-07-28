@@ -25,7 +25,7 @@ const TopTapVideoList = () => {
 
     const centerHeader = () => {
         return (
-            <Text style={styles.textHeader}>Bảng xếp hạng</Text>
+            <Text style={styles.textHeader}>Video list</Text>
         )
     };
 

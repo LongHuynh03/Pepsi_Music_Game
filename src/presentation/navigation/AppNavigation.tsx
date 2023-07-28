@@ -2,6 +2,8 @@ import { NavigationContainer } from "@react-navigation/native"
 import { AuthenNavigation } from "./Authen/AuthenNavigation"
 import { AuthorNavigation } from "./Author/AuthorNavigation"
 import { BeatListNavigation } from "./Author/BeatListNavigation"
+import { RemixNavigation } from "./Author/RemixNavigation"
+import { RankingNavigation } from "./Author/RankingNavigation"
 
 export const AppNavigation = () => {
 
@@ -19,9 +21,11 @@ export const AppNavigation = () => {
 
     return (
         <NavigationContainer>
-            <AuthenNavigation/>
+            {/* <AuthenNavigation/> */}
             {/* <AuthorNavigation/> */}
-            <BeatListNavigation/>
+            {/* <BeatListNavigation/> */}
+            {/* <RemixNavigation/> */}
+            <RankingNavigation/>
         </NavigationContainer>
     )
 }

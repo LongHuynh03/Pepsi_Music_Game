@@ -1,37 +1,29 @@
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
-type BeatListProps = {
+type RankingProps = {
 };
 
-type BeatNewProps = {
+type TopViewProps = {
 };
 
-type HistoryProps = {
+type OrtherProfileProps = {
 };
 
-type ProposeProps = {
+type OrtherVideoProps = {
 };
 
-type HotUseProps = {
+export type RankingStackParamList = {
+    Ranking: RankingProps | undefined;
+    TopView: TopViewProps | undefined;
+    OrtherProfile: OrtherProfileProps | undefined;
+    OrtherVideo: OrtherVideoProps | undefined;
 };
 
-type NotificationProps = {
-};
+export type RankingStackNavigation = StackNavigationProp<RankingStackParamList>;
 
-export type BeatListStackParamList = {
-    BeatList: BeatListProps | undefined;
-    BeatNew: BeatNewProps | undefined;
-    History: HistoryProps | undefined;
-    Propose: ProposeProps | undefined;
-    HotUse: HotUseProps | undefined;
-    Notification: NotificationProps | undefined;
-};
+export type S = keyof RankingStackParamList;
 
-export type BeatListStackNavigation = StackNavigationProp<BeatListStackParamList>;
-
-export type S = keyof BeatListStackParamList;
-
-export type BeatListStackScreenProps<RouterName extends S> = StackScreenProps<
-    BeatListStackParamList,
+export type RankingStackScreenProps<RouterName extends S> = StackScreenProps<
+    RankingStackParamList,
     RouterName
 >;

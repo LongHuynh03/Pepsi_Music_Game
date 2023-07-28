@@ -6,6 +6,7 @@ import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
 import { AVATAR_1, AVATAR_2_1X, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5 } from '../../../../../../assets';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation';
 
 const DATA: ItemProfileProps[] = [
     { id: 1, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_1 },
@@ -20,12 +21,16 @@ const DATA: ItemProfileProps[] = [
     { id: 10, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_5 },
 ];
 
-const OrtherProfile = () => {
+const OrtherProfile : React.FC<RankingStackScreenProps<'OrtherProfile'>> = ({navigation,route}) => {
 
     const centerHeader = () => {
         return (
             <Text style={styles.textHeader}>Thông tin cá nhân</Text>
         )
+    };
+
+    const goBack = () => {
+        navigation.navigate('Ranking');
     };
 
     const home = 'home';
@@ -37,6 +42,7 @@ const OrtherProfile = () => {
                     iconLeft={
                         <Icon name='arrowleft' size={20} color={Colors.WHITE} />
                     }
+                    leftHeader={goBack}
                 />
                 <View style={styles.group}>
                     <View style={styles.group1}>
@@ -64,7 +70,8 @@ const OrtherProfile = () => {
                         renderItem={({ item }) =>
                             <ItemProfile
                                 id={item.id} title={item.title} view={item.view}
-                                like={item.like} image={item.image} />
+                                like={item.like} image={item.image}
+                                navigation = {navigation}/>
                         }
                         keyExtractor={(item) => item.id.toString()}
                         numColumns={2}
