@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInputProps, TextInput, Touchable, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInputProps, TextInput, Touchable, TouchableOpacity, StyleProp } from 'react-native'
 import React, { useRef } from 'react'
 import LogIn from '../../container/Authen/LogIn/LogIn.view'
 import Button from '../button/Button'
@@ -18,6 +18,7 @@ export interface OTPFieldProps {
   inputProps_2?: TextInputProps;
   inputProps_3?: TextInputProps;
   inputProps_4?: TextInputProps;
+  status?: boolean;
 }
 
 export const LogInField: React.FC<LogInFieldProps> = (props) => {
@@ -49,29 +50,27 @@ export const RegisterField: React.FC<RegisterFieldProps> = (props) => {
 }
 
 export const OTPField: React.FC<OTPFieldProps> = (props) => {
-  const { inputProps_1, inputProps_2, inputProps_3, inputProps_4 } = props;
-  
+  const { inputProps_1, inputProps_2, inputProps_3, inputProps_4, status } = props;
   return (
     <View style={styles.container}>
       <Text style={styles.title_1}>Nhập OTP</Text>
       <Text style={styles.des}>Nhập OTP vừa được gửi về máy bạn</Text>
       <View style={styles.boxOTP}>
         <TextInput {...inputProps_1}
-          style={styles.textInputOTP}
+          style={!status? styles.textInputOTP : [styles.textInputOTP, styles.textInputOTPFalse]}
           maxLength={1}
-          
           inputMode='decimal'
           autoFocus />
         <TextInput {...inputProps_2}
-          style={styles.textInputOTP}
+          style={!status? styles.textInputOTP : [styles.textInputOTP, styles.textInputOTPFalse]}
           maxLength={1}
           inputMode='decimal' />
-        <TextInput {...inputProps_1}
-          style={styles.textInputOTP}
+        <TextInput {...inputProps_3}
+          style={!status? styles.textInputOTP : [styles.textInputOTP, styles.textInputOTPFalse]}
           maxLength={1}
           inputMode='decimal' />
-        <TextInput {...inputProps_2}
-          style={styles.textInputOTP}
+        <TextInput {...inputProps_4}
+          style={!status? styles.textInputOTP : [styles.textInputOTP, styles.textInputOTPFalse]}
           maxLength={1}
           inputMode='decimal' />
       </View>
@@ -139,6 +138,14 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: Colors.WHITE,
     textAlign: 'center',
+    borderWidth: 0,
+    borderColor: Colors.WHITE,
+    color: Colors.BLACK
+  },
+  textInputOTPFalse: {
+    borderWidth: 2,
+    borderColor: Colors.RED_BAR,
+    color: Colors.RED_BAR
   },
   textbtn: {
     color: 'white',

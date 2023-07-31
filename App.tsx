@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LogIn from './src/presentation/container/Authen/LogIn/LogIn.view'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
 import LogInOTP from './src/presentation/container/Authen/sendOTP/SendOTP.view'
 import Splash from './src/presentation/container/Authen/LogIn/FirstLogIn.view'
 import { NavigationContainer } from '@react-navigation/native'
@@ -36,6 +36,8 @@ import ItemRanking from './src/presentation/container/Author/home/leaderboard/Ra
 import TopTapRanking from './src/presentation/navigation/TopTab/Ranking'
 import OrtherProfile from './src/presentation/container/Author/home/profile/OrtherProfile'
 import OrtherVideo from './src/presentation/container/Author/home/videolist/OrtherVideoList'
+import { Provider } from 'react-redux'
+import store from './src/presentation/share-state/redux/store'
 
 
 const App = () => {
@@ -75,6 +77,55 @@ const App = () => {
 
   )
 }
+
+
+import firestore from '@react-native-firebase/firestore';
+import database, { firebase } from '@react-native-firebase/database';
+import { rtdb } from './src/core/api/url/RealTimeDB'
+import { Users } from './src/core/model/User'
+import { UserRespone } from './src/core/model/UserRespone'
+
+const user = {
+  name: '123',
+  phone: '123',
+  image: 'unknow',
+  video: 0,
+  react: 0,
+}
+
+// const App = () => {
+
+//   let list: UserRespone[] = [];
+//   const [user, setUser] = React.useState<UserRespone>();
+//   const clickRegister = async () => {
+
+//     // //post
+    
+//     list = [];
+//     setUser({});
+//     let userTemp: UserRespone = {};
+//     const getUserKey = await rtdb.ref('users')
+//       .once('value', (value: any) => {
+//         value.forEach((data: any) => {
+//           if (data.val().phone == "123") {
+//             userTemp.key = data.key;
+//             userTemp.name = data.val().name;
+//             userTemp.phone = data.val().phone;
+//           }
+//         })
+//         setUser(userTemp);
+//         console.log(user);
+//       });
+//   };
+
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <TouchableOpacity style={{ borderWidth: 1, width: 100, height: 200 }} onPress={clickRegister}>
+//         <Text>Click</Text>
+//       </TouchableOpacity>
+//     </View>
+//   )
+// }
 
 export default App
 

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
-import { CENTER_BUTTON_1X, HEADLINE_2, LEFT_BUTTON, RIGHT_BUTTON, TALEN } from '../../../../../assets'
+import { CENTER_BUTTON_1X, CENTER_BUTTON_2X, HEADLINE_2, LEFT_BUTTON, RIGHT_BUTTON, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import Background from '../../../component/background/Background'
@@ -34,7 +34,7 @@ const FirstLogIn: React.FC<MainStackScreenProps<'FirstLogIn'>>= ({navigation,rou
                             </ImageBackground>
                         </TouchableOpacity>
                         <TouchableOpacity style = {styles.btn} onPress={onClick}>
-                            <Image source={CENTER_BUTTON_1X} style = {styles.imageButton}/>
+                            <Image source={CENTER_BUTTON_2X} style = {styles.imageButton}/>
                         </TouchableOpacity>
                         <TouchableOpacity style = {styles.btn} onPress={instruct}>
                             <ImageBackground  source={RIGHT_BUTTON} style = {styles.imageButton}>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "516581441090",
+    "firebase_url": "https://pepsimusicgame-f3252-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pepsimusicgame-f3252",
+    "storage_bucket": "pepsimusicgame-f3252.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516581441090:android:85da9991769688e31bf7db",
+        "android_client_info": {
+          "package_name": "com.pepsi_music_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516581441090-mvv2t514ia9gf32c5toeftqem957vrad.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pepsi_music_game",
+            "certificate_hash": "01f948ec01ca24f916b012e68f58e5b101c1b664"
+          }
+        },
+        {
+          "client_id": "516581441090-u3cqn004j5mj94pj1n7d789bm7mul9a5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxX7I0VDbjULZWJA7_BVGfLnVoFnN6ogg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516581441090-u3cqn004j5mj94pj1n7d789bm7mul9a5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

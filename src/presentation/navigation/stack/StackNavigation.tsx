@@ -9,6 +9,9 @@ type LoginProps = {
 };
 
 type LoginOTPProps = {
+    phone : string;
+    name? : string;
+    type : boolean; // 0 : login, 1: register
 };
 
 type RegisterProps = {

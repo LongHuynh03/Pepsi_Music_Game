@@ -1,27 +1,90 @@
-import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Dimensions, Alert, Image, TextInput, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import Button from '../../../component/button/Button'
 import { Colors } from '../../../resource/value/Colors'
 import Header from '../../../component/header/Header'
 import { BACKGROUND, BACKGROUND_BOOTOM_TAB, ICON_HOME, LOGO_PEPSI } from '../../../../../assets'
-import { LogInField, RegisterField } from '../../../component/input/TextField'
+import { RegisterField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import Background from '../../../component/background/Background'
+import { Users } from '../../../../core/model/User'
+import { rtdb } from '../../../../core/api/url/RealTimeDB'
 
 
 const Register: React.FC<MainStackScreenProps<'Register'>> = ({ navigation, route }) => {
 
-  const [edt, setedt] = React.useState<string>('');
-  console.log(edt)
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+  const [listUser, setlistUser] = useState<Users[]>([]);
+
+
+  const [isHas, setIsHas] = useState(false);
 
   const logIn = () => {
     navigation.navigate('LogIn');
   }
 
-  const logInOTP = () => {
-    navigation.navigate('LogInOTP');
+  useEffect(() => {
+
+    const getUsers = async () => {
+      const getUsers = rtdb.ref('users').once('value');
+      let list: Users[] = [];
+      await getUsers.then((snapshot: any) => {
+        snapshot.forEach((item: any) => {
+          list.push(item.val());
+        })
+        // console.log(list);
+        setlistUser(list);
+      });
+    }
+
+    getUsers();
+
+    return () => { }
+  }, [])
+
+
+
+  const complete = () => {
+    console.log(phone + name);
+    setIsHas(false);
+    if (!phone) {
+      Alert.alert('Please enter your phone');
+    }
+    else if (!name) {
+      Alert.alert('Please enter your name');
+    }
+    else {
+      console.log("okkk")
+      console.log(listUser)
+      
+      for (let i = 0; i < listUser.length; i++) {
+        if (listUser.at(i)?.phone === phone) {
+          console.log("111")
+          setIsHas(true);
+          Alert.alert('This number is already in use');
+          setPhone('')
+          return;
+        }
+        else if (listUser.at(i)?.name === name) {
+          console.log("2222")
+          setIsHas(true);
+          Alert.alert('This name is already in use');
+          setName('')
+          return;
+        }
+      }
+      if (!isHas) {
+        navigation.navigate('LogInOTP', {
+          phone,
+          name,
+          type: false
+        });
+      }
+    }
   }
+
 
   return (
     <ScrollView>
@@ -31,12 +94,24 @@ const Register: React.FC<MainStackScreenProps<'Register'>> = ({ navigation, rout
             <Image source={LOGO_PEPSI} style={styles.image} />
           </View>
           <Form>
-            <RegisterField />
+            <RegisterField
+              inputProps_1={{
+                onChangeText(text) {
+                  setPhone(text)
+                },
+                value: phone
+              }}
+              inputProps_2={{
+                onChangeText(text) {
+                  setName(text)
+                },
+                value: name
+              }} />
           </Form>
           <Button
             containerStyle={styles.buttonLogIn}
             title='Lấy mã OTP'
-            onPress={logInOTP} />
+            onPress={complete} />
           <View style={styles.viewOr}>
             <View style={styles.line} />
             <Text style={styles.textOr}>hoặc</Text>

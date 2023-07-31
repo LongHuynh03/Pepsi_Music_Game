@@ -21,11 +21,11 @@ export const AppNavigation = () => {
 
     return (
         <NavigationContainer>
-            {/* <AuthenNavigation/> */}
+            <AuthenNavigation/>
             {/* <AuthorNavigation/> */}
             {/* <BeatListNavigation/> */}
             {/* <RemixNavigation/> */}
-            <RankingNavigation/>
+            {/* <RankingNavigation/> */}
         </NavigationContainer>
     )
 }

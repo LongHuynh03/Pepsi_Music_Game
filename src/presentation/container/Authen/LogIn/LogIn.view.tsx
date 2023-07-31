@@ -1,5 +1,5 @@
-import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import { Dimensions, ToastAndroid, Image, ImageBackground, ScrollView, StyleSheet, Text, View, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Button from '../../../component/button/Button'
 import { Colors } from '../../../resource/value/Colors'
 import Header from '../../../component/header/Header'
@@ -8,12 +8,60 @@ import { LogInField, RegisterField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import Background from '../../../component/background/Background'
+import { rtdb } from '../../../../core/api/url/RealTimeDB'
+import { Users } from '../../../../core/model/User'
 
 
 const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) => {
+  // const LogIn = () => {
+
+  const [phone, setPhone] = useState('');
+  const [listUser, setlistUser] = useState<Users[]>([]);
+
+  const [isHas, setIsHas] = useState(false);
+
+  useEffect(() => {
+
+    const getUsers = async () => {
+      const getUsers = rtdb.ref('users').once('value');
+      let list: Users[] = [];
+      await getUsers.then((snapshot: any) => {
+        snapshot.forEach((item: any) => {
+          list.push(item.val());
+        })
+        // console.log(list);
+        setlistUser(list);
+      });
+    }
+
+    getUsers();
+
+    return () => { }
+  }, [])
 
   const logIn = () => {
-    navigation.navigate('LogInOTP');
+    setIsHas(false);
+    if (phone) {
+      for (let i = 0; i < listUser.length; i++) {
+        if (listUser.at(i)?.phone === phone) {
+          console.log("111")
+          setIsHas(true);
+          break;
+        }
+      }
+      if(isHas){
+        console.log("okkk")
+        navigation.navigate('LogInOTP', {
+        phone,
+        type: true});
+      }else{
+        Alert.alert('This phone number is not available');
+      }
+    }
+    else {
+      Alert.alert('Please enter your phone number');
+    }
+
   }
 
   const register = () => {
@@ -29,7 +77,12 @@ const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) =
             <Image source={LOGO_PEPSI} style={styles.image} />
           </View>
           <Form>
-            <LogInField />
+            <LogInField
+              inputProps={{
+                onChangeText(text) {
+                  setPhone(text);
+                },
+              }} />
           </Form>
           <Button
             containerStyle={styles.buttonLogIn}
