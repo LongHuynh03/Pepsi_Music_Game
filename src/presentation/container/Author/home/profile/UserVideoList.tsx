@@ -4,9 +4,9 @@ import Background from '../../../../component/background/Background'
 import Header from '../../../../component/header/Header'
 import Icon from 'react-native-vector-icons/AntDesign'
 import { Colors } from '../../../../resource/value/Colors';
-import ItemNewVideo, { ItemNewVideoProps } from '../videolist/NewVideo.item'
 import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, IMAGE_FRAME_1_1X, IMAGE_FRAME_2_1X, IMAGE_FRAME_3_1X, IMAGE_FRAME_4_1X } from '../../../../../../assets'
 import { ProfileScreenProps } from '../../../../navigation/stack/ProfileNavigation'
+import ItemNewVideo, { ItemNewVideoProps } from './NewVideo.item'
 
 const DATA: ItemNewVideoProps[] = [
     {

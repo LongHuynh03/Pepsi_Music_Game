@@ -6,10 +6,11 @@ import UserVideoList from "../../container/Author/home/profile/UserVideoList";
 const Stack = createStackNavigator<ProfileParamList>();
 
 export const ProfileNavigation = () => {
+
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator screenOptions={{ headerShown: false}}>
             <Stack.Screen name='UserProfile' component={Profile} />
-            <Stack.Screen name='UserVideoList' component={UserVideoList} />
+            <Stack.Screen name='UserVideoList' component={UserVideoList}/>
         </Stack.Navigator>
     )
 }

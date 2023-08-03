@@ -5,8 +5,8 @@ import { INTRO_1, INTRO_2, INTRO_3, INTRO_4, INTRO_5, INTRO_6, TALEN } from '../
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
-import { useDispatch } from 'react-redux'
-import { addUser } from '../../../share-state/redux/reducers/userReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUser, userSelecter } from '../../../share-state/redux/reducers/userReducer'
 import { addStatus } from '../../../share-state/redux/reducers/statusReducer'
 
 const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route}) => {
@@ -15,6 +15,7 @@ const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route
   const [btnPrev, setbtnPrev] = React.useState(false)
   let buttonPrev = null;
   let buttonNext = null;
+  const dataUser = useSelector(userSelecter);
 
   const dispatch = useDispatch();
 
@@ -35,14 +36,30 @@ const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route
   }
 
   const submit = () => {
-    dispatch(addStatus({
+    if (dataUser.keyUser){
+      dispatch(addStatus({
       status: true,
     }))
+    }
+    else{
+      navigation.goBack();
+    }
   } 
+
+  const onNext = () => {
+    if (dataUser.keyUser){
+      dispatch(addStatus({
+        status: true,
+      }))
+    }
+    else{
+      navigation.navigate('FirstLogIn')
+    }
+  }
 
   if (btnNext){
     buttonNext = (
-      <TouchableOpacity onPress={() => navigation.navigate('FirstLogIn')}>
+      <TouchableOpacity onPress={onNext}>
         <Text style={[styles.buttonText_Next]}>XONG</Text>
       </TouchableOpacity>
     );
@@ -69,6 +86,7 @@ const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route
   return (
     <Background>
       <View style={styles.container}>
+        {/* @ts-ignore */}
         <Swiper style={styles.swiper}
           // showsButtons={show ? true : false}
           showsButtons

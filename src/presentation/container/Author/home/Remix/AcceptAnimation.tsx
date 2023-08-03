@@ -6,6 +6,8 @@ import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
 import { CARD_PEPSI_2_1x, ICON_LEFTARROW } from '../../../../../../assets'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+
 const AcceptAnimation: React.FC<RemixStackScreenProps<'AcceptAnimation'>> = ({navigation, route}) => {
 
     const centerHeader = () => {
@@ -35,7 +37,9 @@ const AcceptAnimation: React.FC<RemixStackScreenProps<'AcceptAnimation'>> = ({na
         <Background>
             <View style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={goBack}
                     centerHeader={centerHeader()}
                 />

@@ -8,7 +8,6 @@ import EditNameSong from "../../container/Author/home/remix/EditNameSong.view";
 import Thanks from "../../container/Author/home/remix/Thanks";
 import { RemixStackParamList } from "../stack/RemixListNavigation";
 import BeatNew from "../../container/Author/home/remix/BeatNew.view";
-import Home from "../../container/Author/home/remix/Home.view";
 
 const Stack = createStackNavigator<RemixStackParamList>();
 

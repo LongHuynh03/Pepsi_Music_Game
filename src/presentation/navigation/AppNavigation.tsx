@@ -30,10 +30,10 @@ export const AppNavigation = () => {
 
     return (
         <NavigationContainer>
-            {/* {
+            {
                 statusData.status ? <AuthorNavigation/> : <AuthenNavigation/>
-            } */}
-            {/* <AuthenNavigation/> */}
+            } 
+            {/* <AuthenNavigation/>
             <AuthorNavigation/>
             {/* <BeatListNavigation/> */}
             {/* <RemixNavigation/> */}

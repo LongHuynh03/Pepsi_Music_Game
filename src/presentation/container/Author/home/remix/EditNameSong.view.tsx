@@ -1,13 +1,18 @@
-import { StyleSheet, Text, View, ScrollView, ImageBackground, Pressable, Image, Dimensions, TextInput } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Dimensions, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Background from '../../../../component/background/Background'
 import {  ICON_LEFTARROW, ICON_TEXT_LUU, ICON_X } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const EditNameSong: React.FC<RemixStackScreenProps<'EditNameSong'>> = ({navigation, route}) => {
  
+    // const EditNameSong = () => {
+
+        const [text, setText] = React.useState('')
+
     const centerHeader = () => {
         return (
             <View style={styles.header_1}>
@@ -17,27 +22,39 @@ const EditNameSong: React.FC<RemixStackScreenProps<'EditNameSong'>> = ({navigati
     }
 
     const goBack = () => {
-        navigation.navigate('CreatePost')
+        // navigation.navigate('CreatePost')
+    }
+
+    const clearText = () => {
+        setText('');
     }
 
     return (
         <Background>
             <ScrollView style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={goBack}
                     centerHeader={centerHeader()}
-                    iconRight={ICON_TEXT_LUU}
+                    iconRight={
+                        <Text style = {styles.txtLuu}>Lưu</Text>
+                    }
                     rightHeader={goBack} />
                 <View style={styles.content}>
                     <View style={styles.beat}>
                         <TextInput
+                        value={text}
+                        onChangeText={(text) => setText(text)}
                             style={styles.edt}
                             placeholder='Tiền nhiều để làm gì' />
-                        <Image source={ICON_X} style={styles.iconC} />
+                            <TouchableOpacity style = {styles.btnDelete} onPress={clearText}>
+                                <AntDesignIcon name='close' color={'rgba(119, 174, 240, 1)'} size={20}/>
+                            </TouchableOpacity>
                     </View>
                 </View>
-                <Text style={styles.text1}>22/40 ký tự</Text>
+                <Text style={styles.text1}>{text.length}/40 ký tự</Text>
             </ScrollView>
         </Background>
     )
@@ -80,5 +97,14 @@ const styles = StyleSheet.create({
     },
     edt: {
         width: '80%',
+    },
+    txtLuu: {
+        fontSize: 14,
+        color: 'rgba(43, 153, 255, 0.6)'
+    },
+    btnDelete: {
+        borderRadius: 50,
+        padding: 4,
+        backgroundColor:'rgba(230, 237, 245, 1)'
     }
 })

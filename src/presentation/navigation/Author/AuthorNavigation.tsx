@@ -87,6 +87,9 @@ export const AuthorNavigation = () => {
                         </View>
                     ),
                     title: 'Thu âm',
+                    tabBarStyle: {
+                        display: 'none',
+                    }
                 }} />
             <Tab.Screen name="Rating" component={RankingNavigation}
                 options={{

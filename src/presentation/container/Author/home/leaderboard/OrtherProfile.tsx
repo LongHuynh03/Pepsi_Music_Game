@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView } from 'react-native'
 import React from 'react'
-import ItemProfile, { ItemProfileProps } from '../profile/Profile.item'
 import { Colors } from '../../../../resource/value/Colors';
 import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
 import { AVATAR_1, AVATAR_2_1X, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5 } from '../../../../../../assets';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation';
+import ItemProfile, { ItemProfileProps } from './Profile.item';
 
 const DATA: ItemProfileProps[] = [
     { id: 1, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_1 },
@@ -65,12 +65,10 @@ const OrtherProfile : React.FC<RankingStackScreenProps<'OrtherProfile'>> = ({nav
                 </View>
                 <View style={styles.list}>
                     <FlatList
-                        // style= {styles.lisItem}
                         data={DATA}
                         renderItem={({ item }) =>
                             <ItemProfile
-                                id={item.id} title={item.title} view={item.view}
-                                like={item.like} image={item.image}
+                                item={item}
                                 navigation = {navigation}/>
                         }
                         keyExtractor={(item) => item.id.toString()}

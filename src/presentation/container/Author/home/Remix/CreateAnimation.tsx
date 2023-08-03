@@ -8,6 +8,7 @@ import { ANIMATION_1_1X, ANIMATION_2_1X, ANIMATION_3_1X, CARD_PEPSI_2_1x, ICON_L
 import Slider from '@react-native-community/slider'
 import LinearGradient from 'react-native-linear-gradient'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 const CreateAnimation: React.FC<RemixStackScreenProps<'CreateAnimation'>> = ({navigation, route}) => {
 
     const centerHeader = () => {
@@ -36,7 +37,9 @@ const CreateAnimation: React.FC<RemixStackScreenProps<'CreateAnimation'>> = ({na
         <Background>
             <View style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={goBack}
                     centerHeader={centerHeader()}
                 />

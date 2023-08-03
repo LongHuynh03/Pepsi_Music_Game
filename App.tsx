@@ -33,7 +33,6 @@ import NewVideo from './src/presentation/container/Author/home/videolist/NewVide
 import ItemNewVideo from './src/presentation/container/Author/home/videolist/NewVideo.item'
 import TopTapVideoList from './src/presentation/navigation/TopTab/VideoList'
 import ItemRanking from './src/presentation/container/Author/home/leaderboard/Ranking.item'
-import TopTapRanking from './src/presentation/navigation/TopTab/Ranking'
 import OrtherProfile from './src/presentation/container/Author/home/leaderboard/OrtherProfile'
 import OrtherVideo from './src/presentation/container/Author/home/leaderboard/OrtherVideoList'
 import { Provider, useDispatch, useSelector } from 'react-redux'
@@ -77,6 +76,7 @@ const App = () => {
       <AppNavigation/>
     </Provider>
     
+    // <EditNameSong/>
     
   )
 }

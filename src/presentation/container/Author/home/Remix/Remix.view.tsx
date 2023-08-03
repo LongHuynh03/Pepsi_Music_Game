@@ -8,6 +8,7 @@ import Button from '../../../../component/button/Button';
 import Slider from '@react-native-community/slider';
 import DialogNotification from '../../../../component/dialog/DialogNotification';
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 
 
@@ -99,7 +100,9 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
         <Background>
             <View style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={() =>onClick("back")}
                     centerHeader={centerHeader()}
                 />

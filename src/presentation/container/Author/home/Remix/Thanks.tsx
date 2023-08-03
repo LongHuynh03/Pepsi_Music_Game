@@ -7,6 +7,11 @@ import { Colors } from '../../../../resource/value/Colors'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
 
 const Thanks: React.FC<RemixStackScreenProps<'Thanks'>> = ({navigation, route}) => {
+
+    const goBack = () => {
+        navigation.popToTop();
+    }
+
     return (
         <Background>
             <View style={styles.container}>
@@ -28,7 +33,7 @@ const Thanks: React.FC<RemixStackScreenProps<'Thanks'>> = ({navigation, route}) 
                     <Button
                         containerStyle={styles.buttonPass}
                         title='Bỏ qua'
-                        //  onPress={SignUpScreen}
+                         onPress={goBack}
                         titleStyle={styles.title} />
                 </View>
             </View>

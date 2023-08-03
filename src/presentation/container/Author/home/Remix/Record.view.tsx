@@ -97,7 +97,7 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
             setModalVisible(false);
         }
         if (onBack) {
-
+            navigation.goBack();
         }
         if (onSubmit) {
             setonRemix(true);

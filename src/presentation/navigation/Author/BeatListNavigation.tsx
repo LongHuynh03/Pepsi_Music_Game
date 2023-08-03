@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { BeatListStackParamList } from "../stack/BeatListNavigation";
 import BeatList from "../../container/Author/home/beatlist/BeatList.view";
-import BeatNew from "../../container/Author/home/remix/BeatNew.view";
 import History from "../../container/Author/home/beatlist/History.view";
 import HotUse from "../../container/Author/home/beatlist/HotUse.view";
 import Propose from "../../container/Author/home/beatlist/Propose.view";
@@ -10,6 +9,7 @@ import MyGift from "../../container/Author/home/beatlist/notification/MyGift";
 import { MainTabScreenProps } from "../stack/TabNavigation";
 import {useLayoutEffect} from 'react'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import BeatNew from "../../container/Author/home/beatlist/BeatNew.view";
 
 const Stack = createStackNavigator<BeatListStackParamList>();
 

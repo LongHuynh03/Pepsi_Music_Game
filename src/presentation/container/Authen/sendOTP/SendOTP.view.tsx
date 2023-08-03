@@ -66,7 +66,7 @@ const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, rout
   const clickRegister = async () => {
     const code = code_1.toString() + code_2.toString() + code_3.toString() + code_4.toString();
     console.log(code);
-    if (code != '1912') {
+    if (code != '1111') {
       setFalseOTP(true);
     }
     else {

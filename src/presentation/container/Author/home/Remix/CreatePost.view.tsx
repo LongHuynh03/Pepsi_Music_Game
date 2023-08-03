@@ -7,6 +7,7 @@ import Button from '../../../../component/button/Button'
 import { Colors } from '../../../../resource/value/Colors'
 import Slider from '@react-native-community/slider'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, route}) => {
 
@@ -40,7 +41,9 @@ const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, 
         <Background>
             <View style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={goBack}
                     centerHeader={centerHeader()}
                 />

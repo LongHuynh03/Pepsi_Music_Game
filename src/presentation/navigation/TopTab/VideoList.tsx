@@ -14,7 +14,6 @@ import MostVideo from '../../container/Author/home/videolist/MostVideo.view';
 import NewVideo from '../../container/Author/home/videolist/NewVideo.view';
 import { MainTabScreenProps } from '../stack/TabNavigation';
 import { BeatListNavigation } from '../Author/BeatListNavigation';
-import Home from '../../container/Author/home/remix/Home.view';
 import { VideoListStackScreenProps } from '../stack/VideoListNavigation';
 
 
