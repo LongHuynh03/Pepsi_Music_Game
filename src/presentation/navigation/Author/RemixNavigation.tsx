@@ -7,13 +7,16 @@ import CreatePost from "../../container/Author/home/remix/CreatePost.view";
 import EditNameSong from "../../container/Author/home/remix/EditNameSong.view";
 import Thanks from "../../container/Author/home/remix/Thanks";
 import { RemixStackParamList } from "../stack/RemixListNavigation";
+import BeatNew from "../../container/Author/home/remix/BeatNew.view";
+import Home from "../../container/Author/home/remix/Home.view";
 
 const Stack = createStackNavigator<RemixStackParamList>();
 
 export const RemixNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name='Recording' component={Recording} />
+            <Stack.Screen name="BeatNew" component={BeatNew}/>
+            <Stack.Screen name='Recording' component={Recording}/>
             <Stack.Screen name='Remix' component={Remix} />
             <Stack.Screen name='AcceptAnimation' component={AcceptAnimation} />
             <Stack.Screen name='CreateAnimation' component={CreateAnimation} />

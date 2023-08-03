@@ -5,6 +5,7 @@ import Header from '../../../component/header/Header'
 import { Colors } from '../../../resource/value/Colors'
 import { ICON_LEFTARROW, LOA } from '../../../../../assets'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const Rules: React.FC<MainStackScreenProps<'Rules'>>= ({navigation,route}) => {
 
@@ -207,7 +208,9 @@ const boldAndUpperTexts7 = ["http://pepsimusic.pepsishop.vn/", "https://www.face
         <Background>
             <Header
                 centerHeader={centerHeader()}
-                iconLeft={ICON_LEFTARROW}
+                iconLeft={
+                    <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                }
                 leftHeader={goBack}/>
             <ScrollView style={styles.scrollV}>
                     <View style={styles.para1}>

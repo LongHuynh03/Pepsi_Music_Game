@@ -12,8 +12,13 @@ import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import { rtdb } from '../../../../core/api/url/RealTimeDB'
 import { UserRespone } from '../../../../core/model/UserRespone'
 import { Users } from '../../../../core/model/User'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUser, userSelecter } from '../../../share-state/redux/reducers/userReducer'
+import { addStatus } from '../../../share-state/redux/reducers/statusReducer'
 
 const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, route }) => {
+
+  const dispatch = useDispatch();
 
   const name = route?.params?.name;
   const phone = route?.params?.phone;
@@ -22,39 +27,46 @@ const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, rout
   console.log(type)
 
   const [falseOTP, setFalseOTP] = useState(false);
+  const [status, setStatus] = useState(type);
 
   const [code_1, setCode_1] = useState('');
   const [code_2, setCode_2] = useState('');
   const [code_3, setCode_3] = useState('');
   const [code_4, setCode_4] = useState('');
 
-  let user: Users = {};
-
   const complete = async () => {
     const getUserKey = await rtdb.ref('users')
       .once('value', (value: any) => {
         value.forEach((data: any) => {
           if (data.val().phone == phone) {
-            user.key = data.key;
-            user.name = data.val().name;
-            user.phone = data.val().phone;
-            user.react = data.val().react;
-            user.video = data.val().video;
-            user.image = data.val().image;
+            dispatch(addUser({
+              keyUser: data.key,
+              phone: data.val().phone,
+              name: data.val().name,
+              image: data.val().image,
+              react: data.val().react,
+              video: data.val().video,
+            }))
           }
         })
       }).then(() => {
-        ToastAndroid.show("Complete", ToastAndroid.SHORT);
-        navigation.navigate('Home');
-        console.log(user)
+        if (!type) {
+          ToastAndroid.show("Register", ToastAndroid.SHORT);
+          navigation.navigate('Instruct');
+        }
+        else{
+          ToastAndroid.show("LogIn", ToastAndroid.SHORT);
+          dispatch(addStatus({
+            status: type,
+          }))
+        }
       });
-
   }
 
   const clickRegister = async () => {
     const code = code_1.toString() + code_2.toString() + code_3.toString() + code_4.toString();
     console.log(code);
-    if (code != '0910') {
+    if (code != '1912') {
       setFalseOTP(true);
     }
     else {
@@ -72,8 +84,9 @@ const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, rout
           video: 0,
         }
         await newUser.set(userNew)
-          .then(complete);
-
+          .then(() => {
+            complete();
+          });
         //key user
         console.log('New record key:', newUser.key);
       }

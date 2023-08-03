@@ -19,6 +19,9 @@ type HotUseProps = {
 type NotificationProps = {
 };
 
+type MyGiftProps = {
+};
+
 export type BeatListStackParamList = {
     BeatList: BeatListProps | undefined;
     BeatNew: BeatNewProps | undefined;
@@ -26,6 +29,7 @@ export type BeatListStackParamList = {
     Propose: ProposeProps | undefined;
     HotUse: HotUseProps | undefined;
     Notification: NotificationProps | undefined;
+    MyGift: MyGiftProps | undefined;
 };
 
 export type BeatListStackNavigation = StackNavigationProp<BeatListStackParamList>;

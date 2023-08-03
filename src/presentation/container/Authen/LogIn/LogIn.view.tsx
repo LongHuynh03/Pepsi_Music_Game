@@ -64,6 +64,7 @@ const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) =
 
   }
 
+
   const register = () => {
     navigation.navigate('Register');
   }

@@ -12,11 +12,19 @@ type OrtherProfileProps = {
 type OrtherVideoProps = {
 };
 
+type NotificationProps = {
+};
+
+type MyGiftProps = {
+};
+
 export type RankingStackParamList = {
     Ranking: RankingProps | undefined;
     TopView: TopViewProps | undefined;
     OrtherProfile: OrtherProfileProps | undefined;
     OrtherVideo: OrtherVideoProps | undefined;
+    Notification: NotificationProps | undefined;
+    MyGift: MyGiftProps | undefined;
 };
 
 export type RankingStackNavigation = StackNavigationProp<RankingStackParamList>;

@@ -5,6 +5,9 @@ import { INTRO_1, INTRO_2, INTRO_3, INTRO_4, INTRO_5, INTRO_6, TALEN } from '../
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../../../share-state/redux/reducers/userReducer'
+import { addStatus } from '../../../share-state/redux/reducers/statusReducer'
 
 const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route}) => {
 
@@ -12,6 +15,8 @@ const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route
   const [btnPrev, setbtnPrev] = React.useState(false)
   let buttonPrev = null;
   let buttonNext = null;
+
+  const dispatch = useDispatch();
 
   const lastIndex = (index: number) => {
     console.log('index >>> ', index);
@@ -29,6 +34,12 @@ const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route
     }
   }
 
+  const submit = () => {
+    dispatch(addStatus({
+      status: true,
+    }))
+  } 
+
   if (btnNext){
     buttonNext = (
       <TouchableOpacity onPress={() => navigation.navigate('FirstLogIn')}>
@@ -43,7 +54,7 @@ const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route
 
   if (btnPrev){
     buttonPrev = (
-      <TouchableOpacity onPress={() => navigation.navigate('FirstLogIn')}>
+      <TouchableOpacity onPress={submit}>
         <Text style={[styles.buttonText_Next]}>TRỞ VỀ</Text>
       </TouchableOpacity>
     );

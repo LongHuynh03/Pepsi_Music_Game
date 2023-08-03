@@ -158,7 +158,7 @@ const Ranking: React.FC<RankingStackScreenProps<'Ranking'>> = ({navigation,route
     const [onChoose, setonChoose] = React.useState(1)
 
     const goBack = () => {
-        // navigation.navigate('Record');
+        navigation.goBack();
     }
     const goNotification = () => {
     }
@@ -222,11 +222,7 @@ const Ranking: React.FC<RankingStackScreenProps<'Ranking'>> = ({navigation,route
                                 data={DATA}
                                 renderItem={({ item }) =>
                                     <ItemRanking
-                                        id={item.id}
-                                        name={item.name}
-                                        rank={item.rank}
-                                        image={item.image}
-                                        view={item.view}
+                                        item={item}
                                         navigation = {navigation}/>}
                                 keyExtractor={(item) => item.id.toString()}
                             />

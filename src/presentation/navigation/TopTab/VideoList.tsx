@@ -9,18 +9,24 @@ import { Colors } from '../../resource/value/Colors';
 import { width } from '../../resource/value/SizeScreen';
 import Background from '../../component/background/Background';
 import { CARD_PEPSI_1 } from '../../../../assets';
+import FavoriteVideo from '../../container/Author/home/videolist/FavoriteVideo.view';
+import MostVideo from '../../container/Author/home/videolist/MostVideo.view';
 import NewVideo from '../../container/Author/home/videolist/NewVideo.view';
+import { MainTabScreenProps } from '../stack/TabNavigation';
+import { BeatListNavigation } from '../Author/BeatListNavigation';
+import Home from '../../container/Author/home/remix/Home.view';
+import { VideoListStackScreenProps } from '../stack/VideoListNavigation';
 
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopTapVideoList = () => {
+const TopTapVideoList:React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation, route}) => {
 
     const goBack = () => {
-        // navigation.navigate('Record');
+        navigation.goBack();
     }
     const goNotification = () => {
-        console.log(onClick);
+        navigation.navigate('Notification')
     }
 
     const centerHeader = () => {
@@ -29,10 +35,7 @@ const TopTapVideoList = () => {
         )
     };
 
-    const [onClick, setonClick] = React.useState(1);
-
     return (
-        <NavigationContainer>
             <Background>
                 <Header
                     iconLeft={
@@ -77,7 +80,7 @@ const TopTapVideoList = () => {
                             tabBarShowLabel: false
                         })}
                     />
-                    <Tab.Screen name="Settings" component={NewVideo} 
+                    <Tab.Screen name="Settings" component={FavoriteVideo} 
                     options={({ route }) => ({
                         tabBarIcon: ({ focused }) => (
                             <View style={focused ? [styles.boxTabChoose, styles.boxTab] : styles.boxTab}>
@@ -93,7 +96,7 @@ const TopTapVideoList = () => {
                         ),
                         tabBarShowLabel: false
                     })}/>
-                    <Tab.Screen name="Setting2" component={NewVideo} 
+                    <Tab.Screen name="Setting2" component={MostVideo} 
                     options={({ route }) => ({
                         tabBarIcon: ({ focused }) => (
                             <View style={focused ? [styles.boxTabChoose, styles.boxTab] : styles.boxTab}>
@@ -111,8 +114,6 @@ const TopTapVideoList = () => {
                     })}/>
                 </Tab.Navigator>
             </Background>
-
-        </NavigationContainer>
     )
 }
 

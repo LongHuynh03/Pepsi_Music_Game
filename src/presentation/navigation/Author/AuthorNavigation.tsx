@@ -8,36 +8,36 @@ import { BACKGROUND_BOOTOM_TAB, CENTER_BUTTON_1X, ICON_BESTLIST, ICON_BESTLIST_F
 import { Colors } from "../../resource/value/Colors";
 import { createStackNavigator } from "@react-navigation/stack";
 import BeatList from "../../container/Author/home/beatlist/BeatList.view";
-import BeatNew from "../../container/Author/home/beatlist/BeatNew.view";
+import BeatNew from "../../container/Author/home/remix/BeatNew.view";
 import History from "../../container/Author/home/beatlist/History.view";
 import HotUse from "../../container/Author/home/beatlist/HotUse.view";
 import Propose from "../../container/Author/home/beatlist/Propose.view";
 import Notification from "../../container/Author/notification/Notification";
-import NewVideo from "../../container/Author/home/videolist/NewVideo.view";
-import Record from "../../container/Author/home/Record.view";
+import Record from "../../container/Author/home/Home.view";
+import { useSelector } from "react-redux";
+import { userSelecter } from "../../share-state/redux/reducers/userReducer";
+import { BeatListNavigation } from "./BeatListNavigation";
+import TopTapVideoList from "../TopTab/VideoList";
+import { RankingNavigation } from "./RankingNavigation";
+import { ProfileNavigation } from "./ProfileNavigation";
+import { RemixNavigation } from "./RemixNavigation";
+import Home from "../../container/Author/home/Home.view";
+import { VideoListNavigation } from "./VideoListNavigation";
 
 
 const Tab = createBottomTabNavigator();
 
-const StackBeatList = createStackNavigator();
-
-const beatList = () => {
-    return (
-        <StackBeatList.Navigator screenOptions={{ headerShown: false }}>
-            <StackBeatList.Screen name = "BeatList" component={BeatList}/>
-            <StackBeatList.Screen name = "BeatNew" component={BeatNew}/>
-            <StackBeatList.Screen name = "History" component={History}/>
-            <StackBeatList.Screen name = "HotUse" component={HotUse}/>
-            <StackBeatList.Screen name = "Propose" component={Propose}/>
-            <StackBeatList.Screen name = "Notification" component={Notification}/>
-        </StackBeatList.Navigator>
-    )
-}
-
 export const AuthorNavigation = () => {
 
+    const data = useSelector(userSelecter);
+
+    console.log(" AuthorNavigation :")
+    console.log(data.keyUser)
+
     return (
-        <Tab.Navigator initialRouteName="Record" 
+        <Tab.Navigator initialRouteName={ "Home"}
+            detachInactiveScreens  = {false}
+            backBehavior="initialRoute"
             screenOptions={({ route }) => ({
                 tabBarHideOnKeyboard: true,
                 tabBarStyle: {
@@ -52,7 +52,7 @@ export const AuthorNavigation = () => {
                 tabBarActiveTintColor: Colors.WHITE,
                 tabBarInactiveTintColor: Colors.BOTTOM_BAR,
             })}>
-            <Tab.Screen name="VideoList" component={NewVideo}
+            <Tab.Screen name="MainVideoList" component={VideoListNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -61,7 +61,11 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Video List',
                 }} />
-            <Tab.Screen name="BestList" component= {Record}
+            <Tab.Screen name="Home" component={Home}
+                options={{
+                    tabBarButton: () => undefined
+            }} />
+            <Tab.Screen name="BestList" component= {BeatListNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -70,7 +74,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Best List',
                 }} />
-            <Tab.Screen name="Record" component={Record}
+            <Tab.Screen name="Record" component={RemixNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View
@@ -84,7 +88,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Thu âm',
                 }} />
-            <Tab.Screen name="Rating" component={Record}
+            <Tab.Screen name="Rating" component={RankingNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -93,7 +97,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Xếp hạng',
                 }} />
-            <Tab.Screen name="Profile" component={Record}
+            <Tab.Screen name="Profile" component={ProfileNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>

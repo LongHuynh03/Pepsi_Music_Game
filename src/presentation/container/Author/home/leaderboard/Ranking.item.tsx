@@ -10,13 +10,18 @@ export interface ItemRankingProps {
     name: string,
     image: any,
     view: number,
-    navigation: any,
+}
+
+interface Item {
+    item: any,
+    navigation: any
 }
 
 
-const ItemRanking: React.FC<ItemRankingProps> = (props) => {
+const ItemRanking: React.FC<Item> = (props) => {
 
-    const { id, rank, name, image, view, navigation } = props;
+    const { id, rank, name, image, view } = props.item;
+    const {navigation} = props;
 
     const onClick = () => {
         navigation.navigate('OrtherProfile');

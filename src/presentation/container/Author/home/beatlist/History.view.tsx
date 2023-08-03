@@ -7,6 +7,7 @@ import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, I
 import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
 import { MainStackScreenProps } from '../../../../navigation/stack/StackNavigation'
 import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const DATA: ItemBeatProps[] = [
     {
@@ -89,7 +90,9 @@ const History: React.FC<BeatListStackScreenProps<'History'>> = ({navigation, rou
         <Background>
             <View style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={goBack}
                     centerHeader={centerHeader()} />
                 <FlatList

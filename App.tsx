@@ -15,7 +15,7 @@ import Notification from './src/presentation/container/Author/notification/Notif
 import MyGift from './src/presentation/container/Author/notification/MyGift'
 import ItemGift from './src/presentation/container/Author/notification/MyGift.item'
 import BeatNewItem from './src/presentation/container/Author/home/beatlist/BeatNew.item'
-import BeatNew from './src/presentation/container/Author/home/beatlist/BeatNew.view'
+import BeatNew from './src/presentation/container/Author/home/remix/BeatNew.view'
 import BeatList from './src/presentation/container/Author/home/beatlist/BeatList.view'
 import ItemBeatList from './src/presentation/container/Author/home/beatlist/BeatList.item'
 import AcceptAnimation from './src/presentation/container/Author/home/remix/AcceptAnimation'
@@ -34,9 +34,9 @@ import ItemNewVideo from './src/presentation/container/Author/home/videolist/New
 import TopTapVideoList from './src/presentation/navigation/TopTab/VideoList'
 import ItemRanking from './src/presentation/container/Author/home/leaderboard/Ranking.item'
 import TopTapRanking from './src/presentation/navigation/TopTab/Ranking'
-import OrtherProfile from './src/presentation/container/Author/home/profile/OrtherProfile'
-import OrtherVideo from './src/presentation/container/Author/home/videolist/OrtherVideoList'
-import { Provider } from 'react-redux'
+import OrtherProfile from './src/presentation/container/Author/home/leaderboard/OrtherProfile'
+import OrtherVideo from './src/presentation/container/Author/home/leaderboard/OrtherVideoList'
+import { Provider, useDispatch, useSelector } from 'react-redux'
 import store from './src/presentation/share-state/redux/store'
 
 
@@ -73,8 +73,11 @@ const App = () => {
     // <TopTapVideoList/>
     // <TopTapRanking/>
 
-    <AppNavigation/>
-
+    <Provider store={store}>
+      <AppNavigation/>
+    </Provider>
+    
+    
   )
 }
 
@@ -84,6 +87,9 @@ import database, { firebase } from '@react-native-firebase/database';
 import { rtdb } from './src/core/api/url/RealTimeDB'
 import { Users } from './src/core/model/User'
 import { UserRespone } from './src/core/model/UserRespone'
+import { addUser, userSelecter } from './src/presentation/share-state/redux/reducers/userReducer'
+import TestOTP from './test/testOTP'
+import { BeatListNavigation } from './src/presentation/navigation/Author/BeatListNavigation'
 
 const user = {
   name: '123',
@@ -100,7 +106,7 @@ const user = {
 //   const clickRegister = async () => {
 
 //     // //post
-    
+
 //     list = [];
 //     setUser({});
 //     let userTemp: UserRespone = {};
@@ -124,6 +130,15 @@ const user = {
 //         <Text>Click</Text>
 //       </TouchableOpacity>
 //     </View>
+//   )
+// }
+
+
+// const App = () => {
+//   return (
+//     <Provider store={store}>
+//       <TestOTP/>
+//     </Provider>
 //   )
 // }
 

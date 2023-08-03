@@ -47,33 +47,8 @@ const DATA: ItemNewVideoProps[] = [
 ]
 
 const NewVideo = () => {
-
-    const goBack = () => {
-        // navigation.navigate('Record');
-    }
-    const goNotification = () => {
-        console.log(123);
-    }
-
-    const centerHeader = () => {
-        return (
-            <Text style={styles.textHeader}>Video list</Text>
-        )
-    };
-
     return (
         <Background>
-            {/* <Header
-                iconLeft={
-                    <Icon name='home' size={20} color={Colors.WHITE} />
-                }
-                leftHeader={goBack}
-                centerHeader={centerHeader()}
-                iconRight={
-                    <Icon name='bell' size={20} color={Colors.WHITE} />
-                }
-                rightHeader={goNotification}
-            /> */}
             <View style={styles.container}>
                 <FlatList
                     data={DATA}

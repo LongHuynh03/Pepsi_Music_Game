@@ -1,7 +1,12 @@
 import type { BottomTabNavigationProp, BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-type VideoListProps = {
 
+type HomeProps = {
+    
+};
+
+type VideoListProps = {
+    
 };
 
 type BestListProps = {
@@ -21,6 +26,7 @@ type ProfileProps = {
 };
 
 export type MainTabParamList = {
+    Home: HomeProps| undefined;
     VideoList: VideoListProps | undefined,
     BestList: BestListProps | undefined,
     Record: RecordProps | undefined,

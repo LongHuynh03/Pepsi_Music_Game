@@ -10,6 +10,7 @@ import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import Background from '../../../component/background/Background'
 import { Users } from '../../../../core/model/User'
 import { rtdb } from '../../../../core/api/url/RealTimeDB'
+import auth from '@react-native-firebase/auth'
 
 
 const Register: React.FC<MainStackScreenProps<'Register'>> = ({ navigation, route }) => {

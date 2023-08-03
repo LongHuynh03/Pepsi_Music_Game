@@ -4,9 +4,10 @@ import Background from '../../../../component/background/Background'
 import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
 import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, ICON_LEFTARROW } from '../../../../../../assets'
-import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
+import BeatNewItem, { ItemBeatProps } from '../beatlist/BeatNew.item'
 import { MainStackScreenProps } from '../../../../navigation/stack/StackNavigation'
 import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const DATA: ItemBeatProps[] = [
     {
@@ -71,8 +72,8 @@ const DATA: ItemBeatProps[] = [
     },
 ]
 
-// const BeatNew: React.FC<BeatListStackScreenProps<'BeatNew'>> = ({navigation, route}) => {
-const BeatNew = () => {
+const BeatNew: React.FC<BeatListStackScreenProps<'BeatNew'>> = ({navigation, route}) => {
+// const BeatNew = () => {
 
 
     const centerHeader = () => {
@@ -84,14 +85,16 @@ const BeatNew = () => {
     }
 
     const goBack = () => {
-        // navigation.navigate('BeatList');
+        navigation.navigate('BeatList');
     };
 
     return (
         <Background>
             <View style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={goBack}
                     centerHeader={centerHeader()} />
                 <FlatList

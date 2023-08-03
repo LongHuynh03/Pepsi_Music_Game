@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import React from 'react'
 import { ICON_EYE, ICON_HEART, ICON_MIC_2 } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 
 export interface ItemBeatListProps {
     id: number,
@@ -14,37 +16,37 @@ export interface ItemBeatListProps {
 
 const ItemBeatList: React.FC<ItemBeatListProps> = (props) => {
 
-    const {id, title, view, like, image} = props;
+    const { id, title, view, like, image } = props;
 
-  return (
-    <View style = {styles.container}>
-      <View style = {styles.item}>
-        <View style = {styles.boxImage}>
-            <Image source = {image} style = {styles.image} />
-        </View>
-        <View style = {styles.boxContent}>
-            <Text style = {styles.title}>{title}</Text>
-            <View style = {styles.boxButton}>
-                <View style = {styles.boxReact}>
-                    <View style = {styles.view_left}>
-                        <Image source={ICON_EYE} style={styles.icon} />
-                        <Text style={styles.txtReact}>{view}</Text>
-                    </View>
-                    <View style = {styles.view_right}>
-                        <Image source={ICON_HEART} style={styles.icon} />
-                        <Text style={styles.txtReact}>{like}</Text>
-                    </View>
+    return (
+        <View style={styles.container}>
+            <View style={styles.item}>
+                <View style={styles.boxImage}>
+                    <Image source={image} style={styles.image} />
                 </View>
-                <View style = {styles.boxMic}>
-                    <View style={styles.mic}>
-                        <Image source={ICON_MIC_2} style={styles.iconMic}/>
+                <View style={styles.boxContent}>
+                    <Text style={styles.title}>{title}</Text>
+                    <View style={styles.boxButton}>
+                        <View style={styles.boxReact}>
+                            <View style={styles.view_left}>
+                                <AntDesignIcon name="eyeo" size={6} color={Colors.WHITE} />
+                                <Text style={styles.txtReact}>{view}</Text>
+                            </View>
+                            <View style={styles.view_right}>
+                                <AntDesignIcon name='hearto' color={Colors.WHITE} size={6} />
+                                <Text style={styles.txtReact}>{like}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.boxMic}>
+                            <View style={styles.mic}>
+                                <FontAwesome5Icon name="microphone-alt" size={15} color={Colors.WHITE} />
+                            </View>
+                        </View>
                     </View>
                 </View>
             </View>
         </View>
-      </View>
-    </View>
-  )
+    )
 }
 
 export default ItemBeatList
@@ -57,8 +59,8 @@ const styles = StyleSheet.create({
     },
     item: {
         margin: Dimensions.get('screen').width * 0.03,
-        width: Dimensions.get('screen').width * 0.4+4,
-        height: Dimensions.get('screen').height *0.22,
+        width: Dimensions.get('screen').width * 0.4 + 4,
+        height: Dimensions.get('screen').height * 0.22,
         justifyContent: 'space-between',
         padding: 3,
         borderRadius: 8,

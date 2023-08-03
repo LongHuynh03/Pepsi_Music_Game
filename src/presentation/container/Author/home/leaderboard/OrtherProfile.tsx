@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView } from 'react-native'
 import React from 'react'
-import ItemProfile, { ItemProfileProps } from './Profile.item'
+import ItemProfile, { ItemProfileProps } from '../profile/Profile.item'
 import { Colors } from '../../../../resource/value/Colors';
 import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';

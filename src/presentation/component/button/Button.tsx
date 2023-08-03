@@ -6,7 +6,7 @@ import TextTitle from '../text/TextTitle';
 export interface ButtonProps extends TextProps {
   containerStyle: StyleProp<ViewStyle>,
   titleStyle?: StyleProp<TextStyle>,
-  icon?: ImageSourcePropType,
+  icon?: React.ReactNode,
   title?: string,
   onPress?: () => void;
 }
@@ -17,7 +17,9 @@ const Button: React.FC<ButtonProps> = (props) => {
   const eventLeft = () => {
     if (icon) {
       return (
-          <Image source={icon} style={styles.icon} />
+        <View>
+          {icon}
+        </View> 
       );
     }
     return null;

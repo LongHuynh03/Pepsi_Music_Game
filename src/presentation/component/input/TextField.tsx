@@ -28,7 +28,8 @@ export const LogInField: React.FC<LogInFieldProps> = (props) => {
       <Text style={styles.title}>Đăng nhập</Text>
       <TextInput {...inputProps}
         style={styles.textInputLogin}
-        placeholder='Nhập số điện thoại' />
+        placeholder='Nhập số điện thoại'
+        autoFocus />
     </View>
   )
 }
@@ -41,7 +42,8 @@ export const RegisterField: React.FC<RegisterFieldProps> = (props) => {
       <Text style={styles.title}>Đăng ký</Text>
       <TextInput {...inputProps_1}
         style={styles.textInputRegister}
-        placeholder='Nhập số điện thoại' />
+        placeholder='Nhập số điện thoại' 
+        autoFocus/>
       <TextInput {...inputProps_2}
         style={styles.textInputRegister}
         placeholder='Nghệ danh' />

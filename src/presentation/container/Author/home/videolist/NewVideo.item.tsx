@@ -1,9 +1,9 @@
 import { Dimensions, ScrollView, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { CARD_PEPSI_1, CARD_PEPSI_2_1x, CARD_PEPSI_2_4x } from '../../../../../../assets'
-import Icon from 'react-native-vector-icons/AntDesign'
-import Icon1 from 'react-native-vector-icons/FontAwesome'
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Colors } from '../../../../resource/value/Colors'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -76,7 +76,7 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
                 {!onLyric ?
                     <View>
                         <TouchableOpacity style={styles.btnPlay}>
-                            <Icon1 name='play' size={18} color={Colors.WHITE} />
+                            <FontAwesomeIcon name='play' size={18} color={Colors.WHITE} />
                         </TouchableOpacity>
                         <Image style={styles.img} source={image} />
                     </View>
@@ -114,19 +114,19 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
                     </View>
                     <View style={styles.boxReact}>
                         <TouchableOpacity style={styles.boxReact_1}>
-                            <Icon name='heart' size={20} color={Colors.WHITE} />
+                            <AntDesignIcon name='heart' size={20} color={Colors.WHITE} />
                             <Text style={styles.textIcon}>Thích</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.boxReact_1}>
-                            <Icon1 name='share' size={20} color={Colors.WHITE} />
+                            <FontAwesomeIcon name='share' size={20} color={Colors.WHITE} />
                             <Text style={styles.textIcon}>Chia sẻ</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.boxReact_1}>
-                            <Icon name='download' size={20} color={Colors.WHITE} />
+                            <AntDesignIcon name='download' size={20} color={Colors.WHITE} />
                             <Text style={styles.textIcon}>Tải về</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.boxReact_1}>
-                            <Icon2 name='flag-variant' size={20} color={Colors.WHITE} />
+                            <MaterialCommunityIconsIcon name='flag-variant' size={20} color={Colors.WHITE} />
                             <Text style={styles.textIcon}>Báo cáo</Text>
                         </TouchableOpacity>
                     </View>
@@ -137,15 +137,15 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
                     </View>
                     <View style={styles.boxRed}>
                         <View style={styles.boxRed_1} >
-                            <Icon name='calendar' size={12} color={Colors.WHITE} />
+                            <AntDesignIcon name='calendar' size={12} color={Colors.WHITE} />
                             <Text style={styles.txtRed}>{createAt}</Text>
                         </View>
                         <View style={styles.boxRed_1} >
-                            <Icon name='eyeo' size={12} color={Colors.WHITE} />
+                            <AntDesignIcon name='eyeo' size={12} color={Colors.WHITE} />
                             <Text style={styles.txtRed}>{view}</Text>
                         </View>
                         <View style={styles.boxRed_1} >
-                            <Icon name='hearto' size={12} color={Colors.WHITE} />
+                            <AntDesignIcon name='hearto' size={12} color={Colors.WHITE} />
                             <Text style={styles.txtRed}>{like}</Text>
                         </View>
                     </View>

@@ -2,6 +2,8 @@ import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import React from 'react'
 import { Colors } from '../../../../resource/value/Colors'
 import { CARD_PEPSI_1, ICON_MIC_1, ICON_MIC_2 } from '../../../../../../assets'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+import FeatherIcon from 'react-native-vector-icons/Feather'
 
 export interface ItemBeatProps {
     id: number,
@@ -24,13 +26,13 @@ const BeatNewItem: React.FC<ItemBeatProps> = (props) => {
                     <Text style={styles.baihat}>{name}</Text>
                     <Text style={styles.casi}>{des}</Text>
                     <View style={styles.group1}>
-                        <Image source={ICON_MIC_1} style={styles.icon_mic} />
+                        <FeatherIcon name = "mic" size = {9} color={Colors.WHITE}/>
                         <Text style={styles.soluong}>9.023 lượt cover</Text>
                     </View>
                 </View>
                 <View style = {styles.boxMic}>
                     <View style = {styles.boxMic_1}>
-                        <Image source={ICON_MIC_2} style={styles.mic} />
+                        <FontAwesome5Icon name = "microphone-alt" size = {20} color={Colors.WHITE}/>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -91,12 +93,6 @@ const styles = StyleSheet.create({
         marginTop: Dimensions.get('window').height * 0.003,
         alignItems: 'center',
     },
-    icon_mic: {
-        resizeMode: 'contain',
-        width: Dimensions.get('window').width * 0.02,
-        marginLeft: '5%',
-    },
-
     soluong: {
         fontFamily: 'Montserrat',
         fontSize: 8,
@@ -104,10 +100,6 @@ const styles = StyleSheet.create({
         lineHeight: 9.6,
         color: Colors.WHITE,
         marginLeft: '3%',
-    },
-    mic: {
-        resizeMode: 'contain',
-        height: Dimensions.get('window').height * 0.04,
     },
     boxMic: {
         width: "20%",

@@ -1,4 +1,6 @@
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+type BeatNewProps = {
+};
 
 type RecordingProps = {
 };
@@ -22,6 +24,7 @@ type ThanksProps = {
 };
 
 export type RemixStackParamList = {
+    BeatNew: BeatNewProps| undefined;
     Recording: RecordingProps | undefined;
     Remix: RemixProps | undefined; 
     AcceptAnimation: AcceptAnimationProps | undefined;

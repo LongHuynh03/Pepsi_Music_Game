@@ -6,6 +6,7 @@ import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
 import { AVATAR_1, AVATAR_2_1X, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5 } from '../../../../../../assets';
 import Icon from 'react-native-vector-icons/Feather';
+import { ProfileScreenProps } from '../../../../navigation/stack/ProfileNavigation';
 
 const DATA: ItemProfileProps[] = [
     { id: 1, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_1 },
@@ -20,7 +21,7 @@ const DATA: ItemProfileProps[] = [
     { id: 10, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_5 },
 ];
 
-const Profile = () => {
+const Profile:React.FC<ProfileScreenProps<'UserProfile'>> = ({navigation, route}) => {
 
     const centerHeader = () => {
         return (
@@ -28,7 +29,6 @@ const Profile = () => {
         )
     };
 
-    const home = 'home';
     return (
         <Background>
             <View style={styles.container}>
@@ -63,8 +63,8 @@ const Profile = () => {
                         data={DATA}
                         renderItem={({ item }) =>
                             <ItemProfile
-                                id={item.id} title={item.title} view={item.view}
-                                like={item.like} image={item.image} />
+                                item={item}
+                                navigation={navigation} />
                         }
                         keyExtractor={(item) => item.id.toString()}
                         numColumns={2}

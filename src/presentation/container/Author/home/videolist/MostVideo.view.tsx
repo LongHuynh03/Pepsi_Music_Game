@@ -2,11 +2,10 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Background from '../../../../component/background/Background'
 import Header from '../../../../component/header/Header'
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from 'react-native-vector-icons/Octicons'
 import { Colors } from '../../../../resource/value/Colors';
 import ItemNewVideo, { ItemNewVideoProps } from './NewVideo.item'
 import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, IMAGE_FRAME_1_1X, IMAGE_FRAME_2_1X, IMAGE_FRAME_3_1X, IMAGE_FRAME_4_1X } from '../../../../../../assets'
-import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation'
 
 const DATA: ItemNewVideoProps[] = [
     {
@@ -47,30 +46,9 @@ const DATA: ItemNewVideoProps[] = [
     },
 ]
 
-const OrtherVideo: React.FC<RankingStackScreenProps<'OrtherVideo'>> = ({navigation,route}) => {
-
-    const goBack = () => {
-        navigation.navigate('OrtherProfile');
-    }
-    const goNotification = () => {
-        console.log(123);
-    }
-
-    const centerHeader = () => {
-        return (
-            <Text style={styles.textHeader}>Video list</Text>
-        )
-    };
-
+const MostVideo = () => {
     return (
         <Background>
-            <Header
-                leftHeader={goBack}
-                centerHeader={centerHeader()}
-                iconLeft={
-                    <Icon name='arrowleft' size={20} color={Colors.WHITE} />
-                }
-            />
             <View style={styles.container}>
                 <FlatList
                     data={DATA}
@@ -89,7 +67,7 @@ const OrtherVideo: React.FC<RankingStackScreenProps<'OrtherVideo'>> = ({navigati
     )
 }
 
-export default OrtherVideo
+export default MostVideo
 
 const styles = StyleSheet.create({
     container: {

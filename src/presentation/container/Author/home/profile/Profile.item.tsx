@@ -10,14 +10,19 @@ export interface ItemProfileProps {
     view: string,
     like: string,
     image: any,
+}
+
+interface Item {
+    item: any,
     navigation?: any
 }
 
-const ItemProfile: React.FC<ItemProfileProps> = (props) => {
-    const { id, title, view, like, image, navigation } = props;
+const ItemProfile: React.FC<Item> = (props) => {
+    const { id, title, view, like, image  } = props.item;
+    const {navigation} = props;
 
     const onClick = () => {
-        navigation.navigate('OrtherVideo')
+        navigation.navigate('UserVideoList');
     };
 
     return (

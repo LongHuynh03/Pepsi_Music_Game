@@ -6,6 +6,7 @@ import Header from '../../../../component/header/Header'
 import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, ICON_LEFTARROW } from '../../../../../../assets'
 import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
 import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const DATA: ItemBeatProps[] = [
     {
@@ -88,7 +89,9 @@ const HotUse: React.FC<BeatListStackScreenProps<'HotUse'>> = ({navigation, route
         <Background>
             <View style={styles.container}>
                 <Header
-                    iconLeft={ICON_LEFTARROW}
+                    iconLeft={
+                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    }
                     leftHeader={goBack}
                     centerHeader={centerHeader()} />
                 <FlatList

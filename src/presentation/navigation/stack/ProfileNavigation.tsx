@@ -1,13 +1,13 @@
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
-type ProfileProps = {
+type UserProfileProps = {
 };
 
 type UserVideoListProps = {
 };
 
 export type ProfileParamList = {
-    Profile: ProfileProps | undefined;
+    UserProfile: UserProfileProps | undefined;
     UserVideoList: UserVideoListProps | undefined;
 };
 

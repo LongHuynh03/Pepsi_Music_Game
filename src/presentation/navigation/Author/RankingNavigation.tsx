@@ -2,10 +2,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { RankingStackParamList } from "../stack/RankingNavigation";
 import TopView from "../../container/Author/home/leaderboard/TopView.view";
 import Notification from "../../container/Author/notification/Notification";
-import TopTapRanking from "../TopTab/Ranking";
 import Ranking from "../../container/Author/home/leaderboard/Ranking";
-import OrtherProfile from "../../container/Author/home/profile/OrtherProfile";
-import OrtherVideo from "../../container/Author/home/videolist/OrtherVideoList";
+import OrtherProfile from "../../container/Author/home/leaderboard/OrtherProfile";
+import OrtherVideo from "../../container/Author/home/leaderboard/OrtherVideoList";
 
 const Stack = createStackNavigator<RankingStackParamList>();
 

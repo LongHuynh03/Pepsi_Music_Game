@@ -7,6 +7,7 @@ import { CARD_PEPSI_2_1x, CENTER_BUTTON_1_5X, ICON_LEFTARROW, ICON_LYRIC, ICON_N
 import Slider from '@react-native-community/slider';
 import DialogNotification from '../../../../component/dialog/DialogNotification';
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, route}) => {
 
@@ -134,10 +135,13 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
     return (
         <Background>
             <Header
-                iconLeft={ICON_LEFTARROW}
+                iconLeft={
+                    <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                }
                 leftHeader={() => onClick("back")}
                 centerHeader={centerHeader()}
-                iconRight={!onLyric ? ICON_LYRIC : ICON_NO_LYRIC}
+                iconRight={!onLyric ? 
+                    <Image style = {styles.imgLyric} source={ICON_LYRIC} /> : <Image style = {styles.imgLyric} source={ICON_NO_LYRIC}/>}
                 rightHeader={goLyric} />
             <View style={styles.gr}>
                 {
@@ -350,6 +354,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: Colors.BACKGROUND_MIC,
         borderColor: Colors.WHITE
+    },
+    imgLyric: {
+        resizeMode: 'contain',
+        width: Dimensions.get('screen').width * 0.08
     },
 
     //dialog

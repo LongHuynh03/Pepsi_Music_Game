@@ -8,6 +8,11 @@ import Button from '../../../../component/button/Button'
 import ItemBeatList, { ItemBeatListProps } from './BeatList.item'
 import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
 import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
+import FeatherIcon from 'react-native-vector-icons/Feather'
+import FontistoIcon from 'react-native-vector-icons/Fontisto'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import IoniconsIcon from 'react-native-vector-icons/Ionicons'
 
 const DATA_HISTORY: ItemBeatListProps[] = [
   {
@@ -117,8 +122,8 @@ const DATA_PROPOSE: ItemBeatProps[] = [
   },
 ]
 
-// const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
-const BeatList = () => {
+const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
+// const BeatList = () => {
 
   const centerHeader = () => {
     return (
@@ -129,35 +134,40 @@ const BeatList = () => {
   }
 
   const goBack = () => {
+    navigation.goBack();
   };
 
   const goNotification = () => {
-    // navigation.navigate('Notification');
+    navigation.navigate('Notification');
   };
 
   const goNewBeat = () => {
-    // navigation.navigate('BeatNew');
+    navigation.navigate('BeatNew');
   };
 
   const goHotUse = () => {
-    // navigation.navigate('HotUse');
+    navigation.navigate('HotUse');
   };
 
   const goHistory = () => {
-    // navigation.navigate('History');
+    navigation.navigate('History');
   };
 
   const goPropose = () => {
-    // navigation.navigate('Propose');
+    navigation.navigate('Propose');
   };
 
   return (
     <Background>
       <Header
-        iconLeft={ICON_HOME}
+        iconLeft={
+          <FeatherIcon name = 'home' size = {20} color={Colors.WHITE}/>
+        }
         leftHeader={goBack}
         centerHeader={centerHeader()}
-        iconRight={ICON_NOTIFICATION}
+        iconRight={
+          <FontistoIcon name = 'bell' size = {20} color={Colors.WHITE}/>
+        }
         rightHeader={goNotification}
       />
       <ScrollView style={styles.container}>
@@ -166,19 +176,23 @@ const BeatList = () => {
           <Button containerStyle={styles.btn}
             title='Beat mới nhất'
             titleStyle={styles.titleStyle}
-            icon={ICON_MUSIC}
+            icon={
+              <FontAwesomeIcon name = "music" size = {25} color={Colors.BLUE_PEPSI}/>
+            }
             onPress={goNewBeat} />
           <Button containerStyle={styles.btn}
             title='Sử dụng nhiều'
             titleStyle={styles.titleStyle}
-            icon={ICON_MUSIC}
+            icon={
+              <IoniconsIcon name = "volume-medium" size = {25} color={Colors.BLUE_PEPSI}/>
+            }
             onPress={goHotUse} />
         </View>
         <View style={styles.boxHistory}>
           <View style={styles.boxTitle}>
             <Text style={styles.title}>Đã thu gần đây</Text>
             <TouchableOpacity style={styles.btnSeeAll} onPress={goHistory}>
-              {/* <Text style={styles.seeAll}>Xem tất cả {'>'}</Text> */}
+              <Text style={styles.seeAll}>Xem tất cả {'>'}</Text>
             </TouchableOpacity>
           </View>
           <FlatList
@@ -197,7 +211,7 @@ const BeatList = () => {
           <View style={styles.boxTitle}>
             <Text style={styles.title}>Đề xuất cho bạn</Text>
             <TouchableOpacity style={styles.btnSeeAll} onPress={goPropose}>
-              {/* <Text style={styles.seeAll}>Xem tất cả {'>'}</Text> */}
+              <Text style={styles.seeAll}>Xem tất cả {'>'}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.listPropose}>
@@ -250,7 +264,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height * 0.05,
   },
   titleStyle: {
-
+    marginStart: Dimensions.get('screen').width * 0.03
   },
   boxTitle: {
     flexDirection: 'row',
@@ -280,5 +294,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-
 })
