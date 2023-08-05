@@ -61,7 +61,7 @@ const HotUse: React.FC<BeatListStackScreenProps<'HotUse'>> = ({navigation, route
                     leftHeader={goBack}
                     centerHeader={centerHeader()} />
                 <FlatList
-                    data={listMusic}
+                    data={list_Music}
                     renderItem={
                         ({ item }) => <BeatNewItem
                             item={item}

@@ -1,6 +1,6 @@
 export interface Video {
-    keyVideo?: string;
-    craeteAt?: string;
+    keyVideo: string;
+    createAt?: string;
     image?: string;
     like?: number;
     title?: string;

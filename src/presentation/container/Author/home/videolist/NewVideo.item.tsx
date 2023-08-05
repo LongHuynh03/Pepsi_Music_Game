@@ -150,7 +150,7 @@ const ItemNewVideo: React.FC<Item> = (props) => {
                     <View style={styles.boxRed}>
                         <View style={styles.boxRed_1} >
                             <AntDesignIcon name='calendar' size={12} color={Colors.WHITE} />
-                            <Text style={styles.txtRed}>{item.craeteAt}</Text>
+                            <Text style={styles.txtRed}>{item.createAt}</Text>
                         </View>
                         <View style={styles.boxRed_1} >
                             <AntDesignIcon name='eyeo' size={12} color={Colors.WHITE} />

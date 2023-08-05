@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Background from '../../../../component/background/Background'
 import { Colors } from '../../../../resource/value/Colors'
@@ -14,26 +14,26 @@ const BeatNew: React.FC<BeatListStackScreenProps<'BeatNew'>> = ({ navigation, ro
 
     let listMusic: Music[] = [];
 
-  const [list_Music, setlist_Music] = useState<Music[]>([])
+    const [list_Music, setlist_Music] = useState<Music[]>([])
 
     useEffect(() => {
+
         const getMusic = async () => {
-            
             const get = rtdb.ref('/Musics')
-            .once('value',(snapshot: any) => {
-                snapshot.forEach((item: any) => {
-                    let music: Music = {
-                        keyMusic: "1"
-                    };
-                    music.keyMusic = item.key;
-                    music.author = item.val().author;
-                    music.image = item.val().image;
-                    music.name = item.val().name;
-                    listMusic.push(music);
-                })
-                // console.log(list);
-                setlist_Music(list_Music);
-            });
+                .once('value', (snapshot: any) => {
+                    snapshot.forEach((item: any) => {
+                        let music: Music = {
+                            keyMusic: "1"
+                        };
+                        music.keyMusic = item.key;
+                        music.author = item.val().author;
+                        music.image = item.val().image;
+                        music.name = item.val().name;
+                        listMusic.push(music);
+                    })
+                    setlist_Music(listMusic);
+                    console.log(list_Music);
+                });
         }
 
         getMusic();

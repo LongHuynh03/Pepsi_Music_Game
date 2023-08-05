@@ -25,7 +25,7 @@ const UserVideoList: React.FC<ProfileScreenProps<'UserVideoList'>> = ({ navigati
                         keyVideo: "1"
                     };
                     video.keyVideo = item.key;
-                    video.craeteAt = item.val().craeteAt;
+                    video.createAt = item.val().createAt;
                     video.image = item.val().image;
                     video.like = item.val().like;
                     video.title = item.val().title;

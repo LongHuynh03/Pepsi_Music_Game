@@ -32,7 +32,8 @@ const DialogLoad: React.FC<DialogLoadProps> = (props) => {
         if (index >= 1) {
             const newVideo = rtdb.ref('/Videos').push();
             const videoNew: Video = {
-                craeteAt: Date.now().toString(),
+                keyVideo: '1',
+                createAt: '06.08.2003',
                 image: 'https://firebasestorage.googleapis.com/v0/b/pepsimusicgame-f3252.appspot.com/o/Image-Card_3.png?alt=media&token=db601815-7ec2-4418-80e3-3d962adf10c7',
                 like: 0,
                 view: 0,
