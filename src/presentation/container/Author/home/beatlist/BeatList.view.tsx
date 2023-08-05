@@ -160,15 +160,15 @@ const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, 
             </TouchableOpacity>
           </View>
           <View style={styles.listPropose}>
-            {/* {
-              listMusic.map((item) => <BeatNewItem
+            {
+              list_Music.map((item) => <BeatNewItem
                 item={item} />)
-            } */}
-            <FlatList
+            }
+            {/* <FlatList
             data={list_Music}
             renderItem={({ item }) => <BeatNewItem
               item={item} />}
-            keyExtractor={(item) => item.keyMusic.toString()}/>
+            keyExtractor={(item) => item.keyMusic.toString()}/> */}
           </View>
         </View>
       </ScrollView>

@@ -30,8 +30,8 @@ export const AuthorNavigation = () => {
     console.log(data.keyUser)
 
     return (
-        <Tab.Navigator initialRouteName={"Home"}
-            detachInactiveScreens={false}
+        <Tab.Navigator
+            initialRouteName={"Home"}
             backBehavior="initialRoute"
             screenOptions={({ route }) => ({
                 tabBarHideOnKeyboard: true,
