@@ -1,19 +1,14 @@
-import { Dimensions, StyleSheet, TouchableOpacity, Animated, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { NavigationContainer } from '@react-navigation/native'
 import Header from '../../component/header/Header';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Colors } from '../../resource/value/Colors';
-import { width } from '../../resource/value/SizeScreen';
 import Background from '../../component/background/Background';
-import { CARD_PEPSI_1 } from '../../../../assets';
 import FavoriteVideo from '../../container/Author/home/videolist/FavoriteVideo.view';
 import MostVideo from '../../container/Author/home/videolist/MostVideo.view';
 import NewVideo from '../../container/Author/home/videolist/NewVideo.view';
-import { MainTabScreenProps } from '../stack/TabNavigation';
-import { BeatListNavigation } from '../Author/BeatListNavigation';
 import { VideoListStackScreenProps } from '../stack/VideoListNavigation';
 
 

@@ -1,131 +1,80 @@
 import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Background from '../../../../component/background/Background'
 import Header from '../../../../component/header/Header'
-import { BANER_1, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, ICON_HOME, ICON_MUSIC, ICON_NOTIFICATION } from '../../../../../../assets'
+import { BANER_1 } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
 import Button from '../../../../component/button/Button'
-import ItemBeatList, { ItemBeatListProps } from './BeatList.item'
-import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
+import ItemBeatList from './BeatList.item'
+import BeatNewItem from './BeatNew.item'
 import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import FontistoIcon from 'react-native-vector-icons/Fontisto'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import IoniconsIcon from 'react-native-vector-icons/Ionicons'
-
-const DATA_HISTORY: ItemBeatListProps[] = [
-  {
-    id: 1,
-    title: "Tiền nhiều để làm gì",
-    view: 11000,
-    like: 10000,
-    image: CARD_PEPSI_1
-  },
-  {
-    id: 2,
-    title: "Tiền nhiều để làm gì",
-    view: 11000,
-    like: 10000,
-    image: CARD_PEPSI_2
-  },
-  {
-    id: 3,
-    title: "Tiền nhiều để làm gì",
-    view: 11000,
-    like: 10000,
-    image: CARD_PEPSI_3
-  },
-  {
-    id: 4,
-    title: "Tiền nhiều để làm gì",
-    view: 11000,
-    like: 10000,
-    image: CARD_PEPSI_4
-  },
-  {
-    id: 5,
-    title: "Tiền nhiều để làm gì",
-    view: 11000,
-    like: 10000,
-    image: CARD_PEPSI_5
-  },
-  {
-    id: 6,
-    title: "Tiền nhiều để làm gì",
-    view: 11000,
-    like: 10000,
-    image: CARD_PEPSI_1
-  },
-];
-
-const DATA_PROPOSE: ItemBeatProps[] = [
-  {
-    id: 1,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_1
-  },
-  {
-    id: 2,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_2
-  },
-  {
-    id: 3,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_3
-  },
-  {
-    id: 4,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_4
-  },
-  {
-    id: 5,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_5
-  },
-  {
-    id: 6,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_3
-  },
-  {
-    id: 7,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_5
-  },
-  {
-    id: 8,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_4
-  },
-  {
-    id: 9,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_2
-  },
-  {
-    id: 10,
-    name: 'Tiền nhiều để làm gì',
-    des: 'GDucky ft.Lưu Hiền Trinh',
-    image: CARD_PEPSI_1
-  },
-]
+import { Video } from '../../../../../core/model/Video'
+import { Music } from '../../../../../core/model/Music'
+import { rtdb } from '../../../../../core/api/url/RealTimeDB'
 
 const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
-// const BeatList = () => {
+  // const BeatList = () => {
+
+  const [list_Video, setlist_Video] = useState<Video[]>([])
+  const [list_Music, setlist_Music] = useState<Music[]>([])
+
+  useEffect(() => {
+    const getVideo = async () => {
+      const get = rtdb.ref('/Videos')
+        .once('value', (snapshot: any) => {
+          snapshot.forEach((item: any) => {
+            let video: Video = {
+              keyVideo: "1"
+            };
+            video.keyVideo = item.key;
+            video.craeteAt = item.val().craeteAt;
+            video.image = item.val().image;
+            video.like = item.val().like;
+            video.title = item.val().title;
+            video.userKey = item.val().userKey;
+            video.view = item.val().view;
+            listVideo.push(video);
+          })
+          // console.log(listVideo);
+          setlist_Video(listVideo)
+        });
+    }
+
+    getVideo();
+
+    const getMusic = async () => {
+
+      const get = rtdb.ref('/Musics')
+        .once('value', (snapshot: any) => {
+          snapshot.forEach((item: any) => {
+            let music: Music = {
+              keyMusic: "1"
+            };
+            music.keyMusic = item.key;
+            music.author = item.val().author;
+            music.image = item.val().image;
+            music.name = item.val().name;
+            listMusic.push(music);
+          })
+          console.log(listMusic);
+          setlist_Music(listMusic);
+        });
+    }
+
+    getMusic();
+    return () => {}
+  }, [])
+  
+
+  let listVideo: Video[] = [];
+  let listMusic: Music[] = [];
 
   const centerHeader = () => {
+
     return (
       <View style={styles.header_1}>
         <Text style={styles.textHeader}>Beat list</Text>
@@ -161,12 +110,12 @@ const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, 
     <Background>
       <Header
         iconLeft={
-          <FeatherIcon name = 'home' size = {20} color={Colors.WHITE}/>
+          <FeatherIcon name='home' size={20} color={Colors.WHITE} />
         }
         leftHeader={goBack}
         centerHeader={centerHeader()}
         iconRight={
-          <FontistoIcon name = 'bell' size = {20} color={Colors.WHITE}/>
+          <FontistoIcon name='bell' size={20} color={Colors.WHITE} />
         }
         rightHeader={goNotification}
       />
@@ -177,14 +126,14 @@ const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, 
             title='Beat mới nhất'
             titleStyle={styles.titleStyle}
             icon={
-              <FontAwesomeIcon name = "music" size = {25} color={Colors.BLUE_PEPSI}/>
+              <FontAwesomeIcon name="music" size={25} color={Colors.BLUE_PEPSI} />
             }
             onPress={goNewBeat} />
           <Button containerStyle={styles.btn}
             title='Sử dụng nhiều'
             titleStyle={styles.titleStyle}
             icon={
-              <IoniconsIcon name = "volume-medium" size = {25} color={Colors.BLUE_PEPSI}/>
+              <IoniconsIcon name="volume-medium" size={25} color={Colors.BLUE_PEPSI} />
             }
             onPress={goHotUse} />
         </View>
@@ -196,14 +145,10 @@ const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, 
             </TouchableOpacity>
           </View>
           <FlatList
-            data={DATA_HISTORY}
+            data={list_Video}
             renderItem={({ item }) => <ItemBeatList
-              id={item.id}
-              title={item.title}
-              view={item.view}
-              like={item.like}
-              image={item.image} />}
-            keyExtractor={(item) => item.id.toString()}
+              item={item} />}
+            keyExtractor={(item) => item.keyVideo.toString()}
             horizontal
             showsHorizontalScrollIndicator={false} />
         </View>
@@ -215,14 +160,15 @@ const BeatList: React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, 
             </TouchableOpacity>
           </View>
           <View style={styles.listPropose}>
-            {
-              DATA_PROPOSE.map((item) => <BeatNewItem
-                id={item.id}
-                name={item.name}
-                des={item.des}
-                image={item.image}
-                key={item.id} />)
-            }
+            {/* {
+              listMusic.map((item) => <BeatNewItem
+                item={item} />)
+            } */}
+            <FlatList
+            data={list_Music}
+            renderItem={({ item }) => <BeatNewItem
+              item={item} />}
+            keyExtractor={(item) => item.keyMusic.toString()}/>
           </View>
         </View>
       </ScrollView>

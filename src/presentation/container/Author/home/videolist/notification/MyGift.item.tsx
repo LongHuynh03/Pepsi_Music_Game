@@ -1,19 +1,15 @@
-import { Dimensions, Image, ImageProps, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Colors } from '../../../../../resource/value/Colors';
 
 export interface ItemMyGiftProps {
-    id: number;
-    title: string;
-    des: string;
-    button: string;
-    image: ImageProps;
+    item: any;
 }
 
 const ItemGift: React.FC<ItemMyGiftProps> = (props) => {
 // const ItemGift = () => {
 
-    const {id, title, des, button, image} = props;
+    const {item} = props;
 
     const [buttonColor, setButtonColor] = React.useState(Colors.BLUE_1_500);
     const [buttonText, setButtonText] = React.useState('Chưa nhận');
@@ -30,10 +26,10 @@ const ItemGift: React.FC<ItemMyGiftProps> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.item}>
-                <Image source={image} style={styles.image} />
+                <Image source={{uri: item.image}} style={styles.image} />
                 <View style = {styles.content}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.des}>{des}</Text>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.des}>{item.des}</Text>
                     <TouchableOpacity style={[styles.button, { backgroundColor: buttonColor }]} onPress={onPressButton}>
                         <Text style={[styles.textbtn, { color: buttonText === 'Chưa nhận' ? '#fff' : '#fff' }]}>{buttonText}</Text>
                     </TouchableOpacity>
@@ -64,6 +60,7 @@ const styles = StyleSheet.create({
     image: {
         resizeMode: 'contain',
         height: Dimensions.get('screen').width * 0.37,
+        width: Dimensions.get('screen').width * 0.37,
     },
     content: {
         width: "100%",

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import React from 'react'
-import { ICON_EYE, ICON_HEART, ICON_MIC_2 } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
@@ -13,28 +12,32 @@ export interface ItemBeatListProps {
     image: any
 }
 
+interface Item {
+    item: any,
+}
 
-const ItemBeatList: React.FC<ItemBeatListProps> = (props) => {
 
-    const { id, title, view, like, image } = props;
+const ItemBeatList: React.FC<Item> = (props) => {
+
+    const { item } = props;
 
     return (
         <View style={styles.container}>
             <View style={styles.item}>
                 <View style={styles.boxImage}>
-                    <Image source={image} style={styles.image} />
+                    <Image source={{uri : item.image}} style={styles.image} />
                 </View>
                 <View style={styles.boxContent}>
-                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.title}>{item.title}</Text>
                     <View style={styles.boxButton}>
                         <View style={styles.boxReact}>
                             <View style={styles.view_left}>
                                 <AntDesignIcon name="eyeo" size={6} color={Colors.WHITE} />
-                                <Text style={styles.txtReact}>{view}</Text>
+                                <Text style={styles.txtReact}>{item.view}</Text>
                             </View>
                             <View style={styles.view_right}>
                                 <AntDesignIcon name='hearto' color={Colors.WHITE} size={6} />
-                                <Text style={styles.txtReact}>{like}</Text>
+                                <Text style={styles.txtReact}>{item.like}</Text>
                             </View>
                         </View>
                         <View style={styles.boxMic}>
@@ -71,6 +74,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: Dimensions.get('screen').width * 0.395,
+        height: Dimensions.get('screen').height * 0.15,
         borderRadius: 10,
     },
     boxContent: {

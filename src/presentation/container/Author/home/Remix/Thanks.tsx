@@ -23,7 +23,6 @@ const Thanks: React.FC<RemixStackScreenProps<'Thanks'>> = ({navigation, route}) 
 
                 <View style={styles.main}>
                     <Image source={TALEN} style={styles.imageTalen} />
-
                 </View>
                 <View style={styles.boxButton}>
                     <Button

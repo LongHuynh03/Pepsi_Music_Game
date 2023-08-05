@@ -4,25 +4,20 @@ import LogIn from "../../container/Authen/LogIn/LogIn.view";
 import { MainTabNavigation, MainTabParamList } from "../stack/TabNavigation";
 import Introduce from "../../container/Author/introduce/Introduce.view";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
-import { BACKGROUND_BOOTOM_TAB, CENTER_BUTTON_1X, ICON_BESTLIST, ICON_BESTLIST_FOCUS, ICON_HOME, ICON_PROFILE, ICON_PROFILE_FOCUS, ICON_RATING, ICON_RATING_FOCUS, ICON_RECORD, ICON_VIDEOLIST, ICON_VIDEOLIST_FOCUS } from "../../../../assets";
+import { CENTER_BUTTON_1X, ICON_RECORD } from "../../../../assets";
 import { Colors } from "../../resource/value/Colors";
-import { createStackNavigator } from "@react-navigation/stack";
-import BeatList from "../../container/Author/home/beatlist/BeatList.view";
-import BeatNew from "../../container/Author/home/remix/BeatNew.view";
-import History from "../../container/Author/home/beatlist/History.view";
-import HotUse from "../../container/Author/home/beatlist/HotUse.view";
-import Propose from "../../container/Author/home/beatlist/Propose.view";
-import Notification from "../../container/Author/notification/Notification";
-import Record from "../../container/Author/home/Home.view";
 import { useSelector } from "react-redux";
 import { userSelecter } from "../../share-state/redux/reducers/userReducer";
 import { BeatListNavigation } from "./BeatListNavigation";
-import TopTapVideoList from "../TopTab/VideoList";
 import { RankingNavigation } from "./RankingNavigation";
 import { ProfileNavigation } from "./ProfileNavigation";
 import { RemixNavigation } from "./RemixNavigation";
 import Home from "../../container/Author/home/Home.view";
 import { VideoListNavigation } from "./VideoListNavigation";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import IonIcon from "react-native-vector-icons/Ionicons";
+import EvilIcon from "react-native-vector-icons/EvilIcons";
+import AntDesignIcon from "react-native-vector-icons/AntDesign";
 
 
 const Tab = createBottomTabNavigator();
@@ -35,8 +30,8 @@ export const AuthorNavigation = () => {
     console.log(data.keyUser)
 
     return (
-        <Tab.Navigator initialRouteName={ "Home"}
-            detachInactiveScreens  = {false}
+        <Tab.Navigator initialRouteName={"Home"}
+            detachInactiveScreens={false}
             backBehavior="initialRoute"
             screenOptions={({ route }) => ({
                 tabBarHideOnKeyboard: true,
@@ -56,7 +51,12 @@ export const AuthorNavigation = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
-                            <Image source={focused ? ICON_VIDEOLIST_FOCUS : ICON_VIDEOLIST} style={styles.image}/>
+                            {
+                                focused ?
+                                    <MaterialCommunityIcon name="play-box" color={Colors.WHITE} size={20} />
+                                    :
+                                    <MaterialCommunityIcon name="play-box-outline" color={Colors.BOTTOM_BAR} size={20} />
+                            }
                         </View>
                     ),
                     title: 'Video List',
@@ -64,12 +64,17 @@ export const AuthorNavigation = () => {
             <Tab.Screen name="Home" component={Home}
                 options={{
                     tabBarButton: () => undefined
-            }} />
-            <Tab.Screen name="BestList" component= {BeatListNavigation}
+                }} />
+            <Tab.Screen name="BestList" component={BeatListNavigation}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
-                            <Image source={focused? ICON_BESTLIST_FOCUS : ICON_BESTLIST} style={styles.image}/>
+                            {
+                                focused ?
+                                    <IonIcon name="musical-notes" color={Colors.WHITE} size={20} />
+                                    :
+                                    <IonIcon name="musical-notes-outline" color={Colors.BOTTOM_BAR} size={20} />
+                            }
                         </View>
                     ),
                     title: 'Best List',
@@ -95,7 +100,12 @@ export const AuthorNavigation = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
-                            <Image source={focused ? ICON_RATING_FOCUS : ICON_RATING} style={styles.image}/>
+                            {
+                                focused ?
+                                    <IonIcon name="musical-notes-outline" color={Colors.BOTTOM_BAR} size={20} />
+                                    :
+                                    <IonIcon name="musical-notes-outline" color={Colors.BOTTOM_BAR} size={20} />
+                            }
                         </View>
                     ),
                     title: 'Xếp hạng',
@@ -104,7 +114,12 @@ export const AuthorNavigation = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
-                            <Image source={focused ? ICON_PROFILE_FOCUS : ICON_PROFILE} style={styles.image}/>
+                            {
+                                focused ?
+                                    <AntDesignIcon name="user" color={Colors.BOTTOM_BAR} size={20} />
+                                    :
+                                    <AntDesignIcon name="user" color={Colors.BOTTOM_BAR} size={20} />
+                            }
                         </View>
                     ),
                     title: 'Cá nhân',

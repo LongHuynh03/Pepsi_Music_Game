@@ -34,6 +34,7 @@ export const Colors = {
     BACKGROUND_HEADER:'#0072DF',
     BACKGROUND_FOOTER_1:'#6FA8FF',
     BACKGROUND_FOOTER_2:'#003DDB',
-    TEXT_AUTHOR: 'rgba(194, 201, 209, 1)'
+    TEXT_AUTHOR: 'rgba(194, 201, 209, 1)',
+    BACKGROUND_DIALOG: 'rgba(0, 0, 0, 0.5)',
   };
   

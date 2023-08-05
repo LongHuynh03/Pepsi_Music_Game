@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 import Background from '../../../../component/background/Background';
 import { Colors } from '../../../../resource/value/Colors';
 import Header from '../../../../component/header/Header';
-import { CARD_PEPSI_2_1x, CENTER_BUTTON_1_5X, ICON_LEFTARROW, ICON_LYRIC, ICON_NO_LYRIC, ICON_REFRESH, ICON_SUBMIT } from '../../../../../../assets';
+import { CARD_PEPSI_2_1x, CENTER_BUTTON_1_5X, ICON_LYRIC, ICON_NO_LYRIC, ICON_REFRESH } from '../../../../../../assets';
 import Slider from '@react-native-community/slider';
 import DialogNotification from '../../../../component/dialog/DialogNotification';
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import EntypoIcon from 'react-native-vector-icons/Entypo'
 
-const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, route}) => {
+const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({ navigation, route }) => {
 
 
     const text1 = "Nhưng mà rồi một ngày vịt bị";
@@ -53,6 +54,7 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
     const [title, setTitle] = useState<string>();
     const [btnLeft, setBtnLeft] = useState<string>();
     const [btnRight, setBtnRight] = useState<string>();
+    const [isExit, setisExit] = useState(false);
 
     const centerHeader = () => {
         return (
@@ -104,7 +106,7 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
             setonSubmit(false);
             setModalVisible(false);
         }
-        
+
     };
 
     const onCancel = () => {
@@ -132,16 +134,21 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
         setonStart(true);
     };
 
+    const onExit = () => {
+        setisExit(false);
+        setModalVisible(false);
+    }
+
     return (
         <Background>
             <Header
                 iconLeft={
-                    <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                    <AntDesignIcon name="arrowleft" size={20} color={Colors.WHITE} />
                 }
                 leftHeader={() => onClick("back")}
                 centerHeader={centerHeader()}
-                iconRight={!onLyric ? 
-                    <Image style = {styles.imgLyric} source={ICON_LYRIC} /> : <Image style = {styles.imgLyric} source={ICON_NO_LYRIC}/>}
+                iconRight={!onLyric ?
+                    <Image style={styles.imgLyric} source={ICON_LYRIC} /> : <Image style={styles.imgLyric} source={ICON_NO_LYRIC} />}
                 rightHeader={goLyric} />
             <View style={styles.gr}>
                 {
@@ -206,7 +213,7 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
                 </TouchableOpacity>
                 {onStart ?
                     <TouchableOpacity style={styles.btnReact} onPress={() => onClick("submit")}>
-                        <Image source={ICON_SUBMIT} style={styles.icon} />
+                        <EntypoIcon name='check' size={20} color={Colors.WHITE} />
                     </TouchableOpacity>
                     :
                     <View></View>
@@ -221,6 +228,7 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
                         isVisibile={modalVisible}
                         onPressL={onCancel}
                         onPressR={onDelete}
+                        onPressE={onExit}
                     />
                     :
                     <View></View>
@@ -228,9 +236,9 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({navigation, ro
             {
                 onRemix ?
                     <DialogNotification
-                        title= "Bạn có muốn remix bản thu âm này không?"
-                        btnLeft= "Không remix"
-                        btnRight= "Có remix"
+                        title="Bạn có muốn remix bản thu âm này không?"
+                        btnLeft="Không remix"
+                        btnRight="Có remix"
                         isVisibile={onRemix}
                         onPressL={onCancelRemix}
                         onPressR={onDeleteRemix}

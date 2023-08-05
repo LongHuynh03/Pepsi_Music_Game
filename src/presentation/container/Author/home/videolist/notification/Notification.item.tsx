@@ -1,7 +1,6 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Colors } from '../../../../../resource/value/Colors';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 export interface ItemNotificationProps {
     id: number;
@@ -17,14 +16,14 @@ interface Item {
 }
 
 const ItemNotification: React.FC<Item> = (props) => {
-    const { id, title, titleTime, image, role } = props.item;
+    const { item } = props;
 
     const {navigation} = props;
 
     // nếu role=1 => trang quà tặng
     // nếu role=0 => trang bài viết
     const changScreen = () => {
-        if (role == 1) {
+        if (item.role == 1) {
             console.log("qt");
             navigation.navigate('MyGift');
         }
@@ -35,10 +34,10 @@ const ItemNotification: React.FC<Item> = (props) => {
 
     return (
         <TouchableOpacity style={styles.item} onPress={changScreen}>
-            <Image source={image} style={styles.image} />
+            <Image source={{uri: item.image}} style={styles.image} />
             <View style={styles.gr1}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.titleTime}>{titleTime}</Text>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.titleTime}>{item.time}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
     image: {
         resizeMode: "contain",
         width: Dimensions.get('screen').height * 0.1,
+        height: Dimensions.get('screen').height * 0.1
     },
     gr1: {
         flexDirection: 'column',

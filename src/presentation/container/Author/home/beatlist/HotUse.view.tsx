@@ -1,77 +1,43 @@
-import { StyleSheet, Text, View, ImageBackground, ScrollView, Dimensions, Image, FlatList } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
+import React, {useEffect, useState} from 'react'
 import Background from '../../../../component/background/Background'
 import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
-import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, ICON_LEFTARROW } from '../../../../../../assets'
-import BeatNewItem, { ItemBeatProps } from './BeatNew.item'
+import BeatNewItem from './BeatNew.item'
 import { BeatListStackScreenProps } from '../../../../navigation/stack/BeatListNavigation'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
-
-const DATA: ItemBeatProps[] = [
-    {
-        id: 1,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_1
-    },
-    {
-        id: 2,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_2
-    },
-    {
-        id: 3,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_3
-    },
-    {
-        id: 4,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_4
-    },
-    {
-        id: 5,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_5
-    },
-    {
-        id: 6,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_3
-    },
-    {
-        id: 7,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_5
-    },
-    {
-        id: 8,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_4
-    },
-    {
-        id: 9,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_2
-    },
-    {
-        id: 10,
-        name: 'Tiền nhiều để làm gì',
-        des: 'GDucky ft.Lưu Hiền Trinh',
-        image: CARD_PEPSI_1
-    },
-]
+import { Music } from '../../../../../core/model/Music'
+import { rtdb } from '../../../../../core/api/url/RealTimeDB'
 
 const HotUse: React.FC<BeatListStackScreenProps<'HotUse'>> = ({navigation, route}) => {
+
+    let listMusic: Music[] = [];
+    const [list_Music, setlist_Music] = useState<Music[]>([])
+
+    useEffect(() => {
+        const getMusic = async () => {
+            
+            const get = rtdb.ref('/Musics')
+            .once('value',(snapshot: any) => {
+                snapshot.forEach((item: any) => {
+                    let music: Music = {
+                        keyMusic: "1"
+                    };
+                    music.keyMusic = item.key;
+                    music.author = item.val().author;
+                    music.image = item.val().image;
+                    music.name = item.val().name;
+                    listMusic.push(music);
+                })
+                // console.log(list);
+                setlist_Music(listMusic)
+            });
+        }
+
+        getMusic();
+
+        return () => { }
+    }, [])
 
     const centerHeader = () => {
         return (
@@ -95,12 +61,12 @@ const HotUse: React.FC<BeatListStackScreenProps<'HotUse'>> = ({navigation, route
                     leftHeader={goBack}
                     centerHeader={centerHeader()} />
                 <FlatList
-                    data={DATA}
+                    data={listMusic}
                     renderItem={
                         ({ item }) => <BeatNewItem
-                            id={item.id} name={item.name} des={item.des} image={item.image}
+                            item={item}
                         />}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.keyMusic.toString()}
                     showsVerticalScrollIndicator={false}
                 />
             </View>

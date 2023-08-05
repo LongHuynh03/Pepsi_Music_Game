@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, ScrollView, Dimensions, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Background from '../../../../component/background/Background'
-import {  ICON_LEFTARROW, ICON_TEXT_LUU, ICON_X } from '../../../../../../assets'
 import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
@@ -22,7 +21,7 @@ const EditNameSong: React.FC<RemixStackScreenProps<'EditNameSong'>> = ({navigati
     }
 
     const goBack = () => {
-        // navigation.navigate('CreatePost')
+        navigation.navigate('CreatePost')
     }
 
     const clearText = () => {

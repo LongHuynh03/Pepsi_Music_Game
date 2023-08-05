@@ -4,12 +4,11 @@ import BeatList from "../../container/Author/home/beatlist/BeatList.view";
 import History from "../../container/Author/home/beatlist/History.view";
 import HotUse from "../../container/Author/home/beatlist/HotUse.view";
 import Propose from "../../container/Author/home/beatlist/Propose.view";
-import Notification from "../../container/Author/home/beatlist/notification/Notification";
 import MyGift from "../../container/Author/home/beatlist/notification/MyGift";
 import { MainTabScreenProps } from "../stack/TabNavigation";
-import {useLayoutEffect} from 'react'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import BeatNew from "../../container/Author/home/beatlist/BeatNew.view";
+import NotificationScreen from "../../container/Author/home/beatlist/notification/Notification";
 
 const Stack = createStackNavigator<BeatListStackParamList>();
 
@@ -21,7 +20,7 @@ export const BeatListNavigation: React.FC<MainTabScreenProps<'BestList'>> = ({na
             <Stack.Screen name="BeatNew" component={BeatNew} />
             <Stack.Screen name="History" component={History} />
             <Stack.Screen name="HotUse" component={HotUse} />
-            <Stack.Screen name="Notification" component={Notification} />
+            <Stack.Screen name="Notification" component={NotificationScreen} />
             <Stack.Screen name="Propose" component={Propose} />
             <Stack.Screen name="MyGift" component={MyGift} />
         </Stack.Navigator>

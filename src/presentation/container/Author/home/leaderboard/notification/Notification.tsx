@@ -1,68 +1,43 @@
-import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
-import ItemNotification, { ItemNotificationProps } from './Notification.item';
-import { AVATAR_1 } from '../../../../../../../assets';
+import React, {useEffect} from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import ItemNotification from './Notification.item';
 import Background from '../../../../../component/background/Background';
 import Header from '../../../../../component/header/Header';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import { Colors } from '../../../../../resource/value/Colors';
-import { BeatListStackScreenProps } from '../../../../../navigation/stack/BeatListNavigation';
-import { VideoListStackScreenProps } from '../../../../../navigation/stack/VideoListNavigation';
 import { RankingStackScreenProps } from '../../../../../navigation/stack/RankingNavigation';
-
-const DATA: ItemNotificationProps[] = [
-    {
-        id: 1,
-        title: "Bạn đã đăng tải video mới",
-        titleTime: "21 giờ trước",
-        image: AVATAR_1,
-        role: 0
-    },
-    {
-        id: 2,
-        title: "Bạn đã nhận được IPHONE 13 ProMax\nGiải thưởng cho quán quân tuần",
-        titleTime: "28/11/2021",
-        image: AVATAR_1,
-        role: 1
-    },
-    {
-        id: 3,
-        title: "Bạn đã đạt TOP 1 người có lượt\nyêu thích cao nhất tuần",
-        titleTime: "26/11/2021",
-        image: AVATAR_1,
-        role: 0
-    },
-    {
-        id: 4,
-        title: "Bạn đã đăng tải video mới",
-        titleTime: "26/11/2021",
-        image: AVATAR_1,
-        role: 0
-    },
-    {
-        id: 5,
-        title: "Bạn đã nhận được Samsung Tab S7+\nGiải thưởng cho á quân tuần",
-        titleTime: "26/11/2021",
-        image: AVATAR_1,
-        role: 1
-    },
-    {
-        id: 6,
-        title: "Bạn đã đạt TOP 2 người có lượt\nyêu thích cao nhất tuần",
-        titleTime: "21/11/2021",
-        image: AVATAR_1,
-        role: 0
-    },
-    {
-        id: 7,
-        title: "Bạn đã đăng tải video mới",
-        titleTime: "21/11/2021",
-        image: AVATAR_1,
-        role: 0
-    },
-];
+import { Notification } from '../../../../../../core/model/Notification';
+import { rtdb } from '../../../../../../core/api/url/RealTimeDB';
 
 const Notification: React.FC<RankingStackScreenProps<'Notification'>> = ({navigation, route})=> {
+
+    let listNotif: Notification[] = [];
+
+    useEffect(() => {
+      
+        const getGift = async () => {
+            let notifi : Notification = {
+                keyNotification: "1"
+            };
+            const get = rtdb.ref('/Notificatios').once('value');
+            await get.then((snapshot: any) => {
+              snapshot.forEach((item: any) => {
+                notifi.keyNotification = item.key;
+                notifi.image = item.val().image;
+                notifi.role = item.val().role;
+                notifi.time = item.val().time;
+                notifi.title = item.val().title;
+                listNotif.push(notifi);
+              })
+              // console.log(list);
+            });
+          }
+      
+          getGift();
+
+      return () => {}
+    }, [])
+    
 
     const centerHeader = () => {
         return (
@@ -85,10 +60,10 @@ const Notification: React.FC<RankingStackScreenProps<'Notification'>> = ({naviga
                     centerHeader={centerHeader()} />
                 <FlatList
                     style={styles.flatList}
-                    data={DATA}
+                    data={listNotif}
                     renderItem={({ item }) => <ItemNotification
                         item={item}  navigation={navigation}/>}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.keyNotification.toString()}
                 />
             </View>
         </Background>

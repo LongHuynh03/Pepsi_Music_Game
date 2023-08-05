@@ -3,7 +3,7 @@ import React from 'react'
 import Background from '../../../component/background/Background'
 import Header from '../../../component/header/Header'
 import { Colors } from '../../../resource/value/Colors'
-import { ICON_LEFTARROW, LOA } from '../../../../../assets'
+import { LOA } from '../../../../../assets'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 

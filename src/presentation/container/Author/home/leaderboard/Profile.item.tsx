@@ -1,7 +1,6 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Colors } from '../../../../resource/value/Colors'
-import { CARD_PEPSI_1, ICON_EYE, ICON_HEART, ICON_SHARE } from '../../../../../../assets'
 import Icon from 'react-native-vector-icons/AntDesign'
 
 export interface ItemProfileProps {
@@ -18,7 +17,7 @@ interface Item {
 }
 
 const ItemProfile: React.FC<Item> = (props) => {
-    const { id, title, view, like, image  } = props.item;
+    const { item } = props;
     const {navigation} = props;
 
     const onClick = () => {
@@ -36,19 +35,19 @@ const ItemProfile: React.FC<Item> = (props) => {
                 </View>
                 <View style={styles.card}>
                     <View>
-                        <Image source={image} style={styles.image} />
-                        <Text style={styles.text}>{title}</Text>
+                        <Image source={{uri: item.image}} style={styles.image} />
+                        <Text style={styles.text}>{item.title}</Text>
                     </View>
                 </View>
                 <View style={styles.gr}>
                     <View style={styles.boxView}>
                         <View style={styles.gr1}>
                             <Icon name="eyeo" size={8} color="white" />
-                            <Text style={styles.view}>{view}</Text>
+                            <Text style={styles.view}>{item.view}</Text>
                         </View >
                         <View style={styles.gr2}>
                             <Icon name="hearto" size={8} color="white" />
-                            <Text style={styles.like}>{like}</Text>
+                            <Text style={styles.like}>{item.like}</Text>
                         </View>
                     </View>
                     <View style={styles.boxReact}>

@@ -1,15 +1,15 @@
-import { Dimensions, ToastAndroid, Image, ImageBackground, ScrollView, StyleSheet, Text, View, Alert } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Button from '../../../component/button/Button'
 import { Colors } from '../../../resource/value/Colors'
-import Header from '../../../component/header/Header'
-import { BACKGROUND, BACKGROUND_BOOTOM_TAB, ICON_HOME, LOGO_PEPSI } from '../../../../../assets'
+import { LOGO_PEPSI } from '../../../../../assets'
 import { LogInField, RegisterField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import Background from '../../../component/background/Background'
 import { rtdb } from '../../../../core/api/url/RealTimeDB'
 import { Users } from '../../../../core/model/User'
+import { ToastAndroid } from 'react-native'
 
 
 const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) => {
@@ -23,13 +23,15 @@ const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) =
   useEffect(() => {
 
     const getUsers = async () => {
-      const getUsers = rtdb.ref('users').once('value');
+      const getUsers = rtdb.ref('/Users').once('value');
       let list: Users[] = [];
       await getUsers.then((snapshot: any) => {
         snapshot.forEach((item: any) => {
-          list.push(item.val());
+          if (item != null) {
+            list.push(item.val());
+            console.log(item.val());
+          }
         })
-        // console.log(list);
         setlistUser(list);
       });
     }
@@ -40,23 +42,29 @@ const LogIn: React.FC<MainStackScreenProps<'LogIn'>> = ({ navigation, route }) =
   }, [])
 
   const logIn = () => {
-    setIsHas(false);
+    console.log(listUser)
     if (phone) {
       for (let i = 0; i < listUser.length; i++) {
         if (listUser.at(i)?.phone === phone) {
           console.log("111")
           setIsHas(true);
+          console.log("okkk")
+          navigation.navigate('LogInOTP', {
+            phone,
+            type: true
+          });
           break;
         }
       }
-      if(isHas){
-        console.log("okkk")
-        navigation.navigate('LogInOTP', {
-        phone,
-        type: true});
-      }else{
-        Alert.alert('This phone number is not available');
-      }
+      // if (isHas) {
+      //   console.log("okkk")
+      //   navigation.navigate('LogInOTP', {
+      //     phone,
+      //     type: true
+      //   });
+      // } else {
+      //   ToastAndroid.show("Số đt không được đăng kí", ToastAndroid.SHORT);
+      // }
     }
     else {
       Alert.alert('Please enter your phone number');

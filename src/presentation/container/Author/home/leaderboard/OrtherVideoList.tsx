@@ -1,53 +1,46 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Background from '../../../../component/background/Background'
 import Header from '../../../../component/header/Header'
 import Icon from 'react-native-vector-icons/AntDesign'
 import { Colors } from '../../../../resource/value/Colors';
-import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, IMAGE_FRAME_1_1X, IMAGE_FRAME_2_1X, IMAGE_FRAME_3_1X, IMAGE_FRAME_4_1X } from '../../../../../../assets'
 import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation'
-import ItemNewVideo, { ItemNewVideoProps } from './NewVideo.item'
+import ItemNewVideo from './NewVideo.item'
+import { Video } from '../../../../../core/model/Video'
+import { rtdb } from '../../../../../core/api/url/RealTimeDB'
 
-const DATA: ItemNewVideoProps[] = [
-    {
-        id: 1,
-        title: "Tiền nhiều để làm gì",
-        author: 'Gducky ft.Lưu Hiền Trinh',
-        image: IMAGE_FRAME_1_1X,
-        createAt: '19.02.2021',
-        view: 10000,
-        like: 10000
-    },
-    {
-        id: 2,
-        title: "Tiền nhiều để làm gì",
-        author: 'Gducky ft.Lưu Hiền Trinh',
-        image: IMAGE_FRAME_2_1X,
-        createAt: '19.02.2021',
-        view: 10000,
-        like: 10000
-    },
-    {
-        id: 3,
-        title: "Tiền nhiều để làm gì",
-        author: 'Gducky ft.Lưu Hiền Trinh',
-        image: IMAGE_FRAME_3_1X,
-        createAt: '19.02.2021',
-        view: 10000,
-        like: 10000
-    },
-    {
-        id: 4,
-        title: "Tiền nhiều để làm gì",
-        author: 'Gducky ft.Lưu Hiền Trinh',
-        image: IMAGE_FRAME_4_1X,
-        createAt: '19.02.2021',
-        view: 10000,
-        like: 10000
-    },
-]
+const OrtherVideo: React.FC<RankingStackScreenProps<'OrtherVideo'>> = ({ navigation, route }) => {
 
-const OrtherVideo: React.FC<RankingStackScreenProps<'OrtherVideo'>> = ({navigation,route}) => {
+    let listVideo: Video[] = [];
+
+    const [list_Video, setlist_Video] = useState<Video[]>([])
+
+    useEffect(() => {
+        const getVideo = async () => {
+            const get = rtdb.ref('/Videos')
+                .once('value', (snapshot: any) => {
+                    snapshot.forEach((item: any) => {
+                        let video: Video = {
+                            keyVideo: "1"
+                        };
+                        video.keyVideo = item.key;
+                        video.craeteAt = item.val().craeteAt;
+                        video.image = item.val().image;
+                        video.like = item.val().like;
+                        video.title = item.val().title;
+                        video.userKey = item.val().userKey;
+                        video.view = item.val().view;
+                        listVideo.push(video);
+                    })
+                    // console.log(list);
+                    setlist_Video(listVideo);
+                });
+        }
+
+        getVideo();
+
+        return () => { }
+    }, [])
 
     const goBack = () => {
         navigation.navigate('OrtherProfile');
@@ -73,16 +66,10 @@ const OrtherVideo: React.FC<RankingStackScreenProps<'OrtherVideo'>> = ({navigati
             />
             <View style={styles.container}>
                 <FlatList
-                    data={DATA}
+                    data={list_Video}
                     renderItem={({ item }) => <ItemNewVideo
-                        id={item.id} 
-                        title={item.title} 
-                        author={item.author}
-                        image={ item.image} 
-                        createAt={item.createAt} 
-                        view={item.view} 
-                        like={item.like} />}
-                    keyExtractor={(item) => item.id.toString()}
+                        item={item} />}
+                    keyExtractor={(item) => item.keyVideo.toString()}
                 />
             </View>
         </Background>

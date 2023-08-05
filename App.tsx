@@ -11,9 +11,6 @@ import Introduce from './src/presentation/container/Author/introduce/Introduce.v
 import { AuthenNavigation } from './src/presentation/navigation/Authen/AuthenNavigation'
 import { AppNavigation } from './src/presentation/navigation/AppNavigation'
 import Rules from './src/presentation/container/Author/rules/Rules'
-import Notification from './src/presentation/container/Author/notification/Notification'
-import MyGift from './src/presentation/container/Author/notification/MyGift'
-import ItemGift from './src/presentation/container/Author/notification/MyGift.item'
 import BeatNewItem from './src/presentation/container/Author/home/beatlist/BeatNew.item'
 import BeatNew from './src/presentation/container/Author/home/remix/BeatNew.view'
 import BeatList from './src/presentation/container/Author/home/beatlist/BeatList.view'
@@ -68,6 +65,9 @@ const App = () => {
     // <Ranking/>
     // <OrtherProfile/>
     // <OrtherVideo/>
+    // <DialogLoad/>
+    // <DialogReport/>
+    // <DialogReported/>
 
     // <TopTapVideoList/>
     // <TopTapRanking/>
@@ -86,18 +86,12 @@ import firestore from '@react-native-firebase/firestore';
 import database, { firebase } from '@react-native-firebase/database';
 import { rtdb } from './src/core/api/url/RealTimeDB'
 import { Users } from './src/core/model/User'
-import { UserRespone } from './src/core/model/UserRespone'
 import { addUser, userSelecter } from './src/presentation/share-state/redux/reducers/userReducer'
 import TestOTP from './test/testOTP'
 import { BeatListNavigation } from './src/presentation/navigation/Author/BeatListNavigation'
-
-const user = {
-  name: '123',
-  phone: '123',
-  image: 'unknow',
-  video: 0,
-  react: 0,
-}
+import DialogLoad from './src/presentation/component/dialog/DialogLoad'
+import DialogReport from './src/presentation/component/dialog/DialogReport'
+import DialogReported from './src/presentation/component/dialog/DialogReported'
 
 // const App = () => {
 

@@ -1,27 +1,52 @@
-import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, Dimensions, FlatList } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { Colors } from '../../../../resource/value/Colors';
 import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
-import { AVATAR_1, AVATAR_2_1X, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5 } from '../../../../../../assets';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation';
-import ItemProfile, { ItemProfileProps } from './Profile.item';
+import ItemProfile from './Profile.item';
+import { Video } from '../../../../../core/model/Video';
+import { rtdb } from '../../../../../core/api/url/RealTimeDB';
+import { useSelector } from 'react-redux';
+import { userSelecter } from '../../../../share-state/redux/reducers/userReducer';
+import { Users } from '../../../../../core/model/User';
 
-const DATA: ItemProfileProps[] = [
-    { id: 1, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_1 },
-    { id: 2, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_2 },
-    { id: 3, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_3 },
-    { id: 4, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_4 },
-    { id: 5, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_5 },
-    { id: 6, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_1 },
-    { id: 7, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_2 },
-    { id: 8, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_3 },
-    { id: 9, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_4 },
-    { id: 10, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_5 },
-];
+const OrtherProfile: React.FC<RankingStackScreenProps<'OrtherProfile'>> = ({ navigation, route }) => {
 
-const OrtherProfile : React.FC<RankingStackScreenProps<'OrtherProfile'>> = ({navigation,route}) => {
+    let listVideo: Video[] = [];
+
+    const [list_Video, setlist_Video] = useState<Video[]>([])
+
+    const data = useSelector(userSelecter);
+
+    useEffect(() => {
+
+        const getVideo = async () => {
+            const get = rtdb.ref('/Videos')
+                .once('value', (snapshot: any) => {
+                    snapshot.forEach((item: any) => {
+                        let video: Video = {
+                            keyVideo: "1"
+                        };
+                        video.keyVideo = item.key;
+                        video.craeteAt = item.val().craeteAt;
+                        video.image = item.val().image;
+                        video.like = item.val().like;
+                        video.title = item.val().title;
+                        video.userKey = item.val().userKey;
+                        video.view = item.val().view;
+                        listVideo.push(video);
+                    })
+                    // console.log(list);
+                    setlist_Video(listVideo);
+                });
+        }
+        getVideo();
+
+        return () => { }
+    }, [])
+
 
     const centerHeader = () => {
         return (
@@ -46,18 +71,18 @@ const OrtherProfile : React.FC<RankingStackScreenProps<'OrtherProfile'>> = ({nav
                 />
                 <View style={styles.group}>
                     <View style={styles.group1}>
-                        <Image source={AVATAR_1} style={styles.avt} />
+                        <Image source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/pepsimusicgame-f3252.appspot.com/o/Image-Avatar-2_1x.png?alt=media&token=1b3055aa-9ea7-4003-94f9-f213d71a8710' }} style={styles.avt} />
                         <View style={styles.boxInfor}>
-                            <Text style={styles.ten}>Annie_2204</Text>
+                            <Text style={styles.ten}>Annie</Text>
                             <View style={styles.group2}>
                                 <View style={[styles.group3]}>
                                     <Text style={styles.tong}>Tổng số video</Text>
-                                    <Text style={styles.soluong}>2.110</Text>
+                                    <Text style={styles.soluong}>1000</Text>
                                 </View>
                                 <View style={styles.line} />
                                 <View style={styles.group3}>
                                     <Text style={styles.tong}>Tổng tương tác</Text>
-                                    <Text style={styles.soluong}>1.02Tr</Text>
+                                    <Text style={styles.soluong}>2000</Text>
                                 </View>
                             </View>
                         </View>
@@ -65,13 +90,13 @@ const OrtherProfile : React.FC<RankingStackScreenProps<'OrtherProfile'>> = ({nav
                 </View>
                 <View style={styles.list}>
                     <FlatList
-                        data={DATA}
+                        data={list_Video}
                         renderItem={({ item }) =>
                             <ItemProfile
                                 item={item}
-                                navigation = {navigation}/>
+                                navigation={navigation} />
                         }
-                        keyExtractor={(item) => item.id.toString()}
+                        keyExtractor={(item) => item.keyVideo.toString()}
                         numColumns={2}
                         showsVerticalScrollIndicator={false}
                     />

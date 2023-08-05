@@ -1,19 +1,15 @@
-import { StyleSheet, ToastAndroid, Text, View, ScrollView, Dimensions, Image } from 'react-native'
+import { StyleSheet, ToastAndroid, View, ScrollView, Dimensions, Image } from 'react-native'
 import React, { useState } from 'react'
 import Background from '../../../component/background/Background'
-import Header from '../../../component/header/Header'
 import Form from '../../../component/form/Form'
-import { LogInField, OTPField } from '../../../component/input/TextField'
+import { OTPField } from '../../../component/input/TextField'
 import Button from '../../../component/button/Button'
-import { Colors } from '../../../resource/value/Colors'
 import { LOGO_PEPSI } from '../../../../../assets'
-import TextTitle from '../../../component/text/TextTitle'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import { rtdb } from '../../../../core/api/url/RealTimeDB'
-import { UserRespone } from '../../../../core/model/UserRespone'
 import { Users } from '../../../../core/model/User'
-import { useDispatch, useSelector } from 'react-redux'
-import { addUser, userSelecter } from '../../../share-state/redux/reducers/userReducer'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../../../share-state/redux/reducers/userReducer'
 import { addStatus } from '../../../share-state/redux/reducers/statusReducer'
 
 const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, route }) => {
@@ -24,10 +20,12 @@ const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, rout
   const phone = route?.params?.phone;
   const type = route?.params?.type;
 
-  console.log(type)
+  console.log(phone)
 
   const [falseOTP, setFalseOTP] = useState(false);
   const [status, setStatus] = useState(type);
+
+  const [phoneA, setphoneA] = useState(phone)
 
   const [code_1, setCode_1] = useState('');
   const [code_2, setCode_2] = useState('');
@@ -35,18 +33,22 @@ const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, rout
   const [code_4, setCode_4] = useState('');
 
   const complete = async () => {
-    const getUserKey = await rtdb.ref('users')
+
+    const getUserKey = await rtdb.ref('/Users')
       .once('value', (value: any) => {
         value.forEach((data: any) => {
-          if (data.val().phone == phone) {
-            dispatch(addUser({
-              keyUser: data.key,
-              phone: data.val().phone,
-              name: data.val().name,
-              image: data.val().image,
-              react: data.val().react,
-              video: data.val().video,
-            }))
+          if (data.val() != null) {
+            // console.log(data.val().phone);
+            if (data.val().phone == phoneA) {
+              dispatch(addUser({
+                keyUser: data.key,
+                phone: data.val().phone,
+                name: data.val().name,
+                image: data.val().image,
+                react: data.val().react,
+                video: data.val().video,
+              }))
+            }
           }
         })
       }).then(() => {
@@ -54,7 +56,7 @@ const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, rout
           ToastAndroid.show("Register", ToastAndroid.SHORT);
           navigation.navigate('Instruct');
         }
-        else{
+        else {
           ToastAndroid.show("LogIn", ToastAndroid.SHORT);
           dispatch(addStatus({
             status: type,
@@ -75,7 +77,7 @@ const LogInOTP: React.FC<MainStackScreenProps<'LogInOTP'>> = ({ navigation, rout
         complete();
       }
       else {
-        const newUser  = rtdb.ref('users').push();
+        const newUser = rtdb.ref('/Users').push();
         const userNew: Users = {
           name: name ?? 'User',
           phone: phone ?? '0000',

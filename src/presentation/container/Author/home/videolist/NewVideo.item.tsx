@@ -1,25 +1,20 @@
-import { Dimensions, ScrollView, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { CARD_PEPSI_1, CARD_PEPSI_2_1x, CARD_PEPSI_2_4x } from '../../../../../../assets'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Colors } from '../../../../resource/value/Colors'
 import LinearGradient from 'react-native-linear-gradient'
+import DialogReport from '../../../../component/dialog/DialogReport'
+import DialogReported from '../../../../component/dialog/DialogReported'
 
-export interface ItemNewVideoProps {
-    id: number,
-    title: string,
-    author: string,
-    image: any,
-    createAt: string,
-    view: number,
-    like: number,
+interface Item {
+    item: any
 }
 
-const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
+const ItemNewVideo: React.FC<Item> = (props) => {
 
-    const {id, title, author, image, createAt, view, like} = props;
+    const {item} = props;
 
     const [onLyric, setonLyric] = React.useState(false);
     const [onPlay, setonPlay] = React.useState(false);
@@ -55,6 +50,23 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
         });
     };
 
+    const [isReport, setIsReport] = React.useState(false);
+    const [acceptReport, setAcceptReport] = React.useState(false)
+
+    const onCancel = () => {
+        setIsReport(false);
+        setAcceptReport(false);
+    };
+
+    const onAccept = () => {
+        setIsReport(false);
+        setAcceptReport(true);
+    };
+
+    const onSubmit = () => {
+        setAcceptReport(false);
+    }
+
     return (
         <View style={styles.item}>
             <View style={styles.header}>
@@ -78,7 +90,7 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
                         <TouchableOpacity style={styles.btnPlay}>
                             <FontAwesomeIcon name='play' size={18} color={Colors.WHITE} />
                         </TouchableOpacity>
-                        <Image style={styles.img} source={image} />
+                        <Image style={styles.img} source={{uri :item.image}} />
                     </View>
                     :
                     <View style = {styles.boxLyric}>
@@ -109,8 +121,8 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
                 style={styles.boxFooter}>
                 <View style={styles.box_1}>
                     <View style={styles.boxInfor}>
-                        <Text style={styles.txtTitle}>{title}</Text>
-                        <Text style={styles.txtAuthor}>{author}</Text>
+                        <Text style={styles.txtTitle}>{item.title}</Text>
+                        <Text style={styles.txtAuthor}>{item.author}</Text>
                     </View>
                     <View style={styles.boxReact}>
                         <TouchableOpacity style={styles.boxReact_1}>
@@ -125,7 +137,7 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
                             <AntDesignIcon name='download' size={20} color={Colors.WHITE} />
                             <Text style={styles.textIcon}>Tải về</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.boxReact_1}>
+                        <TouchableOpacity style={styles.boxReact_1} onPress={() => setIsReport(true)}>
                             <MaterialCommunityIconsIcon name='flag-variant' size={20} color={Colors.WHITE} />
                             <Text style={styles.textIcon}>Báo cáo</Text>
                         </TouchableOpacity>
@@ -138,19 +150,39 @@ const ItemNewVideo: React.FC<ItemNewVideoProps> = (props) => {
                     <View style={styles.boxRed}>
                         <View style={styles.boxRed_1} >
                             <AntDesignIcon name='calendar' size={12} color={Colors.WHITE} />
-                            <Text style={styles.txtRed}>{createAt}</Text>
+                            <Text style={styles.txtRed}>{item.craeteAt}</Text>
                         </View>
                         <View style={styles.boxRed_1} >
                             <AntDesignIcon name='eyeo' size={12} color={Colors.WHITE} />
-                            <Text style={styles.txtRed}>{view}</Text>
+                            <Text style={styles.txtRed}>{item.view}</Text>
                         </View>
                         <View style={styles.boxRed_1} >
                             <AntDesignIcon name='hearto' size={12} color={Colors.WHITE} />
-                            <Text style={styles.txtRed}>{like}</Text>
+                            <Text style={styles.txtRed}>{item.like}</Text>
                         </View>
                     </View>
                 </View>
             </LinearGradient>
+            {
+                isReport ? 
+                <DialogReport
+                isVisible={isReport}
+                onAccept={onAccept}
+                onCancel={onCancel}
+                />
+                :
+                <View></View>
+            }
+            {
+                acceptReport ? 
+                <DialogReported
+                isVisible = {acceptReport}
+                onAccept={onSubmit}
+                onCancel={onCancel}
+                />
+                :
+                <View></View>
+            }
         </View>
     )
 }

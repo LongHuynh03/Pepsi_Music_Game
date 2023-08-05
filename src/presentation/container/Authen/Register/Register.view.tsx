@@ -1,16 +1,14 @@
-import { Dimensions, Alert, Image, TextInput, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Button from '../../../component/button/Button'
 import { Colors } from '../../../resource/value/Colors'
-import Header from '../../../component/header/Header'
-import { BACKGROUND, BACKGROUND_BOOTOM_TAB, ICON_HOME, LOGO_PEPSI } from '../../../../../assets'
+import { LOGO_PEPSI } from '../../../../../assets'
 import { RegisterField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import Background from '../../../component/background/Background'
 import { Users } from '../../../../core/model/User'
 import { rtdb } from '../../../../core/api/url/RealTimeDB'
-import auth from '@react-native-firebase/auth'
 
 
 const Register: React.FC<MainStackScreenProps<'Register'>> = ({ navigation, route }) => {
@@ -29,7 +27,7 @@ const Register: React.FC<MainStackScreenProps<'Register'>> = ({ navigation, rout
   useEffect(() => {
 
     const getUsers = async () => {
-      const getUsers = rtdb.ref('users').once('value');
+      const getUsers = rtdb.ref('/Users').once('value');
       let list: Users[] = [];
       await getUsers.then((snapshot: any) => {
         snapshot.forEach((item: any) => {

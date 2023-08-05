@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'react-native'
 import React from 'react'
 import { Colors } from '../../../../resource/value/Colors';
 import Icon from 'react-native-vector-icons/AntDesign'
@@ -13,9 +13,13 @@ export interface ItemTopViewProps {
   like: number;
 }
 
-const ItemTopView: React.FC<ItemTopViewProps> = (props) => {
+interface Item {
+  item: any
+}
 
-  const { id, title, author, image, view, like } = props;
+const ItemTopView: React.FC<Item> = (props) => {
+
+  const { item } = props;
   const [imgBorder, setimgBorder] = React.useState<any>(IMAGE_BORDER_TOP_1);
 
   // if (id % 2 == 0){
@@ -26,23 +30,23 @@ const ItemTopView: React.FC<ItemTopViewProps> = (props) => {
   return (
     <TouchableOpacity style={[styles.gr]}>
       <View style={[styles.boxBorder]}>
-        <Text style={styles.txtID}>{id}</Text>
+        <Text style={styles.txtID}>1</Text>
         <Image source={imgBorder} style={styles.imgBorder}/>
       </View>
-      <Image style={styles.img1} source={image} />
+      <Image style={styles.img1} source={{uri : item.image}} />
       <View style={styles.grbottom}>
         <View style={styles.grleft}>
-          <Text style={styles.text1}>{title}</Text>
-          <Text style={styles.text2}>{author}</Text>
+          <Text style={styles.text1}>{item.title}</Text>
+          <Text style={styles.text2}>{item.author}</Text>
         </View>
         <View style={styles.grright}>
           <View style={styles.grWatch}>
             <Icon name='eyeo' color={Colors.WHITE} size={6} />
-            <Text style={styles.txt}>{like}</Text>
+            <Text style={styles.txt}>{item.like}</Text>
           </View>
           <View style={styles.grLike}>
             <Icon name='hearto' color={Colors.WHITE} size={6} />
-            <Text style={styles.txt}>{view}</Text>
+            <Text style={styles.txt}>{item.view}</Text>
           </View>
         </View>
       </View>

@@ -1,17 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native'
 import React from 'react'
-import { AVATAR_RANK_4, IMAGE_RANK_4 } from '../../../../../../assets'
+import { IMAGE_RANK_4 } from '../../../../../../assets'
 import Icon from 'react-native-vector-icons/AntDesign'
 import { Colors } from '../../../../resource/value/Colors'
-
-export interface ItemRankingProps {
-    id: number,
-    rank: number,
-    name: string,
-    image: any,
-    view: number,
-}
-
 interface Item {
     item: any,
     navigation: any
@@ -20,7 +11,7 @@ interface Item {
 
 const ItemRanking: React.FC<Item> = (props) => {
 
-    const { id, rank, name, image, view } = props.item;
+    const { item} = props;
     const {navigation} = props;
 
     const onClick = () => {
@@ -31,16 +22,16 @@ const ItemRanking: React.FC<Item> = (props) => {
         <View style={{}}>
             <TouchableOpacity style={styles.item} onPress={onClick}>
                 <View style={styles.borderRank} >
-                    <Text style={styles.txtRank} >{rank}</Text>
+                    <Text style={styles.txtRank} >{item.rank}</Text>
                     <Image source={IMAGE_RANK_4} style={styles.imgBorderRank} />
                 </View>
                 <View style={styles.boxContent} >
-                    <Image source={image} style={styles.imgAvatar} />
+                    <Image source={{uri: item.image}} style={styles.imgAvatar} />
                     <View style={styles.boxInfor}>
-                        <Text style={styles.txtName}>{name}</Text>
+                        <Text style={styles.txtName}>{item.name}</Text>
                         <View style={styles.boxView}>
                             <Icon name='eyeo' size={10} color={Colors.BLUE_CARD} />
-                            <Text style={styles.txtView}>{view}</Text>
+                            <Text style={styles.txtView}>{item.view}</Text>
                         </View>
                     </View>
                 </View>
@@ -80,7 +71,9 @@ const styles = StyleSheet.create({
     },
     imgAvatar: {
         // width: "100%",
-        zIndex: 1
+        zIndex: 1,
+        width: Dimensions.get('screen').width * 0.15,
+        height: Dimensions.get('screen').width * 0.15,
     },
     boxInfor: {
         width: "80%",

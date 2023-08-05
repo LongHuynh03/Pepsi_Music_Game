@@ -1,15 +1,24 @@
 import { StyleSheet, Text, View, Image, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../../../component/header/Header'
-import { CARD_PEPSI_2, ICON_LEFTARROW, ICON_PENCIL, ICON_SHARE, THUMB_MUSIC_4X } from '../../../../../../assets'
+import { CARD_PEPSI_2, THUMB_MUSIC_4X } from '../../../../../../assets'
 import Background from '../../../../component/background/Background'
 import Button from '../../../../component/button/Button'
 import { Colors } from '../../../../resource/value/Colors'
 import Slider from '@react-native-community/slider'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import MaterialCommunityIconIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import FeatherIcon from 'react-native-vector-icons/Feather'
+import DialogLoad from '../../../../component/dialog/DialogLoad'
+import DialogNotification from '../../../../component/dialog/DialogNotification'
+const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({ navigation, route }) => {
+    // const CreatePost = () => {
 
-const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, route}) => {
+    const [isStart, setisStart] = useState(false);
+    const [isVisibile, setisVisibile] = useState(false);
+    const [isDelete, setisDelete] = useState(false)
+
 
     const centerHeader = () => {
         return (
@@ -23,26 +32,38 @@ const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, 
     }
 
     const goBack = () => {
-        navigation.navigate('CreateAnimation');
+        navigation.navigate('AcceptAnimation');
     };
-    
+
     const goForward = () => {
-        navigation.navigate('Thanks')
+        console.log(123)
+        setisVisibile(true);
+        setisStart(true);
     };
 
     const doCancel = () => {
-        navigation.navigate('Recording')
+        setisDelete(true)
     };
 
     const goEdit = () => {
         navigation.navigate('EditNameSong');
     };
+
+    const deleteRecord = () => {
+        setisDelete(false)
+        navigation.navigate('Recording');
+    };
+
+    const noDelete = () => {
+        setisDelete(false);
+    };
+
     return (
         <Background>
             <View style={styles.container}>
                 <Header
                     iconLeft={
-                        <AntDesignIcon name = "arrowleft" size={20} color={Colors.WHITE}/>
+                        <AntDesignIcon name="arrowleft" size={20} color={Colors.WHITE} />
                     }
                     leftHeader={goBack}
                     centerHeader={centerHeader()}
@@ -67,7 +88,7 @@ const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, 
                                 <View style={styles.textTitle_1}>
                                     <Text style={styles.textTitle}>Tiền nhiều để làm gì</Text>
                                     <TouchableOpacity onPress={goEdit}>
-                                        <Image source={ICON_PENCIL} style={styles.imgPen} />
+                                        <MaterialCommunityIconIcon name='pencil-outline' color={Colors.WHITE} size={15} />
                                     </TouchableOpacity>
                                 </View>
                                 <Text style={styles.textMini}>Gducky ft.Lưu Hiền Trinh</Text>
@@ -76,7 +97,7 @@ const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, 
                         </View>
                         <View style={styles.boxShare}>
                             <TouchableOpacity>
-                                <Image source={ICON_SHARE} style={styles.share} />
+                                <FeatherIcon name='share-2' color={Colors.WHITE} size={20} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -90,10 +111,32 @@ const CreatePost: React.FC<RemixStackScreenProps<'CreatePost'>> = ({navigation, 
                     <Button
                         containerStyle={styles.buttonBo}
                         title='Hủy Bỏ'
-                         onPress={doCancel}
+                        onPress={doCancel}
                         titleStyle={styles.title} />
                 </View>
             </View>
+            {
+                isVisibile ?
+                    <DialogLoad
+                        isStart={isStart}
+                        isVisibile={isVisibile}
+                        navigation={navigation}
+                    />
+                    : <View></View>
+            }
+            {
+                isDelete ?
+                <DialogNotification
+                title='Bạn có muốn hủy bản ghi âm này không'
+                btnLeft='Không'
+                btnRight='Có'
+                isVisibile={isDelete}
+                onPressL={noDelete}
+                onPressR={deleteRecord}
+                />
+                :
+                <View></View>
+            }
         </Background>
 
     )

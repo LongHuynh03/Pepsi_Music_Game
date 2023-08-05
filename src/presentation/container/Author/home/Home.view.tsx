@@ -1,10 +1,8 @@
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
-import {HEADLINE_2, LEFT_BUTTON, LEFT_BUTTON_HOME, RIGHT_BUTTON, RIGHT_BUTTON_HOME, TALEN } from '../../../../../assets'
+import {HEADLINE_2, LEFT_BUTTON_HOME, RIGHT_BUTTON_HOME, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
-import { JumpingTransition } from 'react-native-reanimated'
 
 const Home = () => {
 

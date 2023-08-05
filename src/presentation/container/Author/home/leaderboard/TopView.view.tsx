@@ -1,91 +1,44 @@
-import { StyleSheet, Text, View, FlatList, Dimensions, Image, ImageBackground } from 'react-native'
-import React from 'react'
-import ItemRanking, { ItemTopViewProps } from './TopView.item'
-import { CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5 } from '../../../../../../assets'
+import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native'
+import React, {useEffect} from 'react'
+import ItemRanking from './TopView.item'
 import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Colors } from '../../../../resource/value/Colors';
 import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation';
-
-
-const DATA: ItemTopViewProps[] = [
-    {
-        id: 1,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_1,
-        like: 1000,
-        view: 1000,
-    },
-    {
-        id: 2,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_2,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 3,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_3,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 4,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_4,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 5,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_5,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 6,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_1,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 7,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_2,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 8,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_3,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 9,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_4,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 10,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_5,
-        like: 1000,
-        view: 1000,
-    },
-
-];
+import { Video } from '../../../../../core/model/Video';
+import { rtdb } from '../../../../../core/api/url/RealTimeDB';
 
 const TopView: React.FC<RankingStackScreenProps<'TopView'>> = ({navigation,route}) => {
+    
+    let listVideo: Video[] = [];
+    useEffect(() => {
+      
+        const getVideo = async () => {
+            const get = rtdb.ref('/Videos').once('value');
+            await get.then((snapshot: any) => {
+              snapshot.forEach((item: any) => {
+                let video : Video = {
+                    keyVideo: "1"
+                };
+                video.keyVideo = item.key;
+                video.craeteAt = item.val().craeteAt;
+                video.image = item.val().image;
+                video.like = item.val().like;
+                video.title = item.val().title;
+                video.userKey = item.val().userKey;
+                video.view = item.val().view;
+                listVideo.push(video);
+              })
+              // console.log(list);
+            });
+          }
+      
+          getVideo();
+    
+      return () => {}
+    }, [])
+
     const goBack = () => {
         navigation.navigate('Ranking');
     }
@@ -117,17 +70,12 @@ const TopView: React.FC<RankingStackScreenProps<'TopView'>> = ({navigation,route
                     <Text style={styles.texttab}>Video có lượt tương tác nhiều nhất</Text>
                 </View>
                 <FlatList
-                    data={DATA}
+                    data={listVideo}
                     renderItem={({ item }) =>
                         <ItemRanking
-                            id={item.id}
-                            title={item.title}
-                            author={item.author}
-                            image={item.image}
-                            like={item.view}
-                            view={item.view}
+                            item={item}
                             />}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.keyVideo.toString()}
                 />
             </View>
         </Background>

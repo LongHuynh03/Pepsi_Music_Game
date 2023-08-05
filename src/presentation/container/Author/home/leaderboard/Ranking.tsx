@@ -1,159 +1,73 @@
-import { StyleSheet, Text, View, FlatList, Dimensions, Image, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
-import { AVATAR_RANK_1, AVATAR_RANK_2, AVATAR_RANK_3, AVATAR_RANK_4, BACKGROUND_RANK, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5, IMAGE_BUC, IMAGE_RANK_1, IMAGE_RANK_2, IMAGE_RANK_3 } from '../../../../../../assets'
+import { StyleSheet, Text, View, FlatList, Dimensions, Image, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { IMAGE_BUC, IMAGE_RANK_1, IMAGE_RANK_2, IMAGE_RANK_3 } from '../../../../../../assets'
 import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
-import Icon from 'react-native-vector-icons/Feather';
 import OIcon from 'react-native-vector-icons/Octicons';
 import { Colors } from '../../../../resource/value/Colors';
-import ItemRanking, { ItemRankingProps } from './Ranking.item';
-import TopView from './TopView.view';
-import ItemTopView, { ItemTopViewProps } from './TopView.item';
+import ItemRanking from './Ranking.item';
+import ItemTopView from './TopView.item';
 import { RankingStackScreenProps } from '../../../../navigation/stack/RankingNavigation';
+import { Video } from '../../../../../core/model/Video';
+import { Rank } from '../../../../../core/model/Rank';
+import { rtdb } from '../../../../../core/api/url/RealTimeDB';
 
 
-const DATA: ItemRankingProps[] = [
-    {
-        id: 1,
-        name: 'Janne',
-        rank: 4,
-        image: AVATAR_RANK_4,
-        view: 1000
-    },
-    {
-        id: 2,
-        name: 'Janne',
-        rank: 5,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 3,
-        name: 'Janne',
-        rank: 6,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 4,
-        name: 'Janne',
-        rank: 7,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 5,
-        name: 'Janne',
-        rank: 8,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 6,
-        name: 'Janne',
-        rank: 9,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 7,
-        name: 'Janne',
-        rank: 10,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 8,
-        name: 'Janne',
-        rank: 11,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 9,
-        name: 'Janne',
-        rank: 12,
-        image: AVATAR_RANK_4,
-        view: 1000
-    }, {
-        id: 10,
-        name: 'Janne',
-        rank: 13,
-        image: AVATAR_RANK_4,
-        view: 1000
-    },
-];
+const Ranking: React.FC<RankingStackScreenProps<'Ranking'>> = ({ navigation, route }) => {
 
-const DATATOPVIEW: ItemTopViewProps[] = [
-    {
-        id: 1,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_1,
-        like: 1000,
-        view: 1000,
-    },
-    {
-        id: 2,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_2,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 3,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_3,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 4,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_4,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 5,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_5,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 6,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_1,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 7,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_2,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 8,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_3,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 9,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_4,
-        like: 1000,
-        view: 1000,
-    }, {
-        id: 10,
-        title: "Đom Đóm",
-        author: "Jack",
-        image: CARD_PEPSI_5,
-        like: 1000,
-        view: 1000,
-    },
+    let listVideo: Video[] = [];
+    let listRank: Rank[] = [];
 
-];
+    const [list_Video, setlist_Video] = useState<Video[]>([]);
+    const [list_Rank, setlist_Rank] = useState<Rank[]>([])
 
-const Ranking: React.FC<RankingStackScreenProps<'Ranking'>> = ({navigation,route}) => {
+    useEffect(() => {
+        const getVideo = async () => {
+            const get = await rtdb.ref('/Videos')
+                .once('value', (snapshot: any) => {
+                    snapshot.forEach((item: any) => {
+                        let video: Video = {
+                            keyVideo: "1"
+                        };
+                        video.keyVideo = item.key;
+                        video.craeteAt = item.val().createAt;
+                        video.image = item.val().image;
+                        video.like = item.val().like;
+                        video.title = item.val().title;
+                        video.userKey = item.val().userKey;
+                        video.view = item.val().view;
+                        listVideo.push(video);
+                    })
+                    console.log(listVideo);
+                    setlist_Video(listVideo);
+                });
+        }
+
+        getVideo();
+
+        const getRank = async () => {
+            const get = await rtdb.ref('/Ranks')
+                .once('value', (snapshot: any) => {
+                    snapshot.forEach((item: any) => {
+                        let rank: Rank = {
+                            keyRank: "1"
+                        };
+                        rank.keyRank = item.key;
+                        rank.name = item.val().name;
+                        rank.image = item.val().image;
+                        rank.view = item.val().view;
+                        rank.rank = item.val().rank;
+                        listRank.push(rank);
+                    })
+                    // console.log(listRank);
+                    setlist_Rank(listRank);
+                });
+        }
+
+        getRank();
+
+        return () => { }
+    }, [])
 
     const [onChoose, setonChoose] = React.useState(1)
 
@@ -207,40 +121,36 @@ const Ranking: React.FC<RankingStackScreenProps<'Ranking'>> = ({navigation,route
                                     </View>
                                     <View style={styles.boxRank1}>
                                         <Image source={IMAGE_RANK_1} style={styles.imgRank1} />
-                                        <Text style={styles.textName1}>Bruno</Text>
-                                        <Text style={styles.textView}>1.2tr lượt xem</Text>
+                                        <Text style={styles.textName1}>Annie</Text>
+                                        <Text style={styles.textView}>2.2tr lượt xem</Text>
                                     </View>
                                     <View style={styles.boxRank3}>
                                         <Image source={IMAGE_RANK_3} style={styles.imgRank3} />
-                                        <Text style={styles.textName3}>Bruno</Text>
-                                        <Text style={styles.textView}>1.2tr lượt xem</Text>
+                                        <Text style={styles.textName3}>John Cena</Text>
+                                        <Text style={styles.textView}>1.1tr lượt xem</Text>
                                     </View>
                                 </View>
                                 <Image source={IMAGE_BUC} style={styles.imgBuc} />
                             </View>
                             <FlatList
-                                data={DATA}
+                                data={list_Rank}
                                 renderItem={({ item }) =>
                                     <ItemRanking
                                         item={item}
-                                        navigation = {navigation}/>}
-                                keyExtractor={(item) => item.id.toString()}
+                                        navigation={navigation} />}
+                                keyExtractor={(item) => item.keyRank.toString()}
+                                showsVerticalScrollIndicator = {false}
                             />
                         </View>
                         :
                         <FlatList
-                            data={DATATOPVIEW}
+                            data={list_Video}
                             renderItem={({ item }) =>
                                 <ItemTopView
-                                    id={item.id}
-                                    title={item.title}
-                                    author={item.author}
-                                    image={item.image}
-                                    like={item.view}
-                                    view={item.view}
+                                    item={item}
                                 />}
-                            keyExtractor={(item) => item.id.toString()}
-                            />
+                            keyExtractor={(item) => item.keyVideo.toString()}
+                        />
                 }
             </View>
 

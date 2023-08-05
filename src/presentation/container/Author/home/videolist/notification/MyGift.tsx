@@ -1,95 +1,44 @@
-import React, { useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity, Pressable } from 'react-native';
-import ItemGift, { ItemMyGiftProps } from './MyGift.item';
-import { IPHONE_13_PROMAX, SAMSUNG_GALAXY } from '../../../../../../../assets';
+import React, { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, Text, View, Dimensions } from 'react-native';
+import ItemGift from './MyGift.item';
 import Background from '../../../../../component/background/Background';
 import Header from '../../../../../component/header/Header';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import { Colors } from '../../../../../resource/value/Colors';
-import { BeatListStackScreenProps } from '../../../../../navigation/stack/BeatListNavigation';
 import { VideoListStackScreenProps } from '../../../../../navigation/stack/VideoListNavigation';
+import { Gift } from '../../../../../../core/model/Gift';
+import { rtdb } from '../../../../../../core/api/url/RealTimeDB';
 
-const DATA: ItemMyGiftProps[] = [
-    {
-        id: 1,
-        title: "Iphone 13 Promax",
-        des: "Top 1 tuần - 28/11/2021",
-        button: "Chưa nhận",
-        image: IPHONE_13_PROMAX,
-    },
-    {
-        id: 2,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 3,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 4,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 5,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 6,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 7,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 8,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 9,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-    
-    {
-        id: 10,
-        title: "Samsung Galaxy Tab S7+",
-        des: "Top 2 tuần - 21/11/2021",
-        button: "Đã nhận",
-        image: SAMSUNG_GALAXY
-    },
-];
 const MyGift:React.FC<VideoListStackScreenProps<'MyGift'>> = ({navigation,route}) => {
+    let listGift: Gift[] = [];
+
+    const [list_Gift, setlist_Gift] = useState<Gift[]>([])
+
+    useEffect(() => {
+    
+        const getGift = async () => {
+            let gift : Gift = {
+                keyGift: "1"
+            };
+            const get = rtdb.ref('/Gifts').once('value');
+            await get.then((snapshot: any) => {
+              snapshot.forEach((item: any) => {
+                gift.keyGift = item.key;
+                gift.des = item.val().des;
+                gift.image = item.val().image;
+                gift.title = item.val().title;
+                listGift.push(gift);
+              })
+              // console.log(list);
+              setlist_Gift(listGift)
+            });
+          }
+      
+          getGift();
+      return () => {}
+    }, [])
+    
+
     const centerHeader = () => {
         return (
             <View style={styles.header_1}>
@@ -114,14 +63,11 @@ const MyGift:React.FC<VideoListStackScreenProps<'MyGift'>> = ({navigation,route}
                 <FlatList
                     style={styles.flatList}
                     numColumns={2}
-                    data={DATA}
+                    data={list_Gift}
                     // renderItem={renderItem}
-                    renderItem={({ item }) => <ItemGift id={item.id}
-                        title={item.title}
-                        des={item.des}
-                        button={item.button}
-                        image={item.image} />}
-                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => <ItemGift
+                    item={item} />}
+                    keyExtractor={(item) => item.keyGift.toString()}
                 />
             </View>
         </Background>

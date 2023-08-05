@@ -1,14 +1,15 @@
-import { Modal, StyleSheet, Switch, Text, View, Image, Dimensions, TouchableOpacity, Alert } from 'react-native'
+import { Modal, StyleSheet, Switch, Text, View, Image, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
-import { ICON_LEFTARROW, ICON_PLAY_1X, ICON_PLAY_1_5X, OPTION_1, OPTION_2, OPTION_3, THUMB_MUSIC_4X } from '../../../../../../assets';
+import { OPTION_1, OPTION_2, OPTION_3, THUMB_MUSIC_4X } from '../../../../../../assets';
 import { Colors } from '../../../../resource/value/Colors';
 import Button from '../../../../component/button/Button';
 import Slider from '@react-native-community/slider';
 import DialogNotification from '../../../../component/dialog/DialogNotification';
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 
@@ -136,7 +137,7 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
                             <Text style={styles.textTime}>05:00</Text>
                         </View>
                         <View style={styles.boxPlay}>
-                            <Image style={styles.imgPlay} source={ICON_PLAY_1X} />
+                            <FontAwesome5Icon name='play' color={Colors.WHITE} size= {20}/>
                         </View>
                     </View>
                 </View>

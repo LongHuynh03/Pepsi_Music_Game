@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Modal, Alert, Dimensions, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { Colors } from '../../resource/value/Colors';
-import { ICON_EXIT } from '../../../../assets';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 export interface DialogNotificationProps {
   title?: string,
@@ -29,7 +29,7 @@ const DialogNotification: React.FC<DialogNotificationProps> = (props) => {
             isExit ?
               <View style={styles.boxBtnExit}>
                 <TouchableOpacity style={styles.btnExit} onPress = {onPressE}>
-                  <Image source={ICON_EXIT} style={styles.iconExit} />
+                <AntDesignIcon name='close' color={Colors.WHITE} size={20}/>
                 </TouchableOpacity>
               </View>
               :

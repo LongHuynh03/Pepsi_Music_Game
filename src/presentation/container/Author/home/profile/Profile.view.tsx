@@ -1,33 +1,64 @@
-import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView } from 'react-native'
-import React from 'react'
-import ItemProfile, { ItemProfileProps } from './Profile.item'
+import { StyleSheet, Text, View, Image, Dimensions, FlatList } from 'react-native'
+import React, {useEffect, useState} from 'react'
+import ItemProfile from './Profile.item'
 import { Colors } from '../../../../resource/value/Colors';
 import Background from '../../../../component/background/Background';
 import Header from '../../../../component/header/Header';
-import { AVATAR_1, AVATAR_2_1X, CARD_PEPSI_1, CARD_PEPSI_2, CARD_PEPSI_3, CARD_PEPSI_4, CARD_PEPSI_5 } from '../../../../../../assets';
+import { AVATAR_1 } from '../../../../../../assets';
 import Icon from 'react-native-vector-icons/Feather';
 import { ProfileScreenProps } from '../../../../navigation/stack/ProfileNavigation';
-
-const DATA: ItemProfileProps[] = [
-    { id: 1, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_1 },
-    { id: 2, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_2 },
-    { id: 3, title: 'Tiền nhiều để làm gì', view: '11.8k', like: '10203', image: CARD_PEPSI_3 },
-    { id: 4, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_4 },
-    { id: 5, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_5 },
-    { id: 6, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_1 },
-    { id: 7, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_2 },
-    { id: 8, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_3 },
-    { id: 9, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_4 },
-    { id: 10, title: 'Tiền nhiều để làm gì', view: '11000', like: '10203', image: CARD_PEPSI_5 },
-];
+import { Video } from '../../../../../core/model/Video';
+import { rtdb } from '../../../../../core/api/url/RealTimeDB';
+import { useDispatch } from 'react-redux';
+import { addStatus } from '../../../../share-state/redux/reducers/statusReducer';
 
 const Profile:React.FC<ProfileScreenProps<'UserProfile'>> = ({navigation, route}) => {
+
+    const [list_Video, setlist_Video] = useState<Video[]>([])
+
+    let listVideo: Video[] = [];
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const getVideo = async () => {
+            const get = rtdb.ref('/Videos').once('value');
+            await get.then((snapshot: any) => {
+              snapshot.forEach((item: any) => {
+            let video : Video = {
+                keyVideo: "1"
+            };
+                video.keyVideo = item.key;
+                video.craeteAt = item.val().craeteAt;
+                video.image = item.val().image;
+                video.like = item.val().like;
+                video.title = item.val().title;
+                video.userKey = item.val().userKey;
+                video.view = item.val().view;
+                listVideo.push(video);
+              })
+              // console.log(list);
+              setlist_Video(listVideo);
+            });
+          }
+      
+          getVideo();
+
+        return () => { }
+    }, [])
+
 
     const centerHeader = () => {
         return (
             <Text style={styles.textHeader}>Thông tin cá nhân</Text>
         )
     };
+
+    const logOut = () => {
+        const logout = dispatch(addStatus({
+            status : false
+        }))
+    }
 
     return (
         <Background>
@@ -37,6 +68,7 @@ const Profile:React.FC<ProfileScreenProps<'UserProfile'>> = ({navigation, route}
                     iconRight={
                         <Icon name='log-out' size={20} color={Colors.WHITE} />
                     }
+                    rightHeader={logOut}
                 />
                 <View style={styles.group}>
                     <View style={styles.group1}>
@@ -60,13 +92,13 @@ const Profile:React.FC<ProfileScreenProps<'UserProfile'>> = ({navigation, route}
                 <View style={styles.list}>
                     <FlatList
                         // style= {styles.lisItem}
-                        data={DATA}
+                        data={list_Video}
                         renderItem={({ item }) =>
                             <ItemProfile
                                 item={item}
                                 navigation={navigation} />
                         }
-                        keyExtractor={(item) => item.id.toString()}
+                        keyExtractor={(item) => item.keyVideo.toString()}
                         numColumns={2}
                         showsVerticalScrollIndicator={false}
                     />

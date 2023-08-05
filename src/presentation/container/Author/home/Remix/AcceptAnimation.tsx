@@ -4,7 +4,7 @@ import Background from '../../../../component/background/Background'
 import Button from '../../../../component/button/Button'
 import { Colors } from '../../../../resource/value/Colors'
 import Header from '../../../../component/header/Header'
-import { CARD_PEPSI_2_1x, ICON_LEFTARROW } from '../../../../../../assets'
+import { CARD_PEPSI_2_1x } from '../../../../../../assets'
 import { RemixStackScreenProps } from '../../../../navigation/stack/RemixListNavigation'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 

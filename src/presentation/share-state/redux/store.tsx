@@ -10,10 +10,7 @@ const store = configureStore({
         userReducer,
         statusReducer,
     },
-    middleware: getDefaultMiddleware =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        })
+    middleware: middleware
 })
 
 export default store

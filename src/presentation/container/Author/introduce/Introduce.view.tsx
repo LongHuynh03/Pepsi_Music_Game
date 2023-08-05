@@ -1,18 +1,19 @@
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'react-native'
 import React from 'react'
 import Swiper from 'react-native-swiper'
-import { INTRO_1, INTRO_2, INTRO_3, INTRO_4, INTRO_5, INTRO_6, TALEN } from '../../../../../assets'
+import { INTRO_1, INTRO_2, INTRO_3, INTRO_4, INTRO_5, INTRO_6 } from '../../../../../assets'
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/StackNavigation'
 import { useDispatch, useSelector } from 'react-redux'
-import { addUser, userSelecter } from '../../../share-state/redux/reducers/userReducer'
+import { userSelecter } from '../../../share-state/redux/reducers/userReducer'
 import { addStatus } from '../../../share-state/redux/reducers/statusReducer'
 
 const Introduce: React.FC<MainStackScreenProps<'Instruct'>> = ({navigation,route}) => {
 
   const [btnNext, setbtnNext] = React.useState(false);
   const [btnPrev, setbtnPrev] = React.useState(false)
+
   let buttonPrev = null;
   let buttonNext = null;
   const dataUser = useSelector(userSelecter);

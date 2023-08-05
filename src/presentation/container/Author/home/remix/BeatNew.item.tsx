@@ -1,7 +1,6 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Colors } from '../../../../resource/value/Colors'
-import { CARD_PEPSI_1, ICON_MIC_1, ICON_MIC_2 } from '../../../../../../assets'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
 import FeatherIcon from 'react-native-vector-icons/Feather'
 
@@ -19,7 +18,7 @@ interface Item {
 
 const BeatNewItem: React.FC<Item> = (props) => {
 
-    const {id, name, des, image} = props.item;
+    const {item} = props;
     const {navigation} = props;
 
     const onClick = () => {
@@ -30,11 +29,11 @@ const BeatNewItem: React.FC<Item> = (props) => {
         <View>
             <TouchableOpacity style={styles.card} onPress={onClick}>
                 <View style={styles.boxImage}>
-                    <Image source={image} style={styles.image} />
+                    <Image source={{uri :item.image}} style={styles.image} />
                 </View>
                 <View style={styles.group}>
-                    <Text style={styles.baihat}>{name}</Text>
-                    <Text style={styles.casi}>{des}</Text>
+                    <Text style={styles.baihat}>{item.name}</Text>
+                    <Text style={styles.casi}>{item.author}</Text>
                     <View style={styles.group1}>
                         <FeatherIcon name = "mic" size = {9} color={Colors.WHITE}/>
                         <Text style={styles.soluong}>9.023 lượt cover</Text>
@@ -73,6 +72,7 @@ const styles = StyleSheet.create({
     image: {
         resizeMode: 'contain',
         width: Dimensions.get('window').height * 0.08,
+        height: Dimensions.get('window').height * 0.08,
     },
     group: {
         width: "61%",
